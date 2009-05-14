@@ -1,0 +1,15 @@
+AUTHORS
+MANIFEST.in
+NEWS
+README
+ez_setup.py
+setup.cfg
+setup.py
+RBTools.egg-info/PKG-INFO
+RBTools.egg-info/SOURCES.txt
+RBTools.egg-info/dependency_links.txt
+RBTools.egg-info/requires.txt
+RBTools.egg-info/top_level.txt
+contrib/P4Tool.txt
+contrib/README.P4Tool
+scripts/post-review

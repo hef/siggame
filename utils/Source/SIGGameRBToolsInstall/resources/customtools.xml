@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--perforce-xml-version=1.0-->
+<CustomToolDefList varName="customtooldeflist" >
+ <CustomToolDef>
+  <Definition>
+   <Name>Submit Review...</Name>
+   <Command>C:\Python25\python.exe</Command>
+   <Arguments>C:\Python25\Scripts\submitreview.py $p $u $c %c</Arguments>
+  </Definition>
+  <Console>
+   <CloseOnExit>true</CloseOnExit>
+  </Console>
+  <AddToContext>true</AddToContext>
+ </CustomToolDef>
+</CustomToolDefList>
