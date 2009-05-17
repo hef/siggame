@@ -38,7 +38,7 @@ START /wait C:\Python25\python.exe setenvs.py
 @echo on
 @echo Integrating Review Tool With P4V...
 @echo off
-XCOPY customtools.xml %USERPROFILE%\.p4qt /y
+XCOPY customtools.xml "%USERPROFILE%\.p4qt" /y
 
 
 @echo on
