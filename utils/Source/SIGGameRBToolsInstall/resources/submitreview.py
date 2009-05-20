@@ -17,9 +17,8 @@ if sys.argv[4] == "default":
 	msgbox(msg="The default changelist cannot be used for a review.  Please move files into a named changelist.", title="Error", ok_button="Ok")
 	sys.exit()
 	
-#C:\Python25\Scripts\post-review -d -o --server=http://chi-revboard-01 --p4-port=$p --username=$u --password=PASSWORD --p4-client=$c %c
 cmd = ""
-cmd = cmd + "C:\Python25\python.exe C:\Python25\Scripts\post-review -d -o --server=http://acm.cs.uic.edu/siggame/reviewboard" + " "
+cmd = cmd + "C:\Python25\python.exe C:\Python25\Scripts\post-review -d -o --server=https://acm.cs.uic.edu/reviews" + " "
 cmd = cmd + "--p4-port=" + sys.argv[1] + " "
 cmd = cmd + "--username=" + sys.argv[2] + " "
 cmd = cmd + "--password=" + password + " "
@@ -28,7 +27,7 @@ cmd = cmd + sys.argv[4]
 
 p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 out = p.communicate()
-
+	
 out = out[0]
 
 #http://code.google.com/p/reviewboard/wiki/ReviewBoardAPI
@@ -55,7 +54,15 @@ if out.lower().find("code 208") >=0:
 if out.lower().find("code 212") >=0:
 	msgbox(msg="Cannot do this action with an empty changelist.", title="Error", ok_button="Ok")
 	sys.exit()
-	
+
+if out.lower().find("404 not found") >=0:
+        msgbox(msg="Can not connect to the reviewboard server.", title="Error", ok_button="Ok")
+        sys.exit()
+
+if out.lower().find("the system cannot find the file specified") >=0:
+        msgbox(msg="Diff tool cannot be found, contact Sakkos.", title="Error", ok_button="Ok")
+        sys.exit()
+        
 if out.lower().find("http error 500: internal server error") >= 0:
 	msgbox(msg="Interal Server Error", title="Error", ok_button="Ok")
 	sys.exit()
