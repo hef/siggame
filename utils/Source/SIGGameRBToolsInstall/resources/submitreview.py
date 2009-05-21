@@ -6,7 +6,7 @@ if len(sys.argv) != 5:
 
 password = passwordbox(msg="Enter your ACM password:", title="Password", default="")
 if password == "":
-	password = passwordbox(msg="(Null Password Entered.  Try Again) Enter your ReviewBoard password:", title="Password", default="")
+	password = passwordbox(msg="(Null Password Entered.  Try Again) Enter your ACM password:", title="Password", default="")
 	if password == "":
 		sys.exit()
 
@@ -29,7 +29,7 @@ p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.
 out = p.communicate()
 	
 out = out[0]
-
+print out
 #http://code.google.com/p/reviewboard/wiki/ReviewBoardAPI
 if out.lower().find("code 101") >=0:
 	msgbox(msg="You don't have permission for this action.", title="Error", ok_button="Ok")
