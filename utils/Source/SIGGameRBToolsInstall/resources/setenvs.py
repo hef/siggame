@@ -1,4 +1,4 @@
-import subprocess, sys
+import subprocess, os
 from easygui import msgbox
 
 # Test if user is running Vista
@@ -7,8 +7,8 @@ out = p.communicate()
 
 # User is running Vista
 if p.returncode == 2:
-	msgbox(msg="Running Vista, access denied, please run setenvs.py in administrator mode.", title="Error", ok_button="Ok")
-	sys.exit()
+	msgbox(msg="Access denied, please run this batch file in administrator mode.", title="Error", ok_button="Ok")
+	os._exit(1)
 
 # User not using Vista, Delete the dummy environment variable and continue
 p = subprocess.Popen("setenv.exe -m DUMMY_ENV_VAR -delete", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

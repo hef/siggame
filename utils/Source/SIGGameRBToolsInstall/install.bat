@@ -4,6 +4,13 @@
 IF NOT EXIST C:\Python25\python.exe START /wait resources\python-2.5.4.msi /passive
 
 @echo on
+@echo Setting Environment Variables...
+@echo off
+
+START /wait C:\Python25\python.exe setenvs.py
+IF ERRORLEVEL 1 ( goto :install_failed )
+
+@echo on
 @echo Compiling RBTools...
 @echo off
 
@@ -33,7 +40,6 @@ XCOPY easygui.py C:\Python25\Lib\site-packages /y
 @echo off
 
 IF NOT EXIST C:\msys\1.0 START /wait MSYS-1.0.10.exe
-START /wait C:\Python25\python.exe setenvs.py
 
 @echo on
 @echo Integrating Review Tool With P4V...
@@ -49,3 +55,14 @@ XCOPY customtools.xml "%USERPROFILE%\.p4qt" /y
 @echo.
 @echo.
 @pause
+EXIT 0
+
+:install_failed
+@echo on
+@echo.
+@echo.
+@echo Installation Failed!
+@echo.
+@echo.
+@pause
+EXIT 1
