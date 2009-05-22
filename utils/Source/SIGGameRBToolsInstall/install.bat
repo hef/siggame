@@ -1,26 +1,31 @@
 @echo Installing...
 @echo Installing Python2.5...
 @echo off
-IF NOT EXIST C:\Python25\python.exe START /wait resources\python-2.5.4.msi /passive
+CD %~dp0
+cd resources
+IF NOT EXIST C:\Python25\python.exe START /wait python-2.5.4.msi /passive
 
 @echo on
 @echo Setting Environment Variables...
 @echo off
 
-START /wait C:\Python25\python.exe setenvs.py
+START /WAIT C:\Python25\python.exe setenvs.py
+
 IF ERRORLEVEL 1 ( goto :install_failed )
 
 @echo on
 @echo Compiling RBTools...
 @echo off
 
-IF NOT EXIST C:\Python25\Scripts\easy_install.exe START /wait C:\Python25\python.exe resources\RBTools-0.2beta1\ez_setup.py
+cd RBTools-0.2beta1
+
+IF NOT EXIST C:\Python25\Scripts\easy_install.exe START /wait C:\Python25\python.exe ez_setup.py
 
 @echo on
 @echo Installing Review Tool...
 @echo off
 
-cd resources\RBTools-0.2beta1
+
 
 IF NOT EXIST C:\Python25\Scripts\post-review START /wait C:\Python25\python.exe setup.py install
 
