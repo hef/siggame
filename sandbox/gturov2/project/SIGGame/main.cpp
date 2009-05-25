@@ -1,358 +1,211 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2009) and may not
-be redestributed without written permission.*/
-
-//The headers
+///////////////////////////////////////////////////
+#include <stdlib.h>
 #include "SDL.h"
-#include "SDL_image.h"
-#include "SDL_ttf.h"
-#include "SDL_mixer.h"
-#include <string>
 
-//Screen attributes
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-const int SCREEN_BPP = 32;
+#ifdef WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
 
-//The surfaces
-SDL_Surface *background = NULL;
-SDL_Surface *message = NULL;
-SDL_Surface *screen = NULL;
+#if defined(__APPLE__) && defined(__MACH__)
+#include <openGL/gl.h>
+#include <openGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 
-//The event structure
-SDL_Event event;
+const GLsizei windowWidth = 500;
+const GLsizei windowHeight = 500;
 
-//The font
-TTF_Font *font = NULL;
+GLfloat cubeRotateX = 45.0f;
+GLfloat cubeRotateY = 45.0f;
 
-//The color of the font
-SDL_Color textColor = { 0, 0, 0 };
+Uint8 *keys = NULL;
 
-//The music that will be played
-Mix_Music *music = NULL;
+//////////COPIED FROM GLUTDEMO.CPP///////////
 
-//The sound effects that will be used
-Mix_Chunk *scratch = NULL;
-Mix_Chunk *high = NULL;
-Mix_Chunk *med = NULL;
-Mix_Chunk *low = NULL;
-
-SDL_Surface *load_image( std::string filename )
+GLvoid establishProjectionMatrix(GLsizei width, GLsizei height)
 {
-    //The image that's loaded
-    SDL_Surface* loadedImage = NULL;
+	glViewport(0,0, width, height);
 
-    //The optimized surface that will be used
-    SDL_Surface* optimizedImage = NULL;
+	glMatrixMode(GL_PROJECTION);
 
-    //Load the image
-    loadedImage = IMG_Load( filename.c_str() );
+	glLoadIdentity();
 
-    //If the image loaded
-    if( loadedImage != NULL )
-    {
-        //Create an optimized surface
-        optimizedImage = SDL_DisplayFormat( loadedImage );
+	gluPerspective(45.0f, (GLfloat)width / (GLfloat)height, 0.1f, 200.0f);
 
-        //Free the old surface
-        SDL_FreeSurface( loadedImage );
-
-        //If the surface was optimized
-        if( optimizedImage != NULL )
-        {
-            //Color key surface
-            SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, SDL_MapRGB( optimizedImage->format, 0, 0xFF, 0xFF ) );
-        }
-    }
-
-    //Return the optimized surface
-    return optimizedImage;
 }
 
-void apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* clip = NULL )
+GLvoid initGL(GLsizei width, GLsizei height)
 {
-    //Holds offsets
-    SDL_Rect offset;
+	establishProjectionMatrix(width, height);
 
-    //Get offsets
-    offset.x = x;
-    offset.y = y;
+	glShadeModel(GL_SMOOTH);
 
-    //Blit
-    SDL_BlitSurface( source, clip, destination, &offset );
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // nicest calculation possible
+	glEnable(GL_PERSPECTIVE_CORRECTION_HINT); // enabled above
+
 }
 
-bool init()
+GLvoid displayFPS(GLvoid)
 {
-    //Initialize all SDL subsystems
-    if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 )
-    {
-        return false;
-    }
+	static long lastTime = SDL_GetTicks();
+	static long loops = 0;
+	static GLfloat fps = 0.0f;
 
-    //Set up the screen
-    screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
+	int newTime = SDL_GetTicks();
 
-    //If there was an error in setting up the screen
-    if( screen == NULL )
-    {
-        return false;
-    }
+	if (newTime - lastTime > 100)
+	{
+		float newFPS = (float)loops / float(newTime - lastTime) * 1000.0f;
 
-    //Initialize SDL_ttf
-    if( TTF_Init() == -1 )
-    {
-        return false;
-    }
+		fps = (fps + newFPS) / 2.0f;
 
-    //Initialize SDL_mixer
-    if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 4096 ) == -1 )
-    {
-        return false;
-    }
+		char title[80];
+		sprintf(title, "OpenGL Demo - %.2f", fps);
 
-    //Set the window caption
-    SDL_WM_SetCaption( "Monitor Music", NULL );
+		SDL_WM_SetCaption(title, NULL);
 
-    //If everything initialized fine
-    return true;
+		lastTime = newTime;
+
+		loops = 0;
+	}
+	loops++;
 }
 
-bool load_files()
+GLvoid drawScene(GLvoid)
 {
-    //Load the background image
-    background = load_image( "background.png" );
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    //Open the font
-    font = TTF_OpenFont( "lazy.ttf", 30 );
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 
-    //If there was a problem in loading the background
-    if( background == NULL )
-    {
-        return false;
-    }
+	glTranslatef(0, 0, -5.0f); // translate camera back -5
+	glRotatef(cubeRotateX, 1, 0, 0); // rotate cube x, y,
+	glRotatef(cubeRotateY, 0, 1, 0);
 
-    //If there was an error in loading the font
-    if( font == NULL )
-    {
-        return false;
-    }
+	// draw cube
+	glBegin(GL_QUADS);
+	// Top Face
+	glColor3f(1.0f, 0.5f, 0.0f);
+	glVertex3f( 1.0f, 1.0f, -1.0f);
+	glVertex3f(-1.0f, 1.0f, -1.0f);
+	glVertex3f(-1.0f, 1.0f, 1.0f);
+	glVertex3f( 1.0f, 1.0f, 1.0f);
 
-    //Load the music
-    music = Mix_LoadMUS( "beat.wav" );
+	// Bottom Face
+	glColor3f(1.0f, 1.0f, 0.0f);
+	glVertex3f( 1.0f, -1.0f, -1.0f);
+	glVertex3f(-1.0f, -1.0f, -1.0f);
+	glVertex3f(-1.0f, -1.0f, 1.0f);
+	glVertex3f( 1.0f, -1.0f, 1.0f);
 
-    //If there was a problem loading the music
-    if( music == NULL )
-    {
-        return false;
-    }
+	// Front Face
+	glColor3f(1.0f, 0.5f, 0.0f);
+	glVertex3f( 1.0f, 1.0f, 1.0f);
+	glVertex3f(-1.0f, 1.0f, 1.0f);
+	glVertex3f(-1.0f, -1.0f, 1.0f);
+	glVertex3f( 1.0f, -1.0f, 1.0f);
 
-    //Load the sound effects
-    scratch = Mix_LoadWAV( "scratch.wav" );
-    high = Mix_LoadWAV( "high.wav" );
-    med = Mix_LoadWAV( "medium.wav" );
-    low = Mix_LoadWAV( "low.wav" );
+	// Back Face
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glVertex3f( 1.0f, 1.0f, -1.0f);
+	glVertex3f(-1.0f, 1.0f, -1.0f);
+	glVertex3f(-1.0f, -1.0f, -1.0f);
+	glVertex3f( 1.0f, -1.0f, -1.0f);
 
-    //If there was a problem loading the sound effects
-    if( ( scratch == NULL ) || ( high == NULL ) || ( med == NULL ) || ( low == NULL ) )
-    {
-        return false;
-    }
+	//Left Face
+	glColor3f(0.0f, 0.5f, 1.0f);
+	glVertex3f(-1.0f, 1.0f, 1.0f);
+	glVertex3f(-1.0f, 1.0f, -1.0f);
+	glVertex3f(-1.0f, -1.0f, -1.0f);
+	glVertex3f(-1.0f, -1.0f, 1.0f);
 
-    //If everything loaded fine
-    return true;
+	// Right Face
+	glColor3f(1.0f, 0.5f, 1.0f);
+	glVertex3f( 1.0f, 1.0f, 1.0f);
+	glVertex3f( 1.0f, 1.0f, -1.0f);
+	glVertex3f( 1.0f, -1.0f, -1.0f);
+	glVertex3f( 1.0f, -1.0f, 1.0f);
+
+	//
+	glEnd();
+	glFlush(); // free up stuff
+
+	SDL_GL_SwapBuffers(); // switches buffer
+
+	displayFPS();
 }
 
-void clean_up()
+
+GLboolean checkKeys(GLvoid)
 {
-    //Free the surfaces
-    SDL_FreeSurface( background );
+	static long lastTime = SDL_GetTicks();
+	const GLfloat speed = 1.0f;
+	const long updateTime = 10;
 
-    //Free the sound effects
-    Mix_FreeChunk( scratch );
-    Mix_FreeChunk( high );
-    Mix_FreeChunk( med );
-    Mix_FreeChunk( low );
+	if ( keys[SDLK_ESCAPE] )
+		return true;
 
-    //Free the sound effects
-    Mix_FreeMusic( music );
+	long newTime = SDL_GetTicks();
 
-    //Close the font
-    TTF_CloseFont( font );
-
-    //Quit SDL_mixer
-    Mix_CloseAudio();
-
-    //Quit SDL_ttf
-    TTF_Quit();
-
-    //Quit SDL
-    SDL_Quit();
+	if ( newTime - lastTime > updateTime )
+	{
+		if ( keys[SDLK_LEFT] )
+			cubeRotateY -= speed;
+		if ( keys[SDLK_RIGHT] )
+			cubeRotateY += speed;
+		if ( keys[SDLK_UP] )
+			cubeRotateX -= speed;
+		if ( keys[SDLK_DOWN] )
+			cubeRotateX += speed;
+	}
+	return false;
 }
 
-int main( int argc, char* args[] )
+
+//////////////////////////////////////
+
+int main(int argc, char **argv)
 {
-    //Quit flag
-    bool quit = false;
+	if ( SDL_Init(SDL_INIT_VIDEO) < 0 )
+	{
+		fprintf(stderr, "Unable to initialize SDL %s", SDL_GetError());
+		exit(1);
+	}
+	if ( SDL_SetVideoMode(windowWidth, windowHeight, 0, SDL_OPENGL) == NULL)
+	{
+		fprintf(stderr, "Unable to create openGL scene %s", SDL_GetError());
+		exit(2);
+	}
 
-    //Initialize
-    if( init() == false )
-    {
-        return 1;
-    }
+	initGL(windowWidth, windowHeight);
 
-    //Load the files
-    if( load_files() == false )
-    {
-        return 1;
-    }
+	int done = 0;
+	while ( !done )
+	{
+		drawScene();
 
-    //Apply the background
-    apply_surface( 0, 0, background, screen );
+		SDL_Event event;
+		while ( SDL_PollEvent(&event) )
+		{
+			if ( event.type == SDL_QUIT )
+				done = 1;
 
-    //Render the text
-    message = TTF_RenderText_Solid( font, "Press 1, 2, 3, or 4 to play a sound effect", textColor );
+			keys = SDL_GetKeyState(NULL);
+		}
+		if ( checkKeys() )
+			done = 1;
+	}
 
-    //If there was an error in rendering the text
-    if( message == NULL )
-    {
-        return 1;
-    }
+	SDL_Quit();
 
-    //Show the message on the screen
-    apply_surface( ( SCREEN_WIDTH - message->w ) / 2, 100, message, screen );
-
-    //Free the message
-    SDL_FreeSurface( message );
-
-    //Render the text
-    message = TTF_RenderText_Solid( font, "Press 9 to play or pause the music", textColor );
-
-    //If there was an error in rendering the text
-    if( message == NULL )
-    {
-        return 1;
-    }
-
-    //Show the message on the screen
-    apply_surface( ( SCREEN_WIDTH - message->w ) / 2, 200, message, screen );
-
-    //Free the message
-    SDL_FreeSurface( message );
-
-    //Render the text
-    message = TTF_RenderText_Solid( font, "Press 0 to stop the music", textColor );
-
-    //If there was an error in rendering the text
-    if( message == NULL )
-    {
-        return 1;
-    }
-
-    //Show the message on the screen
-    apply_surface( ( SCREEN_WIDTH - message->w ) / 2, 300, message, screen );
-
-    //Free the message
-    SDL_FreeSurface( message );
-
-    //Update the screen
-    if( SDL_Flip( screen ) == -1 )
-    {
-        return 1;
-    }
-
-    //While the user hasn't quit
-    while( quit == false )
-    {
-        //While there's events to handle
-        while( SDL_PollEvent( &event ) )
-        {
-            //If a key was pressed
-            if( event.type == SDL_KEYDOWN )
-            {
-                //If 1 was pressed
-                if( event.key.keysym.sym == SDLK_1 )
-                {
-                    //Play the scratch effect
-                    if( Mix_PlayChannel( -1, scratch, 0 ) == -1 )
-                    {
-                        return 1;
-                    }
-                }
-                //If 2 was pressed
-                else if( event.key.keysym.sym == SDLK_2 )
-                {
-                    //Play the high hit effect
-                    if( Mix_PlayChannel( -1, high, 0 ) == -1 )
-                    {
-                        return 1;
-                    }
-                }
-                //If 3 was pressed
-                else if( event.key.keysym.sym == SDLK_3 )
-                {
-                    //Play the medium hit effect
-                    if( Mix_PlayChannel( -1, med, 0 ) == -1 )
-                    {
-                        return 1;
-                    }
-                }
-                //If 4 was pressed
-                else if( event.key.keysym.sym == SDLK_4 )
-                {
-                    //Play the low hit effect
-                    if( Mix_PlayChannel( -1, low, 0 ) == -1 )
-                    {
-                        return 1;
-                    }
-                }
-                //If 9 was pressed
-                else if( event.key.keysym.sym == SDLK_9 )
-                {
-                    //If there is no music playing
-                    if( Mix_PlayingMusic() == 0 )
-                    {
-                        //Play the music
-                        if( Mix_PlayMusic( music, -1 ) == -1 )
-                        {
-                            return 1;
-                        }
-                    }
-                    //If music is being played
-                    else
-                    {
-                        //If the music is paused
-                        if( Mix_PausedMusic() == 1 )
-                        {
-                            //Resume the music
-                            Mix_ResumeMusic();
-                        }
-                        //If the music is playing
-                        else
-                        {
-                            //Pause the music
-                            Mix_PauseMusic();
-                        }
-                    }
-                }
-                //If 0 was pressed
-                else if( event.key.keysym.sym == SDLK_0 )
-                {
-                    //Stop the music
-                    Mix_HaltMusic();
-                }
-            }
-            //If the user has Xed out the window
-            if( event.type == SDL_QUIT )
-            {
-                //Quit the program
-                quit = true;
-            }
-        }
-    }
-
-    //Free surfaces, fonts and sounds
-    //then quit SDL_mixer, SDL_ttf and SDL
-    clean_up();
-
-    return 0;
+	return 1;
 }
+/////////////////////////////////////////////// 
