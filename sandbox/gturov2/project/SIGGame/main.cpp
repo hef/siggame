@@ -37,6 +37,7 @@ GLvoid establishProjectionMatrix(GLsizei width, GLsizei height)
 
 }
 
+// Gary's code is horrendous
 GLvoid initGL(GLsizei width, GLsizei height)
 {
 	establishProjectionMatrix(width, height);
@@ -55,6 +56,7 @@ GLvoid initGL(GLsizei width, GLsizei height)
 
 GLvoid displayFPS(GLvoid)
 {
+	// Totally unnecessary
 	static long lastTime = SDL_GetTicks();
 	static long loops = 0;
 	static GLfloat fps = 0.0f;
