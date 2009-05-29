@@ -1,8 +1,8 @@
-#include "Utilities.h"
+#include "Utils.h"
 
 int main()
 {
-	Utilities aStack;
-	Utilities * aHeap = new Utilities;
+	Utils aStack;
+	Utils* aHeap = new Utils;
 	return 0;
 }
