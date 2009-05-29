@@ -175,7 +175,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Utilities.h"
+				RelativePath=".\Utils.cpp"
 				>
 			</File>
 		</Filter>
