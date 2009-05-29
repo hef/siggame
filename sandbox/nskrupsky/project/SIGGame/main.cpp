@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "Utilities.h"
+#include "Utils.h"
 
 int main()
 {
-	Utilities uObject1; // on the stack
-	Utilities* pUObject2 = new Utilities; // on the heap
+	Utils uObject1; // on the stack
+	Utils* pUObject2 = new Utils; // on the heap
 	return 0;
 }
