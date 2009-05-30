@@ -1,11 +1,13 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-class Utilities
+class Utils
 {
 	public:
-		Utilities(){};		//Define empty constructor
-		~Utilities(){};		//Define empty destructor
+		int sumUp( const int &upTo );
+
+		Utils(){};		//Define empty constructor
+		~Utils(){};		//Define empty destructor
 };
 
 #endif
