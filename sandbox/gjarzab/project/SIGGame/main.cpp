@@ -20,5 +20,7 @@ int main()
 
 	cout << "pUtilitiesObject->sumUp( userInput ) = " << pUtilitiesObject->sumUp( userInput ) << endl;
 
+	delete pUtilitiesObject;
+
 	return 0;
 }
