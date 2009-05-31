@@ -1,9 +1,9 @@
-#include "Utilities.h"
+#include "Utils.h"
 
 int main()
 {
-	Utilities stackUtil;
-	Utilities* heapUtil = new Utilities;
+	Utils stackUtil;
+	Utils* heapUtil = new Utils;
 	delete(heapUtil);
 	return 0;
 }
