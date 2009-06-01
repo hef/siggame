@@ -24,6 +24,12 @@ class Utils
 			}
 			return *this;
 		}
+		unsigned int sumUp( const unsigned int );
+	private:
+		// overloaded and defined private to prevent calls to sumUp with doubles and floats as arguments
+		unsigned int sumUp( const int );
+		unsigned int sumUp( const double );
+		unsigned int sumUp( const float );
 };
 
 #endif
