@@ -3,21 +3,23 @@
 
 // #ifndef is a header guard that prevents errors from including 
 // the same header multiple times
-#ifndef UTILITIES_H
-#define UTILITIES_H
 
-class Utilities
+// Note: Utils is short for Utilities
+#ifndef UTILS_H
+#define UTILS_H
+
+class Utils
 {
 public:
-	Utilities()
+	Utils()
 	{
 		//Constructor
 	}
 
-	~Utilities()
+	~Utils()
 	{
 		//Destructor
 	}
 };
 
-#endif //UTILITIES_H
+#endif //UTILS_H

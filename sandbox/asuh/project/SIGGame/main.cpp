@@ -2,11 +2,11 @@
 //May 28, 2009
 
 #include <stdio.h>
-#include "Utilities.h"
+#include "Utils.h"
 
 int main()
 {
-	Utilities uForStack;
-	Utilities* uForHeap = new Utilities;	//http://www.java2s.com/Tutorial/Cpp/0180__Class/Creatingobjectsontheheapusingnew.htm
+	Utils uForStack;
+	Utils* uForHeap = new Utils;	//http://www.java2s.com/Tutorial/Cpp/0180__Class/Creatingobjectsontheheapusingnew.htm
 	return 0;
 }
