@@ -1,8 +1,8 @@
-#include "Utilities.h"
+#include "Utils.h"
 
 int main()
 {
-	Utilities *utilStack = new Utilities(); // stack implementation of Utilities
-	Utilities utilHeap; // heap implementation of Utilities
+	Utils *utilStack = new Utils(); // stack implementation of Utilities
+	Utils utilHeap; // heap implementation of Utilities
 	return 0;
 }

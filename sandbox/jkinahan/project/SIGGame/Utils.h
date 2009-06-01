@@ -1,16 +1,16 @@
 #ifndef UTILITIES_H 
 #define UTILITIES_H
 
-class Utilities
+class Utils
 {
 private:
 
 public:
-	Utilities()
+	Utils()
 	{
 
 	}
-	~Utilities()
+	~Utils()
 	{
 
 	}
