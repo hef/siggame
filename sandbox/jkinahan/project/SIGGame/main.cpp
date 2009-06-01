@@ -2,7 +2,10 @@
 
 int main()
 {
-	Utils *utilStack = new Utils(); // stack implementation of Utilities
-	Utils utilHeap; // heap implementation of Utilities
+	Utils* utilHeap = new Utils; // heap implementation of Utilities
+	Utils utilStack; // stack implementation of Utilities
+
+	delete utilHeap;
+
 	return 0;
 }

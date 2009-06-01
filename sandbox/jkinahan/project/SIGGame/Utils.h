@@ -6,14 +6,8 @@ class Utils
 private:
 
 public:
-	Utils()
-	{
-
-	}
-	~Utils()
-	{
-
-	}
+	Utils(){}
+	~Utils(){}
 };
 
 #endif /* UTILITIES_H */
