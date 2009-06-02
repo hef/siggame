@@ -20,6 +20,12 @@ public:
 	{
 		//Destructor
 	}
+
+	int sumUp(int x)
+	{
+		// http://www.curiousmath.com/index.php?name=News&file=article&sid=23
+		return ( ( ( x * x ) + x ) / 2 );
+	}
 };
 
 #endif //UTILS_H
