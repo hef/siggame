@@ -2,10 +2,8 @@
 //May 28, 2009
 
 //Method 1: Using the "using" keyword
-#include <vector>
 #include <iostream>
 
-using std::vector;
 using std::cout;
 using std::cin;
 using std::endl;
@@ -22,14 +20,13 @@ int main()
 
 	// 1+2+3+4+5 = 15
 	// 1+2+3+4+5+6 = 21
-	cout << uForStack.sumUp( 5 ) << endl;
-	cout << uForHeap->sumUp( 6 ) << endl;	// http://www.java2s.com/Tutorial/Cpp/0180__Class/Accessingmembersofobjectsontheheap.htm
+	cout << uForStack.sumUp( ( unsigned int )( 5 ) ) << endl;
+	cout << uForHeap->sumUp( ( unsigned int )( 6 ) ) << endl;	// http://www.java2s.com/Tutorial/Cpp/0180__Class/Accessingmembersofobjectsontheheap.htm
 
-	// Should this function accomodate for decimals/negatives?
-	// 4+3+2+1 = 10.  Decimals are cut off.
-	// 8+7+6+5+4+3+2+1 = 36.  (signed)(-9) = 0111 = (unsigned)(+7) so I dunno.
-	cout << uForStack.sumUp( 4.3 ) << endl;
-	cout << uForHeap->sumUp( -9 ) << endl;
+	// The following result in compiler errors
+	// cout << uForStack.sumUp( 4.3 ) << endl;
+	// cout << uForHeap->sumUp( -9 ) << endl;
+	// cout << uForStack.sumUp( 8 ) << endl;
 
 	_getch();
 

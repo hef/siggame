@@ -11,21 +11,17 @@
 class Utils
 {
 public:
-	Utils()
-	{
-		//Constructor
-	}
+	Utils() {}
 
-	~Utils()
-	{
-		//Destructor
-	}
+	~Utils() {}
 
-	int sumUp(int x)
-	{
-		// http://www.curiousmath.com/index.php?name=News&file=article&sid=23
-		return ( ( ( x * x ) + x ) / 2 );
-	}
+	unsigned int sumUp( const unsigned int x );
+
+private:
+	// prevents types other than unsigned int from being called
+	double sumUp( double d );
+	float sumUp( float f);
+	int sumUp( int i );
 };
 
 #endif //UTILS_H
