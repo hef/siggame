@@ -6,19 +6,14 @@ class Utils
 	public:
 		Utils() { }		// Default Constructor
 		~Utils() { }	// Destructor
-		
-		// Calculates sum from 1 to nTop
-		int sumUp( int nTop )
-		{
-			int nResult = 0;
-			// Code enters for loop if nTop >= 1,
-			// otherwise nResult = 0 is returned
-			for( int i = 1; i <= nTop; ++i )
-			{
-				nResult += i;
-			}
-			return nResult;
-		}
+		unsigned int sumUp( unsigned int n );
+	private:
+		unsigned int sumUp( short n );
+		unsigned int sumUp( int n );
+		unsigned int sumUp( long n );
+		unsigned int sumUp( long long n );
+		unsigned int sumUp( float n );
+		unsigned int sumUp( double n );
 };
 
 #endif
