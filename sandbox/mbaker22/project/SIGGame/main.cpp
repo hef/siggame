@@ -1,13 +1,10 @@
 #include <stdio.h>
-
-#ifndef breaksThings_H
-#define breaksThings_H
-
-#include "breaksThings.h"
-
-#endif breaksThings_H
+#include "Utilities.h"
 
 int main()
 {
+	Utilities test0;
+	Utilities* test1 = new Utilities;
+
 	return 0;
 };
