@@ -191,7 +191,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Utilities.h"
+				RelativePath=".\Utils.h"
 				>
 			</File>
 		</Filter>

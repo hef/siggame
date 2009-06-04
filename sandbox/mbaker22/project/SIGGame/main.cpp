@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include "Utilities.h"
+#include "Utils.h"
 
 int main()
 {
-	Utilities test0;
-	Utilities* test1 = new Utilities;
+	Utils test0;
+	Utils* test1 = new Utils;
 
 	return 0;
 };

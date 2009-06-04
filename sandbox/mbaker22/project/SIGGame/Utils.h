@@ -1,15 +1,15 @@
-#ifndef UTILITIES_H
-#define UTILITIES_H
+#ifndef UTILS_H
+#define UTILS_H
 
-class Utilities
+class Utils
 {
 public:
-	Utilities()
+	Utils()
 	{
 		//nothing
 	}
 
-	~Utilities()
+	~Utils()
 	{
 		//more nothing
 	}
