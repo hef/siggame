@@ -1,11 +1,11 @@
-#ifndef UTILITIES_H
-#define UTILITIES_H
+#ifndef UTIL_H
+#define UTIL_H
 
-class Utilities
+class Util
 {
 public:
-	Utilities(){}
-	~Utilities(){}
+	Util(){}
+	~Util(){}
 };
 
-#endif // UTILITIES_H
+#endif // UTIL_H

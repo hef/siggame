@@ -1,10 +1,10 @@
-#include "Utilities.h"
+#include "Util.h"
 
 
 int main()
 {
-	Utilities utilOnStack; 
-	Utilities* utilOnHeap = new Utilities;
+	Util utilOnStack; 
+	Util* utilOnHeap = new Util;
 	delete utilOnHeap;
 	return 0;
 };
