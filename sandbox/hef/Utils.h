@@ -6,6 +6,6 @@ private:
 public:
   Utils(){}
   ~Utils(){}
-  int sumUp(int);
+  int sumUp(const int);
 };
 #endif /* Utils_H */
