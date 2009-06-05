@@ -8,8 +8,4 @@ public:
   ~Utils(){}
   int sumUp(int);
 };
-int Utils::sumUp(const int n)
-{
-	return ((n*(n+1))/2);
-}
 #endif /* Utils_H */
