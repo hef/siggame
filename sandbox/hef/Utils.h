@@ -11,11 +11,5 @@ public:
 int Utils::SumUp(const int n)
 {
 	return ((n*(n+1))/2);
-	/*if (n<=1)
-	{
-		return n;
-	}
-	return n+this->SumUp(n-1);
-	*/
 }
 #endif /* Utils_H */

@@ -4,9 +4,6 @@ int main( int argc, char **argv )
 {
   Utils* pUtil = new Utils;
   Utils  Util;
-  std::cout << pUtil->SumUp(-100000) << std::endl;
+  std::cout << pUtil->SumUp(5) << std::endl;
   delete pUtil;
-
-
-
 }
