@@ -6,9 +6,9 @@ private:
 public:
   Utils(){}
   ~Utils(){}
-  int SumUp(int);
+  int sumUp(int);
 };
-int Utils::SumUp(const int n)
+int Utils::sumUp(const int n)
 {
 	return ((n*(n+1))/2);
 }
