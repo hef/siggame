@@ -1,6 +1,8 @@
+#include "Utilities.h"
 ///////////////////////////////////////////////////
 #include <stdlib.h>
 #include "SDL.h"
+
 
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -13,8 +15,8 @@
 #else
 #include <GL/gl.h>
 #include <GL/glu.h>
-#endif
 
+void createUtilities();
 const GLsizei windowWidth = 500;
 const GLsizei windowHeight = 500;
 
@@ -205,7 +207,18 @@ int main(int argc, char **argv)
 	}
 
 	SDL_Quit();
-
+	// creatin 
+	Utilities test1;
+	
+createUtilities();
+	
 	return 1;
 }
+
+void createUtilities()
+{
+Utilities test2;
+}
+
+#endif
 /////////////////////////////////////////////// 
