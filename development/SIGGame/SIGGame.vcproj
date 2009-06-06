@@ -177,7 +177,27 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\Actor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\BoxActor.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\main.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Quad.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Renderer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\World.cpp"
 				>
 			</File>
 		</Filter>
@@ -187,7 +207,23 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\Utilities.h"
+				RelativePath=".\Actor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\BoxActor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Quad.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Renderer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\World.h"
 				>
 			</File>
 		</Filter>
