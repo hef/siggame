@@ -1,10 +1,8 @@
 #include <stdio.h>
 
-// to do:
-// ask sakkos his thoughts of "void main()" vs "int main()"
 int main()
 {
-	Utilities  a_OnStack;
-	Utilities* a_OnHeap = new Utilities();
+	Utils  a_OnStack;
+	Utils* a_OnHeap = new Utils;
 	return 0;
 }
