@@ -35,9 +35,9 @@ private:
 	Renderer();
 	~Renderer();
 
-	GLvoid establishProjectionMatrix( GLsizei width, GLsizei height );
-	GLvoid initGL( GLsizei width, GLsizei height );
-	GLvoid displayFPS( GLvoid ) const;
+	void establishProjectionMatrix( GLsizei width, GLsizei height );
+	void initGL( GLsizei width, GLsizei height );
+	void displayFPS( void ) const;
 };
 #endif
 

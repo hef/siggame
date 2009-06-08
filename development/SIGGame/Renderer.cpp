@@ -79,7 +79,7 @@ int Renderer::render( const World& gameWorld ) const
 	return 0;
 }
 
-GLvoid Renderer::establishProjectionMatrix(GLsizei width, GLsizei height)
+void Renderer::establishProjectionMatrix(GLsizei width, GLsizei height)
 {
 	glViewport(0,0, width, height);
 
@@ -91,7 +91,7 @@ GLvoid Renderer::establishProjectionMatrix(GLsizei width, GLsizei height)
 
 }
 
-GLvoid Renderer::initGL( GLsizei width, GLsizei height )
+void Renderer::initGL( GLsizei width, GLsizei height )
 {
 	establishProjectionMatrix(width, height);
 
@@ -107,7 +107,7 @@ GLvoid Renderer::initGL( GLsizei width, GLsizei height )
 
 }
 
-GLvoid Renderer::displayFPS( GLvoid ) const
+void Renderer::displayFPS( void ) const
 {
 	static long lastTime = SDL_GetTicks();
 	static long loops = 0;

@@ -4,7 +4,7 @@
 Uint8 *keys = NULL;
 
 // Following section is to be implemented by the input coders
-/*GLboolean checkKeys(GLvoid)
+/*GLboolean checkKeys(void)
 {
 	static long lastTime = SDL_GetTicks();
 	const GLfloat speed = 1.0f;
