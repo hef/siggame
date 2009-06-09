@@ -14,6 +14,8 @@ public:
 		//more nothing
 	}
 
+	int sumUp(const int x);
+
 };
 
 #endif
