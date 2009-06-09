@@ -4,7 +4,7 @@ int main( int argc, char **argv )
 {
   Utils* pUtil = new Utils;
   Utils  Util;
-  //this line should cause a comiler error
+  //this line should cause a compiler error
   std::cout << pUtil->sumUp( -50 ) << std::endl;
   delete pUtil;
 }
