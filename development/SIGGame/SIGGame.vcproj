@@ -181,6 +181,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\AudioSystem.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\BoxActor.cpp"
 				>
 			</File>
@@ -208,6 +212,10 @@
 			>
 			<File
 				RelativePath=".\Actor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\AudioSystem.h"
 				>
 			</File>
 			<File
