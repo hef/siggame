@@ -1,18 +1,15 @@
-#include "Utils.h"
-#include "iostream"
+#include "Dog.h"
+#include <iostream>
+
 
 
 int main()
 {
-	Utils aStack;
-	Utils* aHeap = new Utils;
-	//std::cout << aStack.sumUp( (double) 1.33333332 ) << std::endl;
-	//std::cout << aStack.sumUp( 9 ) << std::endl;
-	//std::cout << aStack.sumUp( -4 ) << std::endl;
-	std::cout << aStack.sumUp( (unsigned int) -4 ) << std::endl; // "only an idiot"
-	std::cout << aHeap->sumUp( (unsigned int) 4 ) << std::endl;
-	std::cout << aStack.sumUp( (unsigned int) 5 ) << std::endl;
+	Dog a;	
+	Dog b( "MORETHAN15CHAROMG", 2.33, 4.44 );
+	Dog c = a;
+	std::cout << c.getName() << std::endl;
+	std::cout << b.getName() << std::endl;
 	std::cin.get();
-	delete(aHeap);
 	return 0;
 }
