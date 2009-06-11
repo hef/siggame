@@ -189,6 +189,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Input.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\main.cpp"
 				>
 			</File>
@@ -220,6 +224,10 @@
 			</File>
 			<File
 				RelativePath=".\BoxActor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Input.h"
 				>
 			</File>
 			<File
