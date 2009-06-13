@@ -10,20 +10,27 @@ class AudioSystem
 {
 	public:
 		static AudioSystem* instance();
-		void addSound( const string& );
-		bool removeSound( const string& );
-		void playSound( const string& );
+		void addSound( const string& fileName );
+		bool removeSound( const string& fileName );
+		void playSound( const string& fileName );
+		void tick( double dt );
 	protected:
 		AudioSystem();
-		AudioSystem( const AudioSystem& );
-		AudioSystem& operator=( const AudioSystem& );
+		AudioSystem( const AudioSystem& other );
+		AudioSystem& operator=( const AudioSystem& other );
 	private:
 		static AudioSystem* pInstance;
 		vector< string > sounds;
+
+		// Constant values
 		const static int AUDIO_RATE;
 		const static Uint16 AUDIO_FORMAT;
 		const static int AUDIO_CHANNELS;
 		const static int AUDIO_BUFFERS;
+		
+		// Pointer to music
 		Mix_Music* pMusic;
+		// Tick variable
+		double tickTime;
 };
 #endif
