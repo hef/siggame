@@ -1,6 +1,6 @@
 #ifndef DOG_H
 #define DOG_H
-
+#include <iostream> // for derived classes
 class Dog
 {
 	public:
@@ -18,6 +18,8 @@ class Dog
 
 		void setHeight( const float newHeight );
 		void setWeight( const float newWeight );
+		
+		virtual void bark() = 0; // Pure virtual for bark
 
 	private:
 		float height;

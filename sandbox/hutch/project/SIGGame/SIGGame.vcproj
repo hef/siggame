@@ -192,6 +192,14 @@
 				RelativePath=".\Dog.h"
 				>
 			</File>
+			<File
+				RelativePath=".\GoldenRetriever.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PrairieDog.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
