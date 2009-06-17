@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 #include "Utils.h"
+#include "Dog.h"
 using std::cout;
 using std::cin;
 using std::endl;
@@ -24,6 +25,22 @@ int main()
 	// cout << "sumUp( fFloat = 2.0 ) = " << utils1.sumUp( fFloat ) << endl;
 	// cout << "sumUp( dDouble = 5.5 ) = " << utils1.sumUp( dDouble ) << endl;
 	cin.get();
+
+	// First dog
+	Dog luis( "Luis" );
+	luis.setHeight( 0.2f );
+	luis.setWeight( 50.0f );
+
+	// Second dog, copy from first
+	Dog matt = luis;
+
+	// Third dog, copy from second
+	Dog johny( matt );
+
+	// Fourth dog
+	Dog steve( "Steve" );
+	// Copy from third
+	steve = johny;
 
 	return 0;
 }
