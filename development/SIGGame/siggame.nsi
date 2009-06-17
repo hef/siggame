@@ -1,10 +1,3 @@
-; example2.nsi
-;
-; This script is based on example1.nsi, but it remember the directory, 
-; has uninstall support and (optionally) installs start menu shortcuts.
-;
-; It will install example2.nsi into a directory that the user selects,
-;--------------------------------
 
 ; The name of the installer
 Name "Siggame"
