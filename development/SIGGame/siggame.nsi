@@ -1,9 +1,14 @@
 
+!ifndef VERSION
+  !define VERSION 'anonymous-build'
+!endif  
+
 ; The name of the installer
 Name "Siggame"
+Caption "Siggame ${Version} Setup"
 
 ; The file to write
-OutFile "siggame-installer.exe"
+OutFile "siggame-${VERSION}-setup.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\Siggame
@@ -45,6 +50,7 @@ Section "Siggame"
   
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Siggame" "DisplayName" "Siggame"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Siggame" "DisplayVersion" "${VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Siggame" "UninstallString" '"$INSTDIR\uninstall.exe"'
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Siggame" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Siggame" "NoRepair" 1
