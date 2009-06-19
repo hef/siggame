@@ -2,12 +2,14 @@
 Dog::Dog( std::string newName )
 {
   name=newName;
+  return;
 }
 Dog::Dog( const Dog& oldDog )
+  : height( oldDog.height ),
+    weight( oldDog.weight ),
+    name( oldDog.name )
 {
-  height=oldDog.getHeight();
-  weight=oldDog.getWeight();
-  name=oldDog.getName();
+  return;
 }
 int Dog::getHeight() const
 {
