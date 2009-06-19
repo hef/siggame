@@ -10,6 +10,7 @@ private:
 public:
   Dog(){}
   Dog(std::string name);
+  Dog( const Dog& oldDog);
   ~Dog(){}
   int getHeight() const;
   void setHeight(const int n);
