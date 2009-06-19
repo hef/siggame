@@ -32,6 +32,11 @@ Uint8 *keys = NULL;
 
 int main(int argc, char **argv)
 {
+	if ( argc == 2 && strncmp(argv[1], "editor", 6 ) )
+	{
+		// Run the editor 
+	}
+
 	const Renderer* r=Renderer::getInstanceOf();
 	World w;
 	BoxActor b;

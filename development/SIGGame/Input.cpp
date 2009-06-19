@@ -20,8 +20,9 @@ Input::~Input()
 {
 }
 
-int tick( int dl )
+int tick( int dt )
 {
+	dt = dt;	// Remove when dt is in use.
 	return 0;
 }
 bool shift()
