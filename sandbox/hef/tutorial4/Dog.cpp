@@ -1,15 +1,15 @@
 #include "Dog.h"
-Dog::Dog( std::string newName )
+Dog::Dog( std::string newName, int weight, int height )
+  : height( height ),
+    weight( weight ),
+    name( newName )
 {
-  name=newName;
-  return;
 }
 Dog::Dog( const Dog& oldDog )
   : height( oldDog.height ),
     weight( oldDog.weight ),
     name( oldDog.name )
 {
-  return;
 }
 int Dog::getHeight() const
 {

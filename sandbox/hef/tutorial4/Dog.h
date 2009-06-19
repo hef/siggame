@@ -8,8 +8,7 @@ private:
   float weight;
   std::string name;
 public:
-  Dog(){}
-  Dog(std::string name);
+  Dog(std::string name, const int height, const int weight);
   Dog( const Dog& oldDog);
   ~Dog(){}
   int getHeight() const;
