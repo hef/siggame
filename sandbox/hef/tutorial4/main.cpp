@@ -1,9 +1,8 @@
 #include <iostream>
-#include "Utils.h"
+#include "Dog.h"
 int main( int argc, char **argv )
 {
-  Utils* pUtil = new Utils;
-  Utils  Util;
-  std::cout << pUtil->sumUp(50) << std::endl;
-  delete pUtil;
+  Dog* puppy = new Dog("Ralph");
+  std::cout << puppy->getName() << std::endl;
+  delete puppy;
 }

@@ -1,5 +1,10 @@
 #include "Dog.h"
-float Dog::getHeight()
+Dog(std::string newName)
+{
+  name=newName;
+}
+
+int Dog::getHeight() const
 {
 	return height;
 }
@@ -8,15 +13,16 @@ void Dog::setHeight(const int n)
 	height=n;
         return;
 }
-float Dog::getWeight()
+int Dog::getWeight() const
 {
 	return weight;
 }
 void Dog::setWeight(const int n)
 {
-	return weight;
+        height=n;
+	return;
 }
-string Dog::getName()
+std::string Dog::getName() const
 {
-	return ((n*(n+1))/2);
+	return name;
 }
