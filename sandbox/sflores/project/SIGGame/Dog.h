@@ -21,6 +21,9 @@ public:
 	void setHeight( const float newHeight );
 	void setWeight( const float newWeight );
 
+	// Member Function
+	virtual void bark() = 0;
+
 private:
 	// Constant
 	const static int MAXSIZE = 16;

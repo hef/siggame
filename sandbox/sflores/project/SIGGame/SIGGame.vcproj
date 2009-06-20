@@ -175,7 +175,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\GoldenRetriever.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\main.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PrairieDog.cpp"
 				>
 			</File>
 			<File
@@ -190,6 +198,14 @@
 			>
 			<File
 				RelativePath=".\Dog.h"
+				>
+			</File>
+			<File
+				RelativePath=".\GoldenRetriever.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PrairieDog.h"
 				>
 			</File>
 			<File
