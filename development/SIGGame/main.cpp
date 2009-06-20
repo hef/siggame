@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 	int done = 0;
 	while ( !done )
 	{
-		(*r).render(w);
+		r->render(w);
 
 		SDL_Event event;
 		while ( SDL_PollEvent(&event) )
