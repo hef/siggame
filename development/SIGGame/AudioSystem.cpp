@@ -1,5 +1,4 @@
 #include "AudioSystem.h"
-#include "SDL_mixer.h"
 #include <iostream>
 using std::cout;
 
@@ -12,7 +11,7 @@ const int AudioSystem::AUDIO_BUFFERS = 4096;
 
 /* Creates the sole instance and/or returns a pointer to it
  */
-AudioSystem* AudioSystem::instance()
+AudioSystem* AudioSystem::getInstance()
 {
 	if( pInstance == NULL )
 	{
@@ -24,53 +23,44 @@ AudioSystem* AudioSystem::instance()
 /* Initializes system and calls the Mix_OpenAudio routine
  */
 AudioSystem::AudioSystem()
-: pMusic( NULL ), tickTime( 0 )
+: tickTime( 0 )
 {
-	if( Mix_OpenAudio( AudioSystem::AUDIO_RATE, AudioSystem::AUDIO_FORMAT,
-		AudioSystem::AUDIO_CHANNELS, AudioSystem::AUDIO_BUFFERS ) )
+	if( Mix_OpenAudio( AUDIO_RATE, AUDIO_FORMAT, AUDIO_CHANNELS, AUDIO_BUFFERS ) )
 	{
 		cout << "Unable to open audio!\n";
 		exit(1);
 	}
 }
 
-/* Adds a sound to the list. Could be a file name or relative path to file
+/* Adds a sound to the map. Could be a file name or relative path to file
  */
 void AudioSystem::addSound( const string& fileName )
 {
-	sounds.push_back( fileName );
+	sounds[ fileName ] = Mix_LoadWAV( fileName.c_str() );
 }
 
-/* Removes a sound file from the list. The file name
-   should be the same as when added to the list
+/* Removes a sound file from the map
  */
 bool AudioSystem::removeSound( const string& fileName )
 {
-	for( unsigned int i = 0; i < sounds.size(); ++i )
-	{
-		if( sounds[ i ] == fileName )
-		{
-			sounds.erase( sounds.begin() + i );
-			return true;
-		}
-
-	}
-	return false;
+	int succeeded = sounds.erase( fileName );
+	if( succeeded )
+		return true;
+	else 
+		return false;
 }
 
-/* Plays a sound from the given file name or relative path to file
+/* Plays a sound from the map with the given file name
  */
-void AudioSystem::playSound( const string& fileName )
+bool AudioSystem::playSound( const string& fileName )
 {
-	// Load up the music (or sound)
-	pMusic = Mix_LoadMUS( fileName.c_str() );
 	// Play
-	Mix_PlayMusic( pMusic, 0 );
-	// When finished, clean up
-	Mix_HookMusicFinished( NULL );
-	Mix_HaltMusic();
-	Mix_FreeMusic( pMusic );	// Free memory
-	pMusic = NULL;					// Set pointer to null
+	int nChannel = Mix_PlayChannel( -1, sounds[ fileName ], 0 );
+	if( nChannel == -1 )
+	{
+		return false;	// Couldn't play file
+	}
+	return true;
 }
 
 /* Tick function
