@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="SIGGame"
+	Name="Tutorial3"
 	ProjectGUID="{FD32A1C5-067E-4F21-8951-E8C0C50602FF}"
 	RootNamespace="SIGGame"
 	Keyword="Win32Proj"
@@ -177,10 +177,6 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\Dog.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Util.h"
 				>
 			</File>
@@ -200,18 +196,6 @@
 			</File>
 			<File
 				RelativePath=".\Util.cpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="tutorial four"
-			>
-			<File
-				RelativePath=".\Dog.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\MainTutorialFour.cpp"
 				>
 			</File>
 		</Filter>
