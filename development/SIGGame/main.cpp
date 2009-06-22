@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include "BoxActor.h"
 #include "Input.h"
+#include "AudioSystem.h"
 
 int main(int argc, char **argv)
 {
@@ -11,11 +12,16 @@ int main(int argc, char **argv)
 
 	//Initialize everything
 	const Renderer* r = Renderer::getInstanceOf();
+	AudioSystem* audio = AudioSystem::getInstance();
+
 	Input* input = Input::Instance();
 	World w;
 	BoxActor b;
 	w.addActor(b);
+	audio -> addSound( "Mac.wav" );
+	audio -> playSound( "Mac.wav" );
 	r -> render(w);
+	audio -> playSound( "Mac.wav" );
 
 	//Start main loop, runs until esc is pressed
 	while ( input -> getInput() )

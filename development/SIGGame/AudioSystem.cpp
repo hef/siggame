@@ -31,7 +31,24 @@ AudioSystem::AudioSystem()
 		exit(1);
 	}
 }
+/* Destructor
+ */
+AudioSystem::~AudioSystem()
+{
+	map< string, Mix_Chunk* >::iterator i;
+	for( i = sounds.begin(); i != sounds.end(); ++i )
+	{
+		Mix_FreeChunk( i -> second ); // Free memory
+	}
+	sounds.clear();
+}
 
+/* Destroy method
+ */
+void AudioSystem::destroy()
+{
+	delete this;
+}
 /* Adds a sound to the map. Could be a file name or relative path to file
  */
 void AudioSystem::addSound( const string& fileName )

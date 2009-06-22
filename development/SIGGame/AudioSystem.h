@@ -10,6 +10,8 @@ class AudioSystem
 {
 	public:
 		static AudioSystem* getInstance();
+		~AudioSystem();
+		void destroy();
 		void addSound( const string& fileName );
 		bool removeSound( const string& fileName );
 		bool playSound( const string& fileName );
