@@ -21,7 +21,6 @@ int main(int argc, char **argv)
 	audio -> addSound( "Mac.wav" );
 	audio -> playSound( "Mac.wav" );
 	r -> render(w);
-	audio -> playSound( "Mac.wav" );
 
 	//Start main loop, runs until esc is pressed
 	while ( input -> getInput() )
