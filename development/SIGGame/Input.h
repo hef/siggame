@@ -33,11 +33,15 @@ private:
 	bool releaseKeys( SDL_Event keyEvent );
 	bool setKeys( SDL_Event keyEvent );
 	// Current states of the keys, true if down, false if up
+	bool a;
+	bool b;
+	bool c;
+	bool kPad1;
+	bool kPad2;
+	bool kPad3;
 	bool shift;
 	bool control;
 	bool alt;
-	bool key;
-	bool kpKey;
 	bool up;
 	bool down;
 	bool left;
@@ -46,3 +50,4 @@ private:
 };
 
 #endif
+
