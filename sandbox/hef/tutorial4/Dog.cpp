@@ -16,7 +16,7 @@ Dog::Dog( const Dog& oldDog )
 }
 Dog::~Dog()
 {
-  delete name;
+  delete[] name;
 }
 int Dog::getHeight() const
 {
