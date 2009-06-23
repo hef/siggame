@@ -7,7 +7,7 @@ private:
   float weight;
   char* name;
 public:
-  Dog(char* name, const int height, const int weight);
+  Dog(char const * const name, const int height, const int weight);
   Dog( const Dog& oldDog);
   ~Dog();
   int getHeight() const;
@@ -15,5 +15,6 @@ public:
   int getWeight() const;
   void setWeight(const int n);
   char* getName() const;
+  Dog operator=(const Dog&);
 };
 #endif /* Dog_H */

@@ -1,17 +1,17 @@
 #include "Dog.h"
 #include <string.h>
-Dog::Dog( char* newName, int weight, int height )
+Dog::Dog( char const * const newName, int const weight, int const height )
   : height( height ),
-    weight( weight )
+    weight( weight ),
+    name( new char[17] )
 {
-  name = new char[17];
   strncpy(name,newName,16);
 }
 Dog::Dog( const Dog& oldDog )
   : height( oldDog.height ),
-    weight( oldDog.weight )
+    weight( oldDog.weight ),
+    name( new char[17] )
 {
-  name = new char[17];
   strncpy(name,oldDog.name,16);
 }
 Dog::~Dog()
