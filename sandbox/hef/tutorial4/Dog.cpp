@@ -1,15 +1,22 @@
 #include "Dog.h"
-Dog::Dog( std::string newName, int weight, int height )
+#include <string.h>
+Dog::Dog( char* newName, int weight, int height )
   : height( height ),
-    weight( weight ),
-    name( newName )
+    weight( weight )
 {
+  name = new char[17];
+  strncpy(name,newName,16);
 }
 Dog::Dog( const Dog& oldDog )
   : height( oldDog.height ),
-    weight( oldDog.weight ),
-    name( oldDog.name )
+    weight( oldDog.weight )
 {
+  name = new char[17];
+  strncpy(name,oldDog.name,16);
+}
+Dog::~Dog()
+{
+  delete name;
 }
 int Dog::getHeight() const
 {
@@ -29,7 +36,9 @@ void Dog::setWeight(const int n)
         weight=n;
 	return;
 }
-std::string Dog::getName() const
+char* Dog::getName() const
 {
-	return name;
+  char* outsideName = new char[17];
+  strncpy(outsideName,name,16);
+  return outsideName;
 }

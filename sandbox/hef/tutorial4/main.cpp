@@ -1,8 +1,12 @@
 #include <iostream>
 #include "Dog.h"
+#include <string.h>
 int main( int argc, char **argv )
 {
-  Dog* puppy = new Dog("Ralph", 5, 6);
+  char* name = new char[17];
+  strncpy(name,"ralph",16);
+  
+  Dog* puppy = new Dog(name, 5, 6);
   Dog* puppy2 = new Dog( *(puppy) );
   puppy->setHeight(7);
   puppy->setWeight(8);
