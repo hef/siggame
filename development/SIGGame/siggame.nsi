@@ -44,6 +44,7 @@ Section "Siggame"
   ; Put file there
   File "../Release\Siggame.exe"
   File "SDL.dll"
+  File "Mac.wav"
   
   ; Write the installation path into the registry
   WriteRegStr HKLM SOFTWARE\Siggame "Install_Dir" "$INSTDIR"
