@@ -44,6 +44,7 @@ Section "Siggame"
   ; Put file there
   File "../Release\Siggame.exe"
   File "SDL.dll"
+  File "SDL_mixer.dll"
   File "Mac.wav"
   
   ; Write the installation path into the registry
