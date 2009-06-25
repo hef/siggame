@@ -12,15 +12,25 @@ public:
 	~Input();
 
 	// Functions
+
 	bool getInput();
+
 	bool shiftDown();
+
 	bool controlDown();
+	
 	bool altDown();
+	
 	bool keyDown(char aKey);
-	bool kpKeyDown(char aKey);
+	
+	bool kpKeyDown(int aKey);
+	
 	bool leftDown();
+	
 	bool rightDown();
+	
 	bool upDown();
+	
 	bool downDown();
 
 protected:
@@ -29,16 +39,15 @@ protected:
 	Input& operator= ( const Input& );
 
 private:
+	static const unsigned int SDL_KEYPAD_OFFSET = 256;
+	static const unsigned int ASCII_TABLE_SIZE = 126;
+	static const unsigned int KEYPAD_SIZE = 10;
 	Uint8 *keys;
 	bool releaseKeys( SDL_Event keyEvent );
 	bool setKeys( SDL_Event keyEvent );
 	// Current states of the keys, true if down, false if up
-	bool a;
-	bool b;
-	bool c;
-	bool kPad1;
-	bool kPad2;
-	bool kPad3;
+	bool keyArray[ASCII_TABLE_SIZE];
+	bool kPadArray[KEYPAD_SIZE];
 	bool shift;
 	bool control;
 	bool alt;

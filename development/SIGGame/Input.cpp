@@ -5,8 +5,8 @@ Contains get methods to check that return true if key is pressed. To check for m
 add the keys to releaseKeys and setKeys.
 
 */
-
 #include "Input.h"
+
 
 Input* Input::pInstance = NULL;
 Input* Input::Instance()
@@ -20,13 +20,15 @@ Input* Input::Instance()
 
 Input::Input() // All keys are up
 {
+	for ( int c = 0; c < ASCII_TABLE_SIZE; c++ )
+	{
+		keyArray[c] = false;
+	}
+	for ( int c = 0; c < KEYPAD_SIZE; c++ )
+	{
+		kPadArray[c] = false;
+	}
 	keys = NULL;
-	a = false;
-	b = false;
-	c = false;
-	kPad1 = false;
-	kPad2 = false;
-	kPad3 = false;
 	shift = false;
 	control = false;
 	alt = false;
@@ -45,48 +47,41 @@ bool Input::getInput()
 {
 	SDL_Event keyevent;
 	SDL_PollEvent( &keyevent );
-	Input::keys = SDL_GetKeyState(NULL);
+	Input::keys = SDL_GetKeyState( NULL );
 	//If escape is pressed, exit program
 	if( keys[SDLK_ESCAPE] || keyevent.type == SDL_QUIT ) 
 	{
 		return false;
 	}
 	// Key pressed, update members
-	if (keyevent.type == SDL_KEYDOWN)
+	if ( keyevent.type == SDL_KEYDOWN )
 	{
-		Input::setKeys(keyevent);
-}
+		Input::setKeys( keyevent );
+	}
 	// Key released, update members
 	if ( keyevent.type == SDL_KEYUP )
-{
-		Input::releaseKeys(keyevent);
+	{
+		Input::releaseKeys( keyevent );
 	}
 	return true;
 }
 
-bool Input::releaseKeys(SDL_Event keyevent)
+bool Input::releaseKeys( SDL_Event keyevent )
 {
-	// Check status of keys, updated members accordingly
-	switch(keyevent.key.keysym.sym)
+	int key = keyevent.key.keysym.sym; // to clean up code
+	// Check status of single character keys, update members accordingly
+	if ( key <= ASCII_TABLE_SIZE )
 	{
-		case SDLK_a:
-			a = false;
-			break;
-		case SDLK_b:
-			b = false;
-			break;
-		case SDLK_c:
-			c = false;
-			break;
-		case SDLK_KP1:
-			kPad1 = false;
-			break;
-		case SDLK_KP2:
-			kPad2 = false;
-			break;
-		case SDLK_KP3:
-			kPad3 = false;
-			break;
+		keyArray[ key ] = false;
+	}
+	// Check status of keypad numbers, update members accordingly 
+	else if ( key >= ASCII_TABLE_SIZE && key <= SDL_KEYPAD_OFFSET + KEYPAD_SIZE )
+	{
+		kPadArray[ key - SDL_KEYPAD_OFFSET ] = false;
+	}
+	// Check status rest of keys, updated members accordingly
+	switch( key )
+	{
 		case SDLK_LEFT:
 			left = false;
 			break;
@@ -117,29 +112,22 @@ bool Input::releaseKeys(SDL_Event keyevent)
 	return true;
 }
 
-bool Input::setKeys(SDL_Event keyevent)
+bool Input::setKeys( SDL_Event keyevent )
 {
-	// Check status of keys, updated members accordingly
-	switch(keyevent.key.keysym.sym)
+	int key = keyevent.key.keysym.sym; // To make the code cleaner
+	// Check status of single character keys, update members accordingly
+	if ( key <= ASCII_TABLE_SIZE )
 	{
-		case SDLK_a:
-			a = true;
-			break;
-		case SDLK_b:
-			b = true;
-			break;
-		case SDLK_c:
-			c = true;
-			break;
-		case SDLK_KP1:
-			kPad1 = true;
-			break;
-		case SDLK_KP2:
-			kPad2 = true;
-			break;
-		case SDLK_KP3:
-			kPad3 = true;
-			break;
+		keyArray[ key ] = true;
+	}
+	// Check status of keypad numbers, update members accordingly 
+	else if ( key >= ASCII_TABLE_SIZE && key <= SDL_KEYPAD_OFFSET + 10 )
+	{
+		kPadArray[ key - SDL_KEYPAD_OFFSET ] = true;
+	}
+	// Check status of rest of keys, update members accordingly
+	else switch( key )
+	{
 		case SDLK_LEFT:
 			left = true;
 			break;
@@ -177,39 +165,6 @@ bool Input::leftDown() { return left; }
 bool Input::rightDown() { return right; }
 bool Input::upDown() { return up; }
 bool Input::downDown() { return down; }
-bool Input::keyDown( char aKey ) 
-{
-	switch ( aKey )
-	{
-		case 'a':
-			return a;
-			break;
-		case 'b':
-			return b;
-			break;
-		case 'c':
-			return c;
-			break;
-		default:
-			return false;
-	}
-
-}
-bool Input::kpKeyDown( char aKey ) 
-{
-	switch ( aKey )
-	{
-		case '1':
-			return kPad1;
-			break;
-		case '2':
-			return kPad2;
-			break;
-		case '3':
-			return kPad3;
-			break;
-		default:
-			return false;
-	}
-}
+bool Input::keyDown( char aKey ) { return keyArray[ aKey ]; }
+bool Input::kpKeyDown( int aKey ) { return kPadArray[ aKey ]; }
 
