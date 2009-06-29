@@ -1,5 +1,4 @@
 #include "Renderer.h"
-#include <iostream>
 
 Renderer* Renderer::instance = NULL;
 
@@ -48,35 +47,24 @@ int Renderer::render( const World& gameWorld ) const
 	for(unsigned int i=0;i<actors.size();i++)
 	{
 		glLoadIdentity();
-		
-		//camera translation
-		//you can pretend this is the camera location
-		glTranslatef(0, 0, -5.0f);
-		
-		//shift according to actor position
-		Vector3f actorPosition=actors[i].getPositionVector3f();
-		glTranslatef(actorPosition[0],actorPosition[1],actorPosition[2]);
 
-		//TODO rotate according to actor rotation
+		//The following three lines have to implemented using the Actor class still
+		glTranslatef(0, 0, -5.0f); // translate camera back -5
+		glRotatef(cubeRotateX, 1, 0, 0); 
+		glRotatef(cubeRotateY, 0, 1, 0);
 
-
-		glBegin(GL_TRIANGLES);
-		std::vector<Surface> surfaces = actors[i].getModel().getSurfaces();
-		//j is the surface number
-		for(unsigned int j = 0; j < surfaces.size(); j++)
+		glBegin(GL_QUADS);
+		const std::vector<Quad> q=actors[i].getQuads();
+		for(unsigned int j = 0; j < q.size(); j++)
 		{
+			const float* color = q[j].getColor();
+			glColor3f(color[0], color[1], color[2]);
 
-			//k is the vertex (corner) number
-			//TODO get properties of surface
-			for(int k = 0; k<3; k++)
+			for(int k = 0; k < 4; k++ )
 			{
-				//Surface[j] is a surface
-				//Surface[j][k] is a Vertex3f
-				//Surface[j][k].elementArray is the array in the Vertex3f
-				glVertex3fv( surfaces[j][k].elementArray );
-
+				const float* pt = q[j].getPoint(k);
+				glVertex3f( pt[0],pt[1],pt[2] );
 			}
-
 		}
 		glEnd();
 	}

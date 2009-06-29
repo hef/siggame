@@ -5,7 +5,20 @@
 
 #include <stdlib.h>
 #include "SDL.h"
-#include "SDL_opengl.h"
+
+#ifdef WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
+
+#if defined(__APPLE__) && defined(__MACH__)
+#include <openGL/gl.h>
+#include <openGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+
 class Renderer
 {
 public:
