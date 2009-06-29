@@ -190,10 +190,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\BoxActor.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Input.cpp"
 				>
 			</File>
@@ -206,7 +202,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Quad.cpp"
+				RelativePath=".\Model.cpp"
 				>
 			</File>
 			<File
@@ -214,7 +210,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Surface.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Vector3D.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Vector3f.cpp"
 				>
 			</File>
 			<File
@@ -236,10 +240,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\BoxActor.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Input.h"
 				>
 			</File>
@@ -248,11 +248,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Physics.h"
+				RelativePath=".\Model.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Quad.h"
+				RelativePath=".\Physics.h"
 				>
 			</File>
 			<File
@@ -260,7 +260,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Surface.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Vector3D.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Vector3f.h"
 				>
 			</File>
 			<File

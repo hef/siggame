@@ -1,5 +1,6 @@
 #include "AudioSystem.h"
 #include <iostream>
+#include <assert.h>
 using std::cout;
 
 AudioSystem* AudioSystem::pInstance = NULL;
@@ -25,9 +26,11 @@ AudioSystem* AudioSystem::getInstance()
 AudioSystem::AudioSystem()
 : tickTime( 0 )
 {
-	if( Mix_OpenAudio( AUDIO_RATE, AUDIO_FORMAT, AUDIO_CHANNELS, AUDIO_BUFFERS ) )
+	int errorCode = Mix_OpenAudio( AUDIO_RATE, AUDIO_FORMAT, AUDIO_CHANNELS, AUDIO_BUFFERS );
+	assert( errorCode == 0 && "Unable to open audio!" );
+	if( errorCode )
 	{
-		cout << "Unable to open audio!\n";
+		cout << "Unable to open audio!" << std::endl;
 		exit(1);
 	}
 }
