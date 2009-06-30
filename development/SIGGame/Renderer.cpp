@@ -51,7 +51,7 @@ int Renderer::render( const World& gameWorld ) const
 		
 		//camera translation
 		//you can pretend this is the camera location
-		glTranslatef(0, 0, -5.0f);
+		glTranslatef(0, 0, -15.0f);
 		
 		//shift according to actor position
 		Vector3f actorPosition=actors[i].getPositionVector3f();
