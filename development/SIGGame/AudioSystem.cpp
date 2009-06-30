@@ -1,6 +1,5 @@
 #include "AudioSystem.h"
 #include <iostream>
-#include <assert.h>
 using std::cout;
 
 AudioSystem* AudioSystem::pInstance = NULL;
@@ -26,14 +25,10 @@ AudioSystem* AudioSystem::getInstance()
 AudioSystem::AudioSystem()
 : tickTime( 0 )
 {
-	int errorCode = Mix_OpenAudio( AUDIO_RATE, AUDIO_FORMAT, AUDIO_CHANNELS, AUDIO_BUFFERS );
-	assert( errorCode == 0 && "Unable to open audio!" );
-	if( errorCode )
-	{
-		cout << "Unable to open audio!" << std::endl;
-		exit(1);
-	}
+	int success = Mix_OpenAudio( AUDIO_RATE, AUDIO_FORMAT, AUDIO_CHANNELS, AUDIO_BUFFERS );
+	assert( success == 0 && "Unable to open audio!" );
 }
+
 /* Destructor
  */
 AudioSystem::~AudioSystem()
@@ -44,6 +39,13 @@ AudioSystem::~AudioSystem()
 		Mix_FreeChunk( i -> second ); // Free memory
 	}
 	sounds.clear();
+
+	map< string, Mix_Music* >::iterator j;
+	for( j = music.begin(); j != music.end(); ++j )
+	{
+		Mix_FreeMusic( j -> second ); // Free memory
+	}
+	music.clear();
 }
 
 /* Destroy method
@@ -59,14 +61,38 @@ void AudioSystem::addSound( const string& fileName )
 	sounds[ fileName ] = Mix_LoadWAV( fileName.c_str() );
 }
 
+/* Adds a music file to the map. Could be a file name or relative path to file
+ */
+void AudioSystem::addMusic( const string& fileName )
+{
+	music[ fileName ] = Mix_LoadMUS( fileName.c_str() );
+}
+
 /* Removes a sound file from the map
  */
 bool AudioSystem::removeSound( const string& fileName )
 {
+	// Free memory
+	Mix_FreeChunk( sounds[ fileName ] );
+	// Remove from map
 	int succeeded = sounds.erase( fileName );
 	if( succeeded )
 		return true;
 	else 
+		return false;
+}
+
+/* Removes a music file from the map
+ */
+bool AudioSystem::removeMusic( const string& fileName )
+{
+	// Free memory
+	Mix_FreeMusic( music[ fileName ] );
+	// Remove from map
+	int succeeded = sounds.erase( fileName );
+	if( succeeded )
+		return true;
+	else
 		return false;
 }
 
@@ -77,6 +103,18 @@ bool AudioSystem::playSound( const string& fileName )
 	// Play
 	int nChannel = Mix_PlayChannel( -1, sounds[ fileName ], 0 );
 	if( nChannel == -1 )
+	{
+		return false;	// Couldn't play file
+	}
+	return true;
+}
+
+/* Plays a music file from the map with the given file name
+ */
+bool AudioSystem::playMusic( const string& fileName )
+{
+	int retVal = Mix_PlayMusic( music[ fileName ], -1 );
+	if( retVal == -1 )
 	{
 		return false;	// Couldn't play file
 	}
