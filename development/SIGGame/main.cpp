@@ -18,11 +18,6 @@ int main(int argc, char **argv)
 
 	Input* input = Input::Instance();
 	World w;
-	Model* m = new Model();
-	Actor b1(m,Vector3f(0.5,-0.75f,0),Vector3f(0,0,0));
-	Actor b2(m,Vector3f(-0.5f,0.75,0),Vector3f(0,0,0));
-	w.addActor(b1);
-	w.addActor(b2);
 	audio -> addSound( "Mac.wav" );
 	audio -> playSound( "Mac.wav" );
 	r -> render(w);
@@ -34,6 +29,5 @@ int main(int argc, char **argv)
 		//Rerender the world every iteration
 		r -> render(w);
 	}
-	delete m;	
 	return 1;
 }
