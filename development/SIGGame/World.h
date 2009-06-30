@@ -15,7 +15,7 @@ public:
 	World();
 	~World();
 	const std::vector<Actor>& getActors() const;
-	int addActor( Actor& actor );
+	void addActor( Actor& actor );
 };
 
 #endif
