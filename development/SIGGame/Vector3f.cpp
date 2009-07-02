@@ -18,7 +18,7 @@ Vector3f::Vector3f(const Vector3f& vector3f )
 	elementArray[1]=vector3f.elementArray[1];
 	elementArray[2]=vector3f.elementArray[2];
 }
-float Vector3f::operator[](int i)
+float& Vector3f::operator[](int i)
 {
 	assert(i >= 0 && i<3 && "Operator[] out of bounds assert");
 	return elementArray[i];

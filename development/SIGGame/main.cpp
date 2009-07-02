@@ -20,12 +20,24 @@ int main(int argc, char **argv)
 	World w;
 	audio -> addSound( "Mac.wav" );
 	audio -> playSound( "Mac.wav" );
+	static unsigned int lastTime = SDL_GetTicks();
+	static unsigned int currentTime = lastTime;
+	///delta time
+	static double dt = 0;
 	r -> render(w);
 
 	//Start main loop, runs until esc is pressed
 	
 	while ( input -> getInput() )
 	{
+
+		currentTime = SDL_GetTicks();
+		dt = static_cast<double>( currentTime - lastTime ) / 1000;
+		lastTime = currentTime;
+
+		//process world logic
+		w.tick(dt);
+
 		//Rerender the world every iteration
 		r -> render(w);
 	}

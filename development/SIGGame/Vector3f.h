@@ -9,7 +9,7 @@ class Vector3f
 		Vector3f();
 		Vector3f( const float x, const float y, const float z );
 		Vector3f( const  Vector3f& vector3f );
-		float operator[](const int i);
+		float& operator[](const int i);
 
 };
 #endif

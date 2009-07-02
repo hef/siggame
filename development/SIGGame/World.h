@@ -16,6 +16,7 @@ public:
 	~World();
 	const std::vector<Actor>& getActors() const;
 	void addActor( Actor& actor );
+	void tick( double dt );
 };
 
 #endif
