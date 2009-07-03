@@ -40,9 +40,9 @@ const Vector3f& Actor::getPositionVector3f() const
 }
 void Actor::tick(double dt)
 {
-	position[0] += dPosition[0] * dt;
-	position[1] += dPosition[1] * dt;
-	position[2] += dPosition[2] * dt;
+	position[0] += dPosition[0] * (float)dt;
+	position[1] += dPosition[1] * (float)dt;
+	position[2] += dPosition[2] * (float)dt;
 	
 	return;
 }
