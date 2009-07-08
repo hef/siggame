@@ -1,3 +1,5 @@
+#include <string.h>
+#include <iostream>
 //Simple test for a merge
 
 // Some Stubs
@@ -7,7 +9,7 @@ int add( int a, int b )
 	return a+b;
 }
 
-int minus( int a, int b )
+char subtract( int a, int b )
 {
-	return b-a;
+	return '-';
 }
