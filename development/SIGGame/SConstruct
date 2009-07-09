@@ -1,0 +1,6 @@
+env = Environment()
+env.ParseConfig('sdl-config --cflags')
+env.ParseConfig('sdl-config --libs')
+env.Append(LIBS = ['GL', 'GLU'])
+env.Program('siggame', ['main.cpp', 'Actor.cpp',  'BoxActor.cpp', 'Quad.cpp',  'Renderer.cpp',  'World.cpp'])
+
