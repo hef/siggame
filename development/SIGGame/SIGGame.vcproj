@@ -206,6 +206,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PlayerActor.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Renderer.cpp"
 				>
 			</File>
@@ -253,6 +257,10 @@
 			</File>
 			<File
 				RelativePath=".\Physics.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PlayerActor.h"
 				>
 			</File>
 			<File

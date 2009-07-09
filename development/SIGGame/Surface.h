@@ -10,12 +10,12 @@
 class Surface
 {
 	private:
-		Vector3f corners[3];
+		Vector3f corners[ 3 ];
 	public:
-		Surface(const Vector3f A, const Vector3f B, const Vector3f C);
-		Surface(const Surface& surface);
+		Surface( const Vector3f A, const Vector3f B, const Vector3f C );
+		Surface( const Surface& surface );
 		~Surface();
-		Vector3f& operator[](const int i);
-
+		Vector3f& operator[]( const int i );
+		const Vector3f& at( const int i ) const;
 };
 #endif

@@ -15,13 +15,26 @@ class Actor
 		///delta rotation per tick
 		Vector3f dRotation;
 	public:
-		Actor(Model* model, Vector3f const position, Vector3f const rotation);
-		Actor(Model* model, Vector3f const position, Vector3f const dPosition, Vector3f const rotation, Vector3f const dRotation);
-		Actor(const Actor& actor);
+		/** Constructor **/
+		Actor( Model* model, const Vector3f position, const Vector3f rotation );
+
+		/** Constructor **/
+		Actor( Model* model, const Vector3f position, const Vector3f dPosition,
+			   const Vector3f rotation, const Vector3f dRotation );
+
+		/** Copy constructor **/
+		Actor( const Actor& actor );
+
+		/** Destructor **/
 		~Actor();
+
+		/** Accessor **/
 		const Model& getModel() const;
+
+		/** Accessor **/
 		const Vector3f& getPositionVector3f() const;
-		///controls game logic and ai
-		void tick(double dt);
+		
+		/// Controls game logic and ai
+		virtual void tick( double dt ) = 0;
 };
 #endif
