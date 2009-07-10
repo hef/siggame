@@ -5,36 +5,36 @@ Model::Model()
 	surfaces.push_back
 	(	Surface
 		(
-			Vector3f(0,0,0),
-			Vector3f(1,0,0),
-			Vector3f(1,1,1)
+			Vector3f(-0.5,-0.5,-0.5),
+			Vector3f(0.5,-0.5,-0.5),
+			Vector3f(0.5,0.5,0.5)
 		)
 	);
 	surfaces.push_back
 	(
 		Surface
 		(
-			Vector3f(0,0,0),
-			Vector3f(0,1,0),
-			Vector3f(1,0,0)
+			Vector3f(-0.5,-0.5,-0.5),
+			Vector3f(-0.5,0.5,-0.5),
+			Vector3f(0.5,-0.5,-0.5)
 		)
 	);
 	surfaces.push_back
 	(
 		Surface
 		(
-			Vector3f(1,0,0),
-			Vector3f(1,1,1),
-			Vector3f(0,1,0)
+			Vector3f(0.5,-0.5,-0.5),
+			Vector3f(0.5,0.5,0.5),
+			Vector3f(-0.5,0.5,-0.5)
 		)
 	);
 	surfaces.push_back
 	(
 		Surface
 		(
-			Vector3f(0,0,0),
-			Vector3f(0,1,0),
-			Vector3f(1,1,1)
+			Vector3f(-0.5,-0.5,-0.5),
+			Vector3f(-0.5,0.5,-0.5),
+			Vector3f(0.5,0.5,0.5)
 		)
 	);
 
