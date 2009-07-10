@@ -186,6 +186,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\AsteroidActor.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\AudioSystem.cpp"
 				>
 			</File>
@@ -237,6 +241,10 @@
 			>
 			<File
 				RelativePath=".\Actor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\AsteroidActor.h"
 				>
 			</File>
 			<File
