@@ -27,7 +27,6 @@ int main(int argc, char **argv)
 	r -> render(w);
 
 	//Start main loop, runs until esc is pressed
-	
 	while ( input -> getInput() )
 	{
 
