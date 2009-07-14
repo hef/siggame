@@ -11,9 +11,9 @@
 
 class Utilities{
 	private:
-		int digit;
+		
 	public:
-
+		int digit;
 		//Default constructor:
 		Utilities(){
 			digit = 0;
@@ -34,22 +34,29 @@ class Utilities{
 #include <stdio.h>
 #include <iostream>
 #include <stack>
-//#include "Utilities.h"
+//#include "Utilities.h"  //used only when the class declaration is in 
+//a separate headerfile
 using namespace std;
 
 int main()
 {
 	int ready;
-	//Declaration of Objects
-	Utilities *useful,
-			  semiuseful;
+	//Declaration of Objects 
+	//a de-referenced pointer to useful for an instance on the heap
+	//a variable for an instance on the stack
+	Utilities *useful, semiuseful;
+
 	
-	cout<<"Hello";
+	cout<<"Hello"<<endl;
+
+
+	useful = new Utilities();
+	useful->digit = 3;
+
+	cout<<useful->digit<<endl;
+
 	cin>>ready;
-
-	useful = new Utilities::Utilities();
-
-	
+	cout<<ready;
 	return 0;
 }
 
