@@ -17,5 +17,9 @@ public:
 
 	/** Destructor **/
 	~AsteroidActor();
+
+	///The tick
+	void tick(const double dt);
 };
 #endif
+

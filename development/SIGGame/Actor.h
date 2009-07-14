@@ -6,6 +6,7 @@ class Actor
 {
 	private:
 		Model* model;
+	protected:
 		///x, y, z
 		Vector3f position;
 		///delta position per tick

@@ -14,3 +14,20 @@ AsteroidActor::AsteroidActor( const AsteroidActor& otherAsteroid )
 
 AsteroidActor::~AsteroidActor()
 { }
+void AsteroidActor::tick(const double dt)
+{
+	//should handle wrapping movement
+	//TODO The numbers 7 and 14 need to be adjusted to fit veiwport size
+	for (int i=0; i<3 ;++i)
+	{
+		position[ i ] += dPosition[ i ] * (float)dt;
+		while (position[ i ] > 7)
+		{
+			position[ i ] += -14;
+		}
+		while (position[ i ] < -7)
+		{
+			position[ i ] += 14;
+		}
+	}
+}
