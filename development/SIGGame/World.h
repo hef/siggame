@@ -14,9 +14,9 @@ private:
 public:
 	World();
 	/**
-	  Responsible for deleting any created Model pointers and deletes all actors
-	  in actors vector.
-	*/
+	   Responsible for deleting any created Model pointers and deletes all actors
+	   in actors vector.
+	 */
 	~World();
 	const std::vector< Actor* >& getActors() const;
 	void addActor( Actor* actor );

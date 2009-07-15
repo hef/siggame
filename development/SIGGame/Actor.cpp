@@ -31,7 +31,8 @@ Actor::Actor( const Actor& actor ) :
 }
 
 Actor::~Actor()
-{ }
+{
+}
 
 const Model& Actor::getModel() const
 {

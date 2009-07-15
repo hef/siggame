@@ -1,4 +1,4 @@
-#include <stdlib.h>
+# include <stdlib.h>
 #include "SDL.h"
 
 #ifndef _INPUT_H
@@ -18,19 +18,19 @@ public:
 	bool shiftDown();
 
 	bool controlDown();
-	
+
 	bool altDown();
-	
-	bool keyDown(char aKey);
-	
-	bool kpKeyDown(int aKey);
-	
+
+	bool keyDown( char aKey );
+
+	bool kpKeyDown( int aKey );
+
 	bool leftDown();
-	
+
 	bool rightDown();
-	
+
 	bool upDown();
-	
+
 	bool downDown();
 
 protected:

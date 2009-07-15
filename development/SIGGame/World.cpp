@@ -3,14 +3,14 @@ World::World()
 {
 	pGenericModel = new Model;
 	Actor* pRock = new AsteroidActor
-	(
-		 pGenericModel,
-		 Vector3f(-1,-3,0),
-		 Vector3f(1,1.5,0),
-		 Vector3f(0,0,0),
-		 Vector3f(0,0,0)
-	);
-	addActor(pRock);
+	               (
+	        pGenericModel,
+	        Vector3f( -1, -3, 0 ),
+	        Vector3f( 1, 1.5, 0 ),
+	        Vector3f( 0, 0, 0 ),
+	        Vector3f( 0, 0, 0 )
+	               );
+	addActor( pRock );
 }
 
 World::~World()
