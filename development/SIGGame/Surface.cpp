@@ -16,11 +16,11 @@ Surface::~Surface()
 }
 Vector3f& Surface::operator[]( const int i )
 {
-	assert( i >= 0 && i < 3 && "Operator[] out of bounds assert");
+	assert( i >= 0 && i < 3 && "Operator[] out of bounds assert" );
 	return corners[ i ];
 }
 const Vector3f& Surface::at( const int i ) const
 {
-	assert( i >= 0 && i < 3 && "Surface::at() out of bounds assert");
+	assert( i >= 0 && i < 3 && "Surface::at() out of bounds assert" );
 	return corners[ i ];
 }

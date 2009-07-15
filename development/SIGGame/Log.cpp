@@ -20,58 +20,58 @@ Log* Log::getInstanceOf()
 	return pInstance;
 }
 
-void Log::setLogFile(const string& filePath )
+void Log::setLogFile( const string& filePath )
 {
 	logFilePath = filePath;
 }
 
-void Log::log(const string& data, SourceSystem source, Destination dest )
+void Log::log( const string& data, SourceSystem source, Destination dest )
 {
 	string sys;
 
 	switch( source )
 	{
-		case ACTOR:
-		{
-			sys = systems[0]; 
-			break;
-		}
+	case ACTOR:
+	{
+		sys = systems[0];
+		break;
+	}
 
-		case RENDERER:
-		{
-			sys = systems[1]; 
-			break;
-		}
+	case RENDERER:
+	{
+		sys = systems[1];
+		break;
+	}
 
-		case AUDIO:
-		{
-			sys = systems[2]; 
-			break;
-		}
+	case AUDIO:
+	{
+		sys = systems[2];
+		break;
+	}
 
-		case INPUT:
-		{
-			sys = systems[3]; 
-			break;
-		}
+	case INPUT:
+	{
+		sys = systems[3];
+		break;
+	}
 
-		case PHYSICS:
-		{
-			sys = systems[4]; 
-			break;
-		}
+	case PHYSICS:
+	{
+		sys = systems[4];
+		break;
+	}
 
-		case LOG:
-		{
-			sys = systems[5]; 
-			break;
-		}
+	case LOG:
+	{
+		sys = systems[5];
+		break;
+	}
 
-		case CONSOLE:
-		{
-			sys = systems[6]; 
-			break;
-		}
+	case CONSOLE:
+	{
+		sys = systems[6];
+		break;
+	}
 	}
 
 
@@ -88,7 +88,7 @@ void Log::log(const string& data, SourceSystem source, Destination dest )
 
 	if( Log::LOG_FILE == ( dest & Log::LOG_FILE ) )
 	{
-		std::fstream file(logFilePath.c_str(), std::ios::out | std::ios::app );
+		std::fstream file( logFilePath.c_str(), std::ios::out | std::ios::app );
 
 		if( file.good() )
 		{

@@ -10,7 +10,7 @@ public:
 
 	/** Constructor **/
 	PlayerActor( Model* model, const Vector3f position, const Vector3f dPosition,
-		   const Vector3f rotation, const Vector3f dRotation );
+	             const Vector3f rotation, const Vector3f dRotation );
 
 	/** Copy constructor **/
 	PlayerActor( const PlayerActor& otherPlayer );

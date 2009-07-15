@@ -4,14 +4,14 @@
 Renderer* Renderer::instance = NULL;
 
 Renderer::Renderer()
-: windowWidth( 500 ),windowHeight( 500 ),cubeRotateX( 45.0f ),cubeRotateY ( 45.0f )
+	: windowWidth( 500 ), windowHeight( 500 ), cubeRotateX( 45.0f ), cubeRotateY ( 45.0f )
 {
 	if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 	{
 		fprintf( stderr, "Unable to initialize SDL %s", SDL_GetError() );
 		exit( 1 );
 	}
-	if ( SDL_SetVideoMode( windowWidth, windowHeight, 0, SDL_OPENGL ) == NULL)
+	if ( SDL_SetVideoMode( windowWidth, windowHeight, 0, SDL_OPENGL ) == NULL )
 	{
 		fprintf( stderr, "Unable to create openGL scene %s", SDL_GetError() );
 		exit( 2 );
@@ -49,19 +49,19 @@ int Renderer::render( const World& gameWorld ) const
 	for( i = actors.begin(); i != actors.end(); ++i )
 	{
 		glLoadIdentity();
-		
+
 		// camera translation
 		// you can pretend this is the camera location
 		glTranslatef( 0, 0, -15.0f );
-		
+
 		// shift according to actor position
-		const Vector3f& actorPosition = ( *i ) -> getPositionVector3f();
+		const Vector3f& actorPosition = ( *i )->getPositionVector3f();
 		glTranslatef( actorPosition.at( 0 ), actorPosition.at( 1 ), actorPosition.at( 2 ) );
 
 		// TODO rotate according to actor rotation
 
 		glBegin( GL_TRIANGLES );
-		const vector< Surface >& surfaces = ( *i ) -> getModel().getSurfaces();
+		const vector< Surface >& surfaces = ( *i )->getModel().getSurfaces();
 
 		// j is the surface number
 		vector< Surface >::const_iterator j;
@@ -84,7 +84,7 @@ int Renderer::render( const World& gameWorld ) const
 		glEnd();
 	}
 
-	
+
 	glFlush(); // free up stuff
 
 	SDL_GL_SwapBuffers(); // switches buffer
@@ -96,7 +96,7 @@ int Renderer::render( const World& gameWorld ) const
 
 void Renderer::establishProjectionMatrix( GLsizei width, GLsizei height )
 {
-	glViewport( 0,0, width, height );
+	glViewport( 0, 0, width, height );
 
 	glMatrixMode( GL_PROJECTION );
 

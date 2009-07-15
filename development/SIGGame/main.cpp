@@ -5,11 +5,11 @@
 #include "Model.h"
 #include "Vector3f.h"
 
-int main(int argc, char **argv)
+int main( int argc, char **argv )
 {
 	if ( argc == 2 && strncmp( argv[1], "editor", 6 ) )
 	{
-		// Run the editor 
+		// Run the editor
 	}
 
 	//Initialize everything
@@ -18,16 +18,16 @@ int main(int argc, char **argv)
 
 	Input* input = Input::Instance();
 	World w;
-	audio -> addSound( "Mac.wav" );
-	audio -> playSound( "Mac.wav" );
+	audio->addSound( "Mac.wav" );
+	audio->playSound( "Mac.wav" );
 	static unsigned int lastTime = SDL_GetTicks();
 	static unsigned int currentTime = lastTime;
 	///delta time
 	static double dt = 0;
-	r -> render(w);
+	r->render( w );
 
 	//Start main loop, runs until esc is pressed
-	while ( input -> getInput() )
+	while ( input->getInput() )
 	{
 
 		currentTime = SDL_GetTicks();
@@ -35,10 +35,10 @@ int main(int argc, char **argv)
 		lastTime = currentTime;
 
 		//process world logic
-		w.tick(dt);
+		w.tick( dt );
 
 		//Rerender the world every iteration
-		r -> render(w);
+		r->render( w );
 	}
 	return 1;
 }

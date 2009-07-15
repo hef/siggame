@@ -10,7 +10,7 @@ public:
 
 	/** Constructor **/
 	AsteroidActor( Model* model, const Vector3f position, const Vector3f dPosition,
-		   const Vector3f rotation, const Vector3f dRotation );
+	               const Vector3f rotation, const Vector3f dRotation );
 
 	/** Copy constructor **/
 	AsteroidActor( const AsteroidActor& otherPlayer );
@@ -19,7 +19,7 @@ public:
 	~AsteroidActor();
 
 	///The tick
-	void tick(const double dt);
+	void tick( const double dt );
 };
 #endif
 

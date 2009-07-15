@@ -6,7 +6,7 @@ Vector3f::Vector3f()
 	elementArray[ 2 ] = 2;
 
 }
-Vector3f::Vector3f( const float x, const float y, const float z)
+Vector3f::Vector3f( const float x, const float y, const float z )
 {
 	elementArray[ 0 ] = x;
 	elementArray[ 1 ] = y;
