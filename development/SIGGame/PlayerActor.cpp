@@ -24,10 +24,10 @@ void PlayerActor::tick( const double dt )
 	input->getInput();
 
 	if(input->leftDown()){
-		rotation[2] -= 100.0f * dt;
+		rotation[2] += 100.0f * dt;
 	}
 	else if(input->rightDown()){
-		rotation[2] += 100.0f * dt;
+		rotation[2] -= 100.0f * dt;
 	}
 
 	/* TODO read up on math to fill this in
