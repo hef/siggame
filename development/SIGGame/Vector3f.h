@@ -10,6 +10,6 @@ public:
 	Vector3f( const float x, const float y, const float z );
 	Vector3f( const Vector3f& vector3f );
 	float& operator[]( const int i );
-	const float at( const int ) const;
+	float at( const int ) const;
 };
 #endif

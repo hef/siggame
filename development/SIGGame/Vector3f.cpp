@@ -23,7 +23,7 @@ float& Vector3f::operator[]( const int i )
 	assert( i >= 0 && i < 3 && "Operator[] out of bounds assert" );
 	return elementArray[ i ];
 }
-const float Vector3f::at( const int i ) const
+float Vector3f::at( const int i ) const
 {
 	assert( i >= 0 && i < 3 && "Vector3f::at() out of bounds assert" );
 	return elementArray[ i ];
