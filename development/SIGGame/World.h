@@ -3,6 +3,7 @@
 #include <vector>
 #include "Actor.h"
 #include "AsteroidActor.h"
+#include "PlayerActor.h"
 #include "Model.h"
 using std::vector;
 

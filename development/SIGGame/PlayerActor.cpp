@@ -18,3 +18,35 @@ PlayerActor::PlayerActor( const PlayerActor& otherPlayer )
 PlayerActor::~PlayerActor()
 {
 }
+void PlayerActor::tick( const double dt )
+{
+	Input* input = Input::Instance();
+	input->getInput();
+
+	if(input->leftDown()){
+		rotation[2] -= 100.0f * dt;
+	}
+	else if(input->rightDown()){
+		rotation[2] += 100.0f * dt;
+	}
+
+	/* TODO read up on math to fill this in
+	   the concept is:
+	   take the rotation[2] x component,
+	   add it to dPosition[0]
+	   take the rotation[2] y component, 
+	   add it to dPosition[1]
+	   then apply normal vector movement(pos+=dpos*dt)
+	   
+	   remember, sin/cos methods suck cycles fast, there is probably a 
+	   vector/matrix method that is faster and better
+
+	if(input->upDown()){
+		rotation[0] += dRotation[0];
+	}
+	else if(input->downDown()){
+		rotation[0] -= dRotation[0];
+	}
+	*/
+
+}
