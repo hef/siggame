@@ -8,8 +8,30 @@ World::World()
 	        Vector3f( -1, -3, 0 ),
 	        Vector3f( 1, 1.5, 0 ),
 	        Vector3f( 0, 0, 0 ),
-	        Vector3f( 0, 0, 0 )
+	        Vector3f( 5, 5, 5 )
 	               );
+	addActor( pRock );
+
+	pRock = new AsteroidActor
+	               (
+	        pGenericModel,
+	        Vector3f( -10, -30, 0 ),
+	        Vector3f( 5, -2.5, 0 ),
+	        Vector3f( 0, 0, 0 ),
+	        Vector3f( 5, 5, 5 )
+			);
+
+	addActor( pRock );
+
+	pRock = new AsteroidActor
+	               (
+	        pGenericModel,
+	        Vector3f( 100, -30, 0 ),
+	        Vector3f( -3, .5, 0 ),
+	        Vector3f( 0, 0, 0 ),
+	        Vector3f( 5, 5, 5 )
+			);
+
 	addActor( pRock );
 }
 

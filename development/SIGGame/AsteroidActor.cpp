@@ -1,4 +1,5 @@
 #include "AsteroidActor.h"
+#include "Input.h"
 
 AsteroidActor::AsteroidActor( Model* model, const Vector3f position, const Vector3f rotation )
 	: Actor( model, position, rotation )
@@ -33,5 +34,22 @@ void AsteroidActor::tick( const double dt )
 		{
 			position[ i ] += 14;
 		}
+	}
+
+	Input* input = Input::Instance();
+	input->getInput();
+
+	if(input->leftDown()){
+		rotation[1] += dRotation[1];
+	}
+	else if(input->rightDown()){
+		rotation[1] -= dRotation[1];
+	}
+
+	if(input->upDown()){
+		rotation[0] += dRotation[0];
+	}
+	else if(input->downDown()){
+		rotation[0] -= dRotation[0];
 	}
 }
