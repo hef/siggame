@@ -37,7 +37,11 @@ const Renderer* Renderer::getInstanceOf()
 
 int Renderer::render( const World& gameWorld ) const
 {
+	glEnable( GL_TEXTURE_2D );
+
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+
 
 	glMatrixMode( GL_MODELVIEW );
 
@@ -46,21 +50,34 @@ int Renderer::render( const World& gameWorld ) const
 
 	vector< Actor* >::const_iterator i;
 
+	glLoadIdentity();
+
+	// camera translation
+	// you can pretend this is the camera location
+	glTranslatef( 0, 0, -15.0f );
+
 	for( i = actors.begin(); i != actors.end(); ++i )
 	{
 		glLoadIdentity();
-
-		// camera translation
-		// you can pretend this is the camera location
-		glTranslatef( 0, 0, -15.0f );
 
 		// shift according to actor position
 		const Vector3f& actorPosition = ( *i )->getPositionVector3f();
 		glTranslatef( actorPosition.at( 0 ), actorPosition.at( 1 ), actorPosition.at( 2 ) );
 
-		// TODO rotate according to actor rotation
+		
+		const Vector3f& actorRotation = ( *i )->getRotationVector3f();
 
+		if(actorRotation.at(0)!=0)
+			glRotatef(actorRotation.at(0), 1.0f, 0.0f, 0.0f); //rotate on the x axis
+
+		if(actorRotation.at(1)!=0)
+			glRotatef(actorRotation.at(1), 0.0f, 1.0f, 0.0f); //rotate on the y axis
+
+		if(actorRotation.at(2)!=0)
+			glRotatef(actorRotation.at(1), 0.0f, 0.0f, 1.0f); //rotate on the z axis
+		
 		glBegin( GL_TRIANGLES );
+
 		const vector< Surface >& surfaces = ( *i )->getModel().getSurfaces();
 
 		// j is the surface number
@@ -68,11 +85,15 @@ int Renderer::render( const World& gameWorld ) const
 
 		for( j = surfaces.begin(); j != surfaces.end(); ++j )
 		{
-
+			
+			glColor3fv(j->getColor().elementArray);
+			
 			// k is the vertex (corner) number
 			// TODO get properties of surface
 			for( int k = 0; k < 3; ++k )
 			{
+				
+
 				// ( *j ) is a surface
 				// ( *j ).at( k ) is a Vector3f
 				// ( *j ).at( k ).elementArray is the array in the Vector3f
@@ -102,7 +123,9 @@ void Renderer::establishProjectionMatrix( GLsizei width, GLsizei height )
 
 	glLoadIdentity();
 
-	gluPerspective( 45.0f, (GLfloat)width / (GLfloat)height, 0.1f, 200.0f );
+	glOrtho(-6.0f, 6.0f, -6.0f, 6.0f, -100.0f, 100.0f);
+	
+
 
 }
 

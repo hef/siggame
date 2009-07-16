@@ -1,4 +1,6 @@
 #include "Actor.h"
+#include "Input.h"
+
 Actor::Actor( Model* model, const Vector3f position, const Vector3f rotation ) :
 	model( model ),
 	position( position ),
@@ -44,9 +46,16 @@ const Vector3f& Actor::getPositionVector3f() const
 	return position;
 }
 
+const Vector3f& Actor::getRotationVector3f() const
+{
+	return rotation;
+}
+
 void Actor::tick( double dt )
 {
 	position[ 0 ] += dPosition[ 0 ] * (float)dt;
 	position[ 1 ] += dPosition[ 1 ] * (float)dt;
 	position[ 2 ] += dPosition[ 2 ] * (float)dt;
+
+	
 }

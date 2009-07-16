@@ -11,11 +11,14 @@ class Surface
 {
 private:
 	Vector3f corners[ 3 ];
+	Vector3f color;
 public:
 	Surface( const Vector3f A, const Vector3f B, const Vector3f C );
+	Surface( const Vector3f A, const Vector3f B, const Vector3f C, const Vector3f rgb );
 	Surface( const Surface& surface );
 	~Surface();
 	Vector3f& operator[]( const int i );
 	const Vector3f& at( const int i ) const;
+	const Vector3f getColor() const;
 };
 #endif

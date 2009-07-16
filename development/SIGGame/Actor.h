@@ -35,7 +35,10 @@ public:
 	/** Accessor **/
 	const Vector3f& getPositionVector3f() const;
 
+	/** Accessor **/
+	const Vector3f& getRotationVector3f() const;
+
 	/// Controls game logic and ai
-	virtual void tick( double dt ) = 0;
+	virtual void tick( const double dt ) = 0;
 };
 #endif
