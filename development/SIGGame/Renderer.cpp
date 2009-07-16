@@ -74,7 +74,7 @@ int Renderer::render( const World& gameWorld ) const
 			glRotatef(actorRotation.at(1), 0.0f, 1.0f, 0.0f); //rotate on the y axis
 
 		if(actorRotation.at(2)!=0)
-			glRotatef(actorRotation.at(1), 0.0f, 0.0f, 1.0f); //rotate on the z axis
+			glRotatef(actorRotation.at(2), 0.0f, 0.0f, 1.0f); //rotate on the z axis
 		
 		glBegin( GL_TRIANGLES );
 

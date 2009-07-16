@@ -1,6 +1,7 @@
 #ifndef PLAYACT_H
 #define PLAYACT_H
 #include "Actor.h"
+#include "Input.h"
 
 class PlayerActor : public Actor
 {
@@ -14,6 +15,8 @@ public:
 
 	/** Copy constructor **/
 	PlayerActor( const PlayerActor& otherPlayer );
+
+	void tick( const double dt );
 
 	/** Destructor **/
 	~PlayerActor();

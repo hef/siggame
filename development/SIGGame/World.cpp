@@ -8,7 +8,7 @@ World::World()
 	        Vector3f( -1, -3, 0 ),
 	        Vector3f( 1, 1.5, 0 ),
 	        Vector3f( 0, 0, 0 ),
-	        Vector3f( 5, 5, 5 )
+	        Vector3f( -1, 3, 15 )
 	               );
 	addActor( pRock );
 
@@ -18,7 +18,7 @@ World::World()
 	        Vector3f( -10, -30, 0 ),
 	        Vector3f( 5, -2.5, 0 ),
 	        Vector3f( 0, 0, 0 ),
-	        Vector3f( 5, 5, 5 )
+	        Vector3f( 105, -5, 5 )
 			);
 
 	addActor( pRock );
@@ -29,17 +29,25 @@ World::World()
 	        Vector3f( 100, -30, 0 ),
 	        Vector3f( -3, .5, 0 ),
 	        Vector3f( 0, 0, 0 ),
-	        Vector3f( 5, 5, 5 )
+	        Vector3f( -12, 2, -6 )
 			);
 
 	addActor( pRock );
+
+	Actor* pPlayer = new PlayerActor
+	(
+		pGenericModel,
+		Vector3f(0,0,0),
+		Vector3f(0,0,0)
+	);
+	addActor( pPlayer );
 }
 
 World::~World()
 {
 	delete pGenericModel;
 
-	///clean up the actors
+	//clean up the actors
 	vector< Actor* >::iterator i;
 	for( i = actors.begin(); i != actors.end(); ++i )
 	{
