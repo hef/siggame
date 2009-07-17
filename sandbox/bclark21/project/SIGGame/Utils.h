@@ -3,13 +3,14 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-// Declaration of class Utilities
-/* filename: Utilities.h			*/
+// Declaration of class Utils
+/* filename: Utils.h			*/
 
 //#include <stdio.h>
 //using namespace std;		//only if the class is declared in a separate file
 
-class Utilities{
+class Utils
+{
 	
 	//private members
 	private:
@@ -21,36 +22,27 @@ class Utilities{
 		//public data
 		int digitPub;
 
+		//public function prototypes:
 		//Default constructor:
-		Utilities(){
-			digit = 8;
-			digitPub = 9;
-		}
+		Utils();
 
-		//parameterized constructor:
-		Utilities(int initDigit){
-			digit = initDigit;
-			digitPub = 9;
-		}
+		//Parameterized constructor:
+		Utils(int initDigit);
 
-		//accessor methods
-		int Utilities::getDigit(){
-			return digit;
-		}
+		//accessor methods:
+		int Utils::getDigit() const;
+		int Utils::getDigitPub() const;
 
-		int Utilities::getDigitPub(){
-			return digitPub;
-		}
+		//mutator methods
+		void Utils::set(int newDigit);
 
-		//mutator method
-		void Utilities::set(int newDigit){
-			digit = newDigit;
-		}
+		//static method that sums up numbers from 1 to the number entered
+		static int Utils::sumUp(int number);
 
 		//Destructor:
-		~Utilities(){
+		~Utils();
 
-		}
 };
+
 #endif /* UTILITIES_H */  //end of compiler directive ndef
 
