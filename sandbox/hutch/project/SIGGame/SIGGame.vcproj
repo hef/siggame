@@ -175,7 +175,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Impound.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\main.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MergeTest.cpp"
 				>
 			</File>
 			<File
@@ -194,6 +202,10 @@
 			</File>
 			<File
 				RelativePath=".\GoldenRetriever.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Impound.h"
 				>
 			</File>
 			<File

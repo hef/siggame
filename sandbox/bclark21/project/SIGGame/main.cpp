@@ -8,27 +8,34 @@
 #include <iostream>		//required for cin, cout, endl
 #include "Dog.h"	//includes class Dog file
 #include "Utils.h"  //used only when the class declaration is in 
-//a separate headerfile
+					//a separate headerfile
 
-using namespace std;
+//using namespace std;
+
+//substitute for namespace std by using separate individual files
+using std::cout;
+using std::cin;
+using std::endl;
 
 //function prototype unnecessary when function included in header file
 //Utils::sumUp(int);	
 
 int main()
 {
-	int ready (0);
+	int ready = 0;
 
 	//Declaration of Objects 
 	//a de-referenced pointer to useful for an instance on the heap
 	//a variable for an instance on the stack
-	Utils *useful, semiuseful;
+	Utils* useful;
+	
+	Utils semiuseful;
 	//Must declare a dereferenced pointer for an object on the heap
 	Dog *Fido,*Fidonew;
 	char newDogID [16],
-		 retreivedDogID[16];
+		 retrieveDogID[17];
 	
-	float initDogHeight_M,
+	float initDogHeightMeters,
 		  initDogWeight;
 
 	//std output of instance on the stack, declaration uses constructor
@@ -74,34 +81,65 @@ int main()
 
 	//function called with scope operator
 	//if sum is negative, then exit
-	if(Utils::sumUp(num)<0)		
+	if ( Utils::sumUp(num)<0 )		
 		exit(-1);				
 	numberSum = Utils::sumUp(num); 
 
 	//stream result to std output
 	cout<<"The sum of num is: "<<numberSum<<endl;
 	
-	//testing for tutorial 4 on classes
+	//testing for tutorial 4 on class Dog
+	cout<<"The default constructor for a dog returns the following data: ";
 	Fido = new Dog();
-	cout<<"Dog's height is: "<<Fido->getDogHeight_M()<<endl
+	cout<<"Dog's height is: "<<Fido->getDogHeightMeters()<<endl
 		<<"Dog's weight is: "<<Fido->getDogWeight()<<endl;
-	cout<<"Dog's tag is: ";
-		Fido->getDogName();
-		//<<Fido->getDogName()<<endl;
-		
+	cout<<"Dog's tag as returned is: ";
+	Fido->getDogName(retrieveDogID);
+    for ( int i = 0; i <= 15; ++i )
+	{
+		if ( retrieveDogID != '\0' )
+		{
+			cout<<retrieveDogID[i];
+		}
+	}
+	cout<<endl;
+	
+	//To create a record for a dog enter the following data if available
 	cout<<"Enter the dog's height in meters: ";
-	cin>>initDogHeight_M;
+	cin>>initDogHeightMeters;
 	cout<<"Enter the dog's weight: ";
 	cin>>initDogWeight;
 	cout<<"Enter the dog's tag (16 characters): ";
+	//initialize the name char array to null
+	for ( int i = 0; i <= 16; ++i )
+	{
+		newDogID[i] = '\0';
+	}
+	//input the name up to 16 characters long
 	cin>>newDogID;
-	cout<<newDogID<<endl;
+	int charInd = 0;
+
+	while ( charInd <= 16)
+	{
+		if (!( newDogID[charInd] >= 32 && newDogID[charInd] <= 126))
+		{
+			newDogID[charInd] = '\0';
+			break;
+		}
+		charInd += 1;
+	}//while loop
 		
 	
-	Fidonew = new Dog(initDogHeight_M, initDogWeight, newDogID);
-	cout<<"Dog's height is: "<<Fidonew->getDogHeight_M()<<endl
+	Fidonew = new Dog(initDogHeightMeters, initDogWeight, newDogID);
+	cout<<"Dog's height is: "<<Fidonew->getDogHeightMeters()<<endl
 		<<"Dog's weight is: "<<Fidonew->getDogWeight()<<endl;
-	Fidonew->getDogName();
+	Fidonew->getDogName(retrieveDogID);
+	cout<<"Dog's name tag reads: ";
+	for ( int i = 0; i <= 15; ++i )
+	{
+			cout<<retrieveDogID[i];
+	}
+	cout<<endl;
 		
 	//code designed to exit program after review
 	cout<<"Enter number when ready: ";

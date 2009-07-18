@@ -21,7 +21,7 @@ class Dog
 		
 		virtual void bark() = 0; // Pure virtual for bark
 
-	private:
+	protected:
 		float height;
 		float weight;
 		char* name;
