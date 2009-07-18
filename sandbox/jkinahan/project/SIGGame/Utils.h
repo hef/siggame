@@ -8,16 +8,7 @@ private:
 public:
 	Utils(){}
 	~Utils(){}
-
-	int sumUp(int numberToSum)
-	{
-		int finalNumber = 0;
-		for( int i = 0; i <= numberToSum; ++i )
-		{
-			finalNumber += i;
-		}
-		return finalNumber;
-	}
+	int sumUp(const int);
 };
 
 #endif /* UTILITIES_H */

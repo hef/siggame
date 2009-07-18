@@ -12,8 +12,7 @@ int main()
 	
 	cout << "Please enter the number you would like to add up to: ";
 	cin >> addUpToNumber; 
-	cout << "The sum is: " << utilStack.sumUp(addUpToNumber);
-	cout << "***" << endl;
+	cout << "The sum is:  " << utilStack.sumUp(addUpToNumber) << endl;
 	
 	delete utilHeap;
 
@@ -21,3 +20,4 @@ int main()
 
 	return 0;
 }
+
