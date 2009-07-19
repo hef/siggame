@@ -20,11 +20,11 @@ Input* Input::Instance()
 
 Input::Input() // All keys are up
 {
-	for ( int c = 0; c < ASCII_TABLE_SIZE; c++ )
+	for ( unsigned int c = 0; c < ASCII_TABLE_SIZE; c++ )
 	{
 		keyArray[c] = false;
 	}
-	for ( int c = 0; c < KEYPAD_SIZE; c++ )
+	for ( unsigned int c = 0; c < KEYPAD_SIZE; c++ )
 	{
 		kPadArray[c] = false;
 	}
@@ -68,7 +68,7 @@ bool Input::getInput()
 
 bool Input::releaseKeys( SDL_Event keyevent )
 {
-	int key = keyevent.key.keysym.sym; // to clean up code
+	unsigned int key = keyevent.key.keysym.sym; // to clean up code
 	// Check status of single character keys, update members accordingly
 	if ( key <= ASCII_TABLE_SIZE )
 	{
@@ -114,7 +114,7 @@ bool Input::releaseKeys( SDL_Event keyevent )
 
 bool Input::setKeys( SDL_Event keyevent )
 {
-	int key = keyevent.key.keysym.sym; // To make the code cleaner
+	unsigned int key = keyevent.key.keysym.sym; // To make the code cleaner
 	// Check status of single character keys, update members accordingly
 	if ( key <= ASCII_TABLE_SIZE )
 	{
@@ -165,6 +165,6 @@ bool Input::leftDown() { return left; }
 bool Input::rightDown() { return right; }
 bool Input::upDown() { return up; }
 bool Input::downDown() { return down; }
-bool Input::keyDown( char aKey ) { return keyArray[ aKey ]; }
+bool Input::keyDown( char aKey ) { return keyArray[ static_cast<int>(aKey) ]; }
 bool Input::kpKeyDown( int aKey ) { return kPadArray[ aKey ]; }
 
