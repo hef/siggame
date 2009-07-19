@@ -4,6 +4,7 @@
 #include "Dog.h"
 #include "GoldenRetriever.h"
 #include "PrairieDog.h"
+#include "Impound.h"
 using std::cout;
 using std::cin;
 using std::endl;
@@ -44,11 +45,18 @@ int main()
 	// Copy from third
 	//steve = johny;
 
-	Dog* sam = new GoldenRetriever( "Sam" );
-	sam->bark();
+	//-------------------- Tutorial 6 --------------------
 
 	Dog* louie = new PrairieDog( "Louie" );
-	louie->bark();
+	Dog* spot = new GoldenRetriever( "spot" );
+
+	Impound* impound = Impound::getInstance();
+
+	impound->addDog( louie );
+	impound->addDog( spot );
+
+	impound->visitImpound();
+	cin.get();
 
 	return 0;
 }

@@ -9,6 +9,6 @@ public:
 	~PrairieDog();
 
 	// Member Function
-	virtual void bark();
+	void bark() const;
 };
 #endif

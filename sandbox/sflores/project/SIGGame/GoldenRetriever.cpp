@@ -5,7 +5,7 @@ GoldenRetriever::GoldenRetriever( const char *name )
 : Dog( name )
 { }
 
-void GoldenRetriever::bark()
+void GoldenRetriever::bark() const
 {
 	std::cout << "Roof!\n";
 }
