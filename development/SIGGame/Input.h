@@ -25,13 +25,13 @@ public:
 
 	bool kpKeyDown( int aKey );
 
-	bool leftDown();
+	bool leftArrowDown();
 
-	bool rightDown();
+	bool rightArrowDown();
 
-	bool upDown();
+	bool upArrowDown();
 
-	bool downDown();
+	bool downArrowDown();
 
 protected:
 	Input();
@@ -51,10 +51,10 @@ private:
 	bool shift;
 	bool control;
 	bool alt;
-	bool up;
-	bool down;
-	bool left;
-	bool right;
+	bool upArrow;
+	bool downArrow;
+	bool leftArrow;
+	bool rightArrow;
 	static Input* pInstance;
 };
 

@@ -9,6 +9,6 @@ public:
 	~GoldenRetriever();
 
 	// Memeber Function
-	virtual void bark();
+	void bark() const;
 };
 #endif

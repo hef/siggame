@@ -21,12 +21,11 @@ PlayerActor::~PlayerActor()
 void PlayerActor::tick( const double dt )
 {
 	Input* input = Input::Instance();
-	input->getInput();
 
-	if(input->leftDown()){
+	if( input->leftArrowDown() ){
 		rotation[2] += 100.0f * (float)dt;
 	}
-	else if(input->rightDown()){
+	else if( input->rightArrowDown() ){
 		rotation[2] -= 100.0f * (float)dt;
 	}
 

@@ -22,7 +22,7 @@ public:
 	void setWeight( const float newWeight );
 
 	// Member Function
-	virtual void bark() = 0;
+	virtual void bark() const = 0;
 
 private:
 	// Constant

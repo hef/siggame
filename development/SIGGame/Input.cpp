@@ -20,11 +20,11 @@ Input* Input::Instance()
 
 Input::Input() // All keys are up
 {
-	for ( int c = 0; c < ASCII_TABLE_SIZE; c++ )
+	for ( unsigned int c = 0; c < ASCII_TABLE_SIZE; c++ )
 	{
 		keyArray[c] = false;
 	}
-	for ( int c = 0; c < KEYPAD_SIZE; c++ )
+	for ( unsigned int c = 0; c < KEYPAD_SIZE; c++ )
 	{
 		kPadArray[c] = false;
 	}
@@ -32,10 +32,10 @@ Input::Input() // All keys are up
 	shift = false;
 	control = false;
 	alt = false;
-	up = false;
-	down = false;
-	right = false;
-	left = false;
+	upArrow = false;
+	downArrow = false;
+	rightArrow = false;
+	leftArrow = false;
 }
 
 Input::~Input()
@@ -68,7 +68,7 @@ bool Input::getInput()
 
 bool Input::releaseKeys( SDL_Event keyevent )
 {
-	int key = keyevent.key.keysym.sym; // to clean up code
+	unsigned int key = keyevent.key.keysym.sym; // to clean up code
 	// Check status of single character keys, update members accordingly
 	if ( key <= ASCII_TABLE_SIZE )
 	{
@@ -83,16 +83,16 @@ bool Input::releaseKeys( SDL_Event keyevent )
 	switch( key )
 	{
 	case SDLK_LEFT:
-		left = false;
+		leftArrow = false;
 		break;
 	case SDLK_RIGHT:
-		right = false;
+		rightArrow = false;
 		break;
 	case SDLK_UP:
-		up = false;
+		upArrow = false;
 		break;
 	case SDLK_DOWN:
-		down = false;
+		downArrow = false;
 		break;
 	case SDLK_RSHIFT:
 	case SDLK_LSHIFT:
@@ -114,7 +114,7 @@ bool Input::releaseKeys( SDL_Event keyevent )
 
 bool Input::setKeys( SDL_Event keyevent )
 {
-	int key = keyevent.key.keysym.sym; // To make the code cleaner
+	unsigned int key = keyevent.key.keysym.sym; // To make the code cleaner
 	// Check status of single character keys, update members accordingly
 	if ( key <= ASCII_TABLE_SIZE )
 	{
@@ -129,16 +129,16 @@ bool Input::setKeys( SDL_Event keyevent )
 	else switch( key )
 		{
 		case SDLK_LEFT:
-			left = true;
+			leftArrow = true;
 			break;
 		case SDLK_RIGHT:
-			right = true;
+			rightArrow = true;
 			break;
 		case SDLK_UP:
-			up = true;
+			upArrow = true;
 			break;
 		case SDLK_DOWN:
-			down = true;
+			downArrow = true;
 			break;
 		case SDLK_RSHIFT:
 		case SDLK_LSHIFT:
@@ -161,10 +161,10 @@ bool Input::setKeys( SDL_Event keyevent )
 bool Input::shiftDown() { return shift; }
 bool Input::controlDown() { return control; }
 bool Input::altDown() { return alt; }
-bool Input::leftDown() { return left; }
-bool Input::rightDown() { return right; }
-bool Input::upDown() { return up; }
-bool Input::downDown() { return down; }
-bool Input::keyDown( char aKey ) { return keyArray[ aKey ]; }
+bool Input::leftArrowDown() { return leftArrow; }
+bool Input::rightArrowDown() { return rightArrow; }
+bool Input::upArrowDown() { return upArrow; }
+bool Input::downArrowDown() { return downArrow; }
+bool Input::keyDown( char aKey ) { return keyArray[ static_cast<int>(aKey) ]; }
 bool Input::kpKeyDown( int aKey ) { return kPadArray[ aKey ]; }
 

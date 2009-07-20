@@ -5,7 +5,7 @@ PrairieDog::PrairieDog( const char* name )
 : Dog( name )
 { }
 
-void PrairieDog::bark()
+void PrairieDog::bark() const
 {
 	std::cout << "Yelp!\n";
 }
