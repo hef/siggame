@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 Project(SIGGame)
 set(SOURCES
-#	SDLMain.m
 	main.cpp
 	Actor.cpp
 	AsteroidActor.cpp
@@ -15,6 +14,9 @@ set(SOURCES
 	Vector3f.cpp
 	World.cpp
 	)
+IF(APPLE)
+	set(SOURCES ${SOURCES} SDLMain.m)
+ENDIF(APPLE)
 Find_Package(SDL REQUIRED)
 Find_Package(SDL_mixer REQUIRED)
 Find_Package(OpenGL REQUIRED)
@@ -35,7 +37,8 @@ target_link_libraries(
 	)
 INSTALL(TARGETS siggame
 	BUNDLE DESTINATION "/Applications"
-	RUNTIME DESTINATION bin)
+	#RUNTIME DESTINATION bin
+	)
 ##cpack stuff
-#SET(CPACK_GENERATOR "DragNDrop")
+SET(CPACK_GENERATOR "DragNDrop")
 INCLUDE(CPack)
