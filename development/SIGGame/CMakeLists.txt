@@ -8,6 +8,7 @@ set(SOURCES
 	Input.cpp
 	Log.cpp
 	Model.cpp
+	PhysicsEngine.cpp
 	PlayerActor.cpp
 	Renderer.cpp
 	Surface.cpp
@@ -17,6 +18,7 @@ set(SOURCES
 IF(APPLE)
 	set(SOURCES ${SOURCES} SDLMain.m)
 ENDIF(APPLE)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 Find_Package(SDL REQUIRED)
 Find_Package(SDL_mixer REQUIRED)
 Find_Package(OpenGL REQUIRED)
