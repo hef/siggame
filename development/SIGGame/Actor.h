@@ -34,7 +34,7 @@ public:
 	Actor( const Actor& actor );
 
 	/** Destructor **/
-	~Actor();
+	virtual ~Actor();
 
 	/** Accessor **/
 	const Model& getModel() const;
