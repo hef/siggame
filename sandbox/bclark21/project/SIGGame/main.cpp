@@ -31,7 +31,8 @@ int main()
 	
 	Utils semiuseful;
 	//Must declare a dereferenced pointer for an object on the heap
-	Dog *Fido,*Fidonew;
+	Dog *Fido,*Fidonew, *FidoCopy;
+	Dog dogOne, dogTwo, dogThree;
 	char newDogID [16],
 		 retrieveDogID[17];
 	
@@ -87,9 +88,13 @@ int main()
 
 	//stream result to std output
 	cout<<"The sum of num is: "<<numberSum<<endl;
-	
+
+//-----------------------------------
+
 	//testing for tutorial 4 on class Dog
-	cout<<"The default constructor for a dog returns the following data: ";
+	//use default constructor to create Fido
+	cout<<"----------"<<endl
+		<<"The default constructor for a dog returns the following data: "<<endl;
 	Fido = new Dog();
 	cout<<"Dog's height is: "<<Fido->getDogHeightMeters()<<endl
 		<<"Dog's weight is: "<<Fido->getDogWeight()<<endl;
@@ -103,12 +108,19 @@ int main()
 		}
 	}
 	cout<<endl;
+
+//--------------
 	
 	//To create a record for a dog enter the following data if available
+	cout<<"----------"<<endl;
 	cout<<"Enter the dog's height in meters: ";
 	cin>>initDogHeightMeters;
+	if ( initDogHeightMeters <= 0 )
+		initDogHeightMeters = 0;
 	cout<<"Enter the dog's weight: ";
 	cin>>initDogWeight;
+	if ( initDogWeight <= 0 )
+		initDogWeight = 0;
 	cout<<"Enter the dog's tag (16 characters): ";
 	//initialize the name char array to null
 	for ( int i = 0; i <= 16; ++i )
@@ -131,12 +143,61 @@ int main()
 		
 	
 	Fidonew = new Dog(initDogHeightMeters, initDogWeight, newDogID);
+	cout<<"The fully parameterized constructor yields the following"<<endl;
 	cout<<"Dog's height is: "<<Fidonew->getDogHeightMeters()<<endl
 		<<"Dog's weight is: "<<Fidonew->getDogWeight()<<endl;
 	Fidonew->getDogName(retrieveDogID);
 	cout<<"Dog's name tag reads: ";
 	for ( int i = 0; i <= 15; ++i )
 	{
+			cout<<retrieveDogID[i];
+	}
+	cout<<endl;
+
+	//test copy constructor
+	cout<<"----------"<<endl
+		<<"The copy constructor yields the following"<<endl;
+	//declaring with use of copy constructor does not require new!! 
+	//Dog strangeDog = new Dog (Fidonew);  //This will give two initializations:
+	Dog strangeDog(Fidonew);		//This is sufficient
+	FidoCopy = &strangeDog;			//use a ptr to Dog and an object
+	//initialize new dog with a ponter to an existing dog
+	//copy works with a ptr 
+	cout<<"Dog's height is: "<<FidoCopy->getDogHeightMeters()<<endl
+    //copy works with an object
+		<<"Dog's weight is: "<<strangeDog.getDogWeight()<<endl;
+	FidoCopy->getDogName(retrieveDogID);
+	cout<<"Dog's name tag reads: ";
+	for ( int i = 0; i <= 15; ++i )
+	{
+			cout<<retrieveDogID[i];
+	}
+	cout<<endl;
+
+	//-----
+	cout<<"After altering the values of the copy a/k/a strangeDog\n"
+		<<"and the values of the original a/k/a Fidonew: "<<endl;
+	strangeDog.Dog::setDogHeightMeters(1.80000);
+	strangeDog.Dog::setDogWeight(120.0);
+	Fidonew->setDogHeightMeters(1.30000);
+	Fidonew->setDogWeight(80.0);
+	cout<<"strangeDog's height is: "<<strangeDog.getDogHeightMeters()<<endl
+		<<"strangeDog's weight is: "<<strangeDog.getDogWeight()<<endl
+		<<"strangeDog's tag reads: ";
+	strangeDog.getDogName(retrieveDogID);
+	for ( int i = 0; i <= 16; ++i )
+	{
+		if ( retrieveDogID[i] != '\0' )
+			cout<<retrieveDogID[i];
+	}
+	cout<<endl;
+	cout<<"Fidonew's height is: "<<Fidonew->getDogHeightMeters()<<endl
+		<<"Fidonew's weight is: "<<Fidonew->getDogWeight()<<endl
+		<<"Fidonew's tag reads: ";
+	Fidonew->getDogName(retrieveDogID);
+	for ( int i = 0; i <= 16; ++i )
+	{
+		if ( retrieveDogID[i] != '\0' )
 			cout<<retrieveDogID[i];
 	}
 	cout<<endl;

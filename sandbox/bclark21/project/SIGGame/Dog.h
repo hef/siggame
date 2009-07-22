@@ -17,7 +17,6 @@ class Dog{
 		float dogHeightMeters,
 			  dogWeight;
 		  
-		char 	dogID [16];
 		char*	startDog;
 	
 	//public members
@@ -33,6 +32,8 @@ class Dog{
 		Dog(float initDogHeightMeters, float initDogWeight, char newDogID[]);
 
 		//copy constructor
+		//using a constant pointer as parameter
+		Dog::Dog(const Dog*  Fido);
 
 		//accessor methods
 		float Dog::getDogHeightMeters() const;

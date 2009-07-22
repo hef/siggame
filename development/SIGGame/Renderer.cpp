@@ -54,7 +54,7 @@ int Renderer::render( const World& gameWorld ) const
 
 	// camera translation
 	// you can pretend this is the camera location
-	glTranslatef( 0, 0, -15.0f );
+	glTranslatef( 0.0f, 0.0f, -15.0f );
 
 	for( i = actors.begin(); i != actors.end(); ++i )
 	{
@@ -62,20 +62,25 @@ int Renderer::render( const World& gameWorld ) const
 
 		// shift according to actor position
 		const Vector3f& actorPosition = ( *i )->getPositionVector3f();
-		glTranslatef( actorPosition.at( 0 ), actorPosition.at( 1 ), actorPosition.at( 2 ) );
+		glTranslatef( actorPosition[ 0 ], actorPosition[ 1 ], actorPosition[ 2 ] );
 
 		
 		const Vector3f& actorRotation = ( *i )->getRotationVector3f();
 
-		if(actorRotation.at(0)!=0)
-			glRotatef(actorRotation.at(0), 1.0f, 0.0f, 0.0f); //rotate on the x axis
+		if( actorRotation[ 0 ] != 0.0f )
+			glRotatef( actorRotation[ 0 ], 1.0f, 0.0f, 0.0f ); //rotate on the x axis
 
-		if(actorRotation.at(1)!=0)
-			glRotatef(actorRotation.at(1), 0.0f, 1.0f, 0.0f); //rotate on the y axis
+		if( actorRotation[ 1 ] != 0.0f )
+			glRotatef( actorRotation[ 1 ], 0.0f, 1.0f, 0.0f ); //rotate on the y axis
 
-		if(actorRotation.at(2)!=0)
-			glRotatef(actorRotation.at(2), 0.0f, 0.0f, 1.0f); //rotate on the z axis
+		if( actorRotation[ 2 ] != 0.0f )
+			glRotatef( actorRotation[ 2 ], 0.0f, 0.0f, 1.0f ); //rotate on the z axis
 		
+		GLfloat mat[16];
+		glGetFloatv(GL_MODELVIEW_MATRIX, mat);
+
+		( *i )->setGLMatrix(mat);
+
 		glBegin( GL_TRIANGLES );
 
 		const vector< Surface >& surfaces = ( *i )->getModel().getSurfaces();
@@ -86,22 +91,19 @@ int Renderer::render( const World& gameWorld ) const
 		for( j = surfaces.begin(); j != surfaces.end(); ++j )
 		{
 			
-			glColor3fv(j->getColor().elementArray);
+			glColor3fv( j->getColor().elementArray );
 			
 			// k is the vertex (corner) number
 			// TODO get properties of surface
 			for( int k = 0; k < 3; ++k )
 			{
-				
-
 				// ( *j ) is a surface
-				// ( *j ).at( k ) is a Vector3f
-				// ( *j ).at( k ).elementArray is the array in the Vector3f
-				glVertex3fv( ( *j ).at( k ).elementArray );
-
+				// ( *j )[ k ] is a Vector3f
+				// ( *j )[ k ].elementArray is the array in the Vector3f
+				glVertex3fv( ( *j )[ k ].elementArray );
 			}
-
 		}
+
 		glEnd();
 	}
 

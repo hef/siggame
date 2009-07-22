@@ -18,6 +18,7 @@ public:
 	Surface( const Surface& surface );
 	~Surface();
 	Vector3f& operator[]( const int i );
+	const Vector3f& operator[]( const int i ) const;
 	const Vector3f& at( const int i ) const;
 	const Vector3f getColor() const;
 };
