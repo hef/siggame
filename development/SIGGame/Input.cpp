@@ -36,14 +36,28 @@ Input::Input() // All keys are up
 	downArrow = false;
 	rightArrow = false;
 	leftArrow = false;
+	escKey = false;
+
 }
 
 Input::~Input()
 {
-	delete pInstance;
 }
 
-bool Input::getInput()
+void Input::destroy()
+{
+	if ( pInstance != 0 )
+	{
+		delete pInstance;
+	}
+}
+
+void Input::tick( double dt )
+{
+	dt = dt;
+	Input::updateInput();
+}
+void Input::updateInput()
 {
 	SDL_Event keyevent;
 	SDL_PollEvent( &keyevent );
@@ -51,7 +65,7 @@ bool Input::getInput()
 	//If escape is pressed, exit program
 	if( keys[SDLK_ESCAPE] || keyevent.type == SDL_QUIT )
 	{
-		return false;
+		escKey = true;
 	}
 	// Key pressed, update members
 	if ( keyevent.type == SDL_KEYDOWN )
@@ -63,7 +77,6 @@ bool Input::getInput()
 	{
 		Input::releaseKeys( keyevent );
 	}
-	return true;
 }
 
 bool Input::releaseKeys( SDL_Event keyevent )
@@ -165,6 +178,7 @@ bool Input::leftArrowDown() { return leftArrow; }
 bool Input::rightArrowDown() { return rightArrow; }
 bool Input::upArrowDown() { return upArrow; }
 bool Input::downArrowDown() { return downArrow; }
+bool Input::escKeyDown() { return escKey; }
 bool Input::keyDown( char aKey ) { return keyArray[ static_cast<int>(aKey) ]; }
 bool Input::kpKeyDown( int aKey ) { return kPadArray[ aKey ]; }
 

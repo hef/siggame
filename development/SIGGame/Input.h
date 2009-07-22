@@ -10,29 +10,21 @@ class Input
 public:
 	static Input* Instance();
 	~Input();
+	void destroy();
 
 	// Functions
-
-	bool getInput();
-
+	void tick( double dt );
+	void updateInput();
 	bool shiftDown();
-
 	bool controlDown();
-
 	bool altDown();
-
 	bool keyDown( char aKey );
-
 	bool kpKeyDown( int aKey );
-
 	bool leftArrowDown();
-
 	bool rightArrowDown();
-
 	bool upArrowDown();
-
 	bool downArrowDown();
-
+	bool escKeyDown();
 protected:
 	Input();
 	Input( const Input& );
@@ -55,6 +47,7 @@ private:
 	bool downArrow;
 	bool leftArrow;
 	bool rightArrow;
+	bool escKey;
 	static Input* pInstance;
 };
 

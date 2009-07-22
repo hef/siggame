@@ -24,24 +24,26 @@ int main( int argc, char **argv )
 	audio->playSound( "Mac.wav" );
 	static unsigned int lastTime = SDL_GetTicks();
 	static unsigned int currentTime = lastTime;
-	///delta time
 	static double dt = 0;
-	r->render( w );
-
+	bool bShouldExit = false;
 	//Start main loop, runs until esc is pressed
-	while ( input->getInput() )
+	do
 	{
-
 		currentTime = SDL_GetTicks();
 		dt = static_cast<double>( currentTime - lastTime ) / 1000;
 		lastTime = currentTime;
-
+		//Update keyboard state
+		input->tick( dt );
+		bShouldExit = input->escKeyDown();
 		//process world logic
 		w.tick( dt );
-
 		p->applyPhysics( w );
 		//Rerender the world every iteration
 		r->render( w );
 	}
-	return 1;
+	while( !bShouldExit );
+
+	input->destroy();
+	return EXIT_SUCCESS;
 }
+
