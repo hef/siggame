@@ -15,49 +15,34 @@ using std::endl;
 
 
 		//Default constructor:
-		Dog::Dog()
+		Dog::Dog():dogHeightMeters(0.0), dogWeight(0.0),
+			startDog(new char[17])
 		{
-			dogHeightMeters = 0.0;
-			dogWeight = 0.0;
-			cout<<"From default constructor Dog's height is: "
-			<<dogHeightMeters<<endl;
+			//dogHeightMeters = 0.0;
+			//dogWeight = 0.0;
+			//cout<<"From default constructor Dog's height is: "
+			//<<dogHeightMeters<<endl;
 			//set each element of the char array to '-'
-			startDog = new char[17];
+			//startDog = new char[17];
 			for ( int i = 0; i <= 15; ++i )
 			{
-				startDog [i] = '-';
+				startDog [i] = '?';
 			}
 			startDog[16] = '\0';	
-			for ( int i = 0; i <=15; ++i )
-				cout<<startDog[i];
-			cout<<"default constructor finished"<<endl;
+			//for ( int i = 0; i <=15; ++i )
+			//	cout<<startDog[i];
+			//cout<<"\ndefault constructor finished"<<endl;
 		}
 
 		//Parameterized constructor:
-		Dog::Dog(float initDogHeightMeters, float initDogWeight)
-		{
-			dogHeightMeters = initDogHeightMeters;
-			dogWeight = initDogWeight;
-			cout<<"From the constructor, height and weight"
-				<<dogHeightMeters<<"  "<<dogWeight<<endl;
-			//for dog's name set each element of the char array to '-'
-			startDog = new char[17];
-			for ( int i = 0; i<= 15; ++i )
-			{
-				startDog [i] = '-';
-			}
-			startDog[16] = '\0';	
-			for ( int i = 0; i<=15; ++i )
-				cout<<startDog[i];
-			cout<<"2parameter constructor finished"<<endl;
-
-		}
 		
-		Dog::Dog(float initDogHeightMeters, float initDogWeight, char newDogID[])
+		Dog::Dog(float initDogHeightMeters, float initDogWeight, char newDogID[]):
+			dogHeightMeters(initDogHeightMeters), dogWeight(initDogWeight),
+			startDog(new char [17])
 		{
-			dogHeightMeters = initDogHeightMeters;
-			dogWeight = initDogWeight;
-			startDog = new char [17];
+			//dogHeightMeters = initDogHeightMeters;
+			//dogWeight = initDogWeight;
+			//startDog = new char [17];
 			for ( int i = 0; i <= 15; ++i )
 			{
 				startDog[i] = '\0';
@@ -81,6 +66,20 @@ using std::endl;
 		}
 
 		//copy constructor
+
+		Dog::Dog(const Dog*  oldDog) 
+		{
+			dogHeightMeters = oldDog->dogHeightMeters;
+			dogWeight = oldDog->dogWeight;
+			startDog = new char [17];
+			for ( int i = 0; i <= 15; ++i )
+			{
+				startDog[i] = '\0';
+				if ( oldDog->startDog[i] != '\0' )
+					startDog[i] = oldDog->startDog[i];
+			}
+			startDog[16] = '\0';
+		}
 
 		//accessor methods
 		float Dog::getDogHeightMeters() const
@@ -119,8 +118,9 @@ using std::endl;
 		}
 
 		//Destructor method
-		Dog::~Dog(){
-
+		Dog::~Dog()
+		{
+			delete [] startDog;
 		}
 
 /*---------------------------------------------------------------------------*/

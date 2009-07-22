@@ -1,8 +1,0 @@
-env = Environment()
-env.ParseConfig('sdl-config --cflags')
-env.ParseConfig('sdl-config --libs')
-env.Append(LIBS = ['GL', 'GLU'])
-env.Append(LIBS = ['SDL_mixer'])
-env.Append(CCFLAGS = ["-Wall", "-Wextra"])
-env.Program('siggame', Glob('*.cpp'))
-

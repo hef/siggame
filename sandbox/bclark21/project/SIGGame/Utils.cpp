@@ -14,17 +14,13 @@ using std::cerr;
 
 
 		//Default constructor:
-		Utils::Utils()
+		Utils::Utils(): digit(8), digitPub(9)
 		{
-			digit = 8;
-			digitPub = 9;
 		}
 
 		//parameterized constructor:
-		Utils::Utils(int initDigit)
+		Utils::Utils(int initDigit): digit(initDigit), digitPub(9)
 		{
-			digit = initDigit;
-			digitPub = 9;
 		}
 
 		//accessor methods

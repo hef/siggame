@@ -4,10 +4,10 @@ Surface::Surface( const Vector3f A, const Vector3f B, const Vector3f C )
 	corners[ 0 ] = A;
 	corners[ 1 ] = B;
 	corners[ 2 ] = C;
-	color = Vector3f(1,1,1);
+	color = Vector3f( 1.0f, 1.0f, 1.0f );
 }
-
-Surface::Surface( const Vector3f A, const Vector3f B, const Vector3f C, const Vector3f rgb ){
+Surface::Surface( const Vector3f A, const Vector3f B, const Vector3f C, const Vector3f rgb )
+{
 	corners[ 0 ] = A;
 	corners[ 1 ] = B;
 	corners[ 2 ] = C;
@@ -25,13 +25,17 @@ Surface::~Surface()
 }
 Vector3f& Surface::operator[]( const int i )
 {
-	assert( i >= 0 && i < 3 && "Operator[] out of bounds assert" );
+	assert( i >= 0 && i < 3 && "Surface::Operator[] out of bounds assert" );
+	return corners[ i ];
+}
+const Vector3f& Surface::operator []( const int i ) const
+{
+	assert( i >= 0 && i < 3 && "Surface::Operator[] out of bounds assert" );
 	return corners[ i ];
 }
 const Vector3f& Surface::at( const int i ) const
 {
-	assert( i >= 0 && i < 3 && "Surface::at() out of bounds assert" );
-	return corners[ i ];
+	return operator[]( i );
 }
 const Vector3f Surface::getColor() const
 {

@@ -21,7 +21,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-			CharacterSet="2"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -40,18 +40,13 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/MP"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\libraries\include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS"
-				MinimalRebuild="false"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				EnableFunctionLevelLinking="true"
-				FloatingPointModel="2"
 				UsePrecompiledHeader="0"
-				WarningLevel="4"
-				WarnAsError="true"
+				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -65,10 +60,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="GlU32.Lib OpenGL32.Lib glut32.lib SDL.lib SDLmain.lib SDL_mixer.lib SDL_image.lib SDL_ttf.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\libraries\lib"
-				IgnoreDefaultLibraryNames="msvcrt.lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -100,7 +92,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-			CharacterSet="2"
+			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -122,7 +114,6 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\libraries\include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -141,11 +132,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="GlU32.Lib OpenGL32.Lib glut32.lib SDL.lib SDLmain.lib SDL_mixer.lib SDL_image.lib SDL_ttf.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\libraries\lib"
 				GenerateDebugInformation="true"
-				SubSystem="2"
+				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"
@@ -182,59 +171,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\Actor.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\AsteroidActor.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\AudioSystem.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Input.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Log.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\main.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Model.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PhysicsEngine.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PlayerActor.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Renderer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Surface.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Vector3D.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Vector3f.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\World.cpp"
 				>
 			</File>
 		</Filter>
@@ -243,58 +180,6 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath=".\Actor.h"
-				>
-			</File>
-			<File
-				RelativePath=".\AsteroidActor.h"
-				>
-			</File>
-			<File
-				RelativePath=".\AudioSystem.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Input.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Log.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Model.h"
-				>
-			</File>
-			<File
-				RelativePath=".\PhysicsEngine.h"
-				>
-			</File>
-			<File
-				RelativePath=".\PlayerActor.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Renderer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Surface.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Vector3D.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Vector3f.h"
-				>
-			</File>
-			<File
-				RelativePath=".\World.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

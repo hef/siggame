@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include "Input.h"
 #include "AudioSystem.h"
+#include "PhysicsEngine.h"
 #include "World.h"
 #include "Model.h"
 #include "Vector3f.h"
@@ -15,6 +16,7 @@ int main( int argc, char **argv )
 	//Initialize everything
 	const Renderer* r = Renderer::getInstanceOf();
 	AudioSystem* audio = AudioSystem::getInstance();
+	PhysicsEngine* p = PhysicsEngine::Instance();
 
 	Input* input = Input::Instance();
 	World w;
@@ -37,6 +39,7 @@ int main( int argc, char **argv )
 		//process world logic
 		w.tick( dt );
 
+		p->applyPhysics( w );
 		//Rerender the world every iteration
 		r->render( w );
 	}
