@@ -70,7 +70,7 @@
 				AdditionalLibraryDirectories="..\..\libraries\lib"
 				IgnoreDefaultLibraryNames="msvcrt.lib"
 				GenerateDebugInformation="true"
-				SubSystem="2"
+				SubSystem="1"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -210,6 +210,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PhysicsEngine.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\PlayerActor.cpp"
 				>
 			</File>
@@ -264,7 +268,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Physics.h"
+				RelativePath=".\PhysicsEngine.h"
 				>
 			</File>
 			<File

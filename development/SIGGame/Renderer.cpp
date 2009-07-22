@@ -76,6 +76,11 @@ int Renderer::render( const World& gameWorld ) const
 		if( actorRotation[ 2 ] != 0.0f )
 			glRotatef( actorRotation[ 2 ], 0.0f, 0.0f, 1.0f ); //rotate on the z axis
 		
+		GLfloat mat[16];
+		glGetFloatv(GL_MODELVIEW_MATRIX, mat);
+
+		( *i )->setGLMatrix(mat);
+
 		glBegin( GL_TRIANGLES );
 
 		const vector< Surface >& surfaces = ( *i )->getModel().getSurfaces();
@@ -98,6 +103,7 @@ int Renderer::render( const World& gameWorld ) const
 				glVertex3fv( ( *j )[ k ].elementArray );
 			}
 		}
+
 		glEnd();
 	}
 

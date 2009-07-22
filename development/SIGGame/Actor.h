@@ -6,6 +6,11 @@ class Actor
 {
 private:
 	Model* model;
+	/*float minX;
+	float maxX;
+	float minY;
+	float maxY;*/
+	float boundingBox[6];
 protected:
 	///x, y, z
 	Vector3f position;
@@ -15,6 +20,8 @@ protected:
 	Vector3f rotation;
 	///delta rotation per tick
 	Vector3f dRotation;
+	///current OpenGL matrix
+	float glMatrix[16];
 public:
 	/** Constructor **/
 	Actor( Model* model, const Vector3f position, const Vector3f rotation );
@@ -40,5 +47,14 @@ public:
 
 	/// Controls game logic and ai
 	virtual void tick( const double dt ) = 0;
+
+	/// Sets the current OpenGL matrix for rendering/physics
+	void setGLMatrix(float* mat);
+
+	/** Accessor **/
+	const float* getGLMatrix();
+
+	/** Accessor **/
+	const float* getBoundingBox();
 };
 #endif
