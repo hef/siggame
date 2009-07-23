@@ -18,7 +18,7 @@ set(SOURCES
 IF(APPLE)
 	set(SOURCES ${SOURCES} SDLMain.m)
 ENDIF(APPLE)
-set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wconversion")
 Find_Package(SDL REQUIRED)
 Find_Package(SDL_mixer REQUIRED)
 Find_Package(OpenGL REQUIRED)
