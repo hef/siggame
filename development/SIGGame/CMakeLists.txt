@@ -39,7 +39,7 @@ target_link_libraries(
 	)
 INSTALL(TARGETS siggame
 	BUNDLE DESTINATION "/Applications"
-	#RUNTIME DESTINATION bin
+	RUNTIME DESTINATION bin
 	)
 ##cpack stuff
 SET(CPACK_GENERATOR "DragNDrop")
