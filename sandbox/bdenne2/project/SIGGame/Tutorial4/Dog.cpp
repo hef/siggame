@@ -1,21 +1,55 @@
 #include "Dog.h"
+#include <string.h>
 
-float Dog::getHeight()
+Dog::Dog() : 
+	itsHeight(0.0f),
+	itsWeight(0.0f),
+	itsName(new char[17])
 {
-	return 0;
+	itsName = "Rover";
 }
 
-float Dog::getWeight()
+Dog::Dog(float height,float weight, char* name) :
+	itsHeight(height),
+	itsWeight(weight),
+	itsName(new char[17])
 {
-	return 0;
+	strncpy( itsName, name, 16);
 }
 
-float Dog::setHeight()
+Dog::~Dog()
 {
-	return 0;
+	delete itsName;
 }
 
-float Dog::setWeight()
+Dog::Dog(const Dog& oldDog) :
+	itsHeight(oldDog.itsHeight),
+	itsWeight(oldDog.itsWeight)
 {
-	return 0;
+	strncpy(itsName, oldDog.itsName, 16);
+}
+
+float Dog::getHeight() const
+{
+	return itsHeight;
+}
+
+float Dog::getWeight() const 
+{
+	return itsWeight;
+}
+
+const char * const Dog::getName() const 
+{
+	return itsName;
+}
+
+void Dog::setHeight(const float height) 
+{
+	this->itsHeight = height;
+}
+
+void Dog::setWeight(const float weight) 
+{
+	this->itsWeight = weight;
 }

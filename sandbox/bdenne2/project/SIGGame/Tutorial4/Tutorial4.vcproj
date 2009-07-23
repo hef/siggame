@@ -162,11 +162,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\..\..\..\Users\bry\Desktop\Dog.cpp"
+				RelativePath=".\Dog.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\..\..\Users\bry\Desktop\main.cpp"
+				RelativePath=".\main.cpp"
 				>
 			</File>
 		</Filter>
@@ -176,7 +176,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\..\..\..\..\Users\bry\Desktop\Dog.h"
+				RelativePath=".\Dog.h"
 				>
 			</File>
 		</Filter>

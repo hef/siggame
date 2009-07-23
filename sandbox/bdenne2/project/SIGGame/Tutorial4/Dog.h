@@ -1,17 +1,24 @@
 #ifndef DOG_H
 #define DOG_H
 
-class Dog
-{
+
+class Dog{
 public:
-	Dog() {};
-	~Dog() {};
-	float fheight;
-	float fweight;
-	float getHeight();
-	float getWeight();
-	float setHeight();
-	float setWeight();
+	Dog();
+	Dog(float height,float weight, char* name);
+	~Dog();
+	Dog(const Dog& oldDog);
+	float getHeight() const;
+	float getWeight() const;
+	const char * const getName() const;
+	void setHeight(float height);
+	void setWeight(float weight);
+
+private:
+	float itsHeight;
+	float itsWeight;
+	char* itsName;
+
 };
 
-#endif // DOG_H
+#endif //DOG_H

@@ -2,6 +2,7 @@
 #define PLAYACT_H
 #include "Actor.h"
 #include "Input.h"
+#include <math.h>
 
 class PlayerActor : public Actor
 {
