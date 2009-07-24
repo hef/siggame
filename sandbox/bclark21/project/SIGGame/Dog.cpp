@@ -18,10 +18,6 @@ using std::endl;
 		Dog::Dog():dogHeight(0.0f), dogWeight(0.0f),
 			startDog(new char[17])
 		{
-			//dogHeight = 0.0f;
-			//dogWeight = 0.0f;
-			//cout<<"From default constructor Dog's height is: "
-			//<<dogHeight<<endl;
 			//set each element of the char array to '-'
 			//startDog = new char[17];
 			for ( int i = 0; i <= 15; ++i )
@@ -37,21 +33,10 @@ using std::endl;
 		//Parameterized constructor:
 		
 		Dog::Dog(const float initDogHeight, const float initDogWeight, 
-			const char newDogID[]):
+			const char* newDogID):
 			dogHeight(initDogHeight), dogWeight(initDogWeight),
 			startDog(new char [17])
 		{
-			//dogHeight = initDogHeight;
-			//dogWeight = initDogWeight;
-			//startDog = new char [17];
-/*			for ( int i = 0; i <= 15; ++i )
-			{
-				startDog[i] = '\0';
-				if ( newDogID[i] != '\0' )
-					startDog[i] = newDogID[i];
-				cout<<startDog[i];
-			}
-			startDog[16] = '\0';*/
 			//ignore compiler warning: cannot use strncpy_s with char*
 			//alternative using strncpy(dest, source, length of dest)
 			strncpy(startDog, newDogID, 17);
@@ -74,33 +59,42 @@ using std::endl;
 		}
 
 		//copy constructor
-
-		Dog::Dog(const Dog*  oldDog) 
+		//quasi-copy constructor passes a pointer, uses derererencing
+		Dog::Dog(const Dog*  oldDog): dogHeight(oldDog->dogHeight), 
+				dogWeight(oldDog->dogWeight), startDog(new char[17]) 
 		{
-			dogHeight = oldDog->dogHeight;
-			dogWeight = oldDog->dogWeight;
-			startDog = new char [17];
+			//dogHeight = oldDog->dogHeight;
+			//dogWeight = oldDog->dogWeight;
+			//startDog = new char [17];
 			for ( int i = 0; i <= 15; ++i )
 			{
 				//initialize this.startDog
 				startDog[i] = '\0';
 			}
-/*				//test oldDog.startDog's value and assign to this.startDog
-				if ( oldDog->startDog[i] != '\0' )
-					startDog[i] = oldDog->startDog[i];
-			}
-			//set this.startDog to null
-			startDog[16] = '\0';
-*/			//ignore compiler warning: cannot use strncpy_s with char*
+			//ignore compiler warning: cannot use strncpy_s with char*
 			strncpy(startDog, oldDog->startDog, 17);
 			if ( startDog[16] != '\0' )
 			{
 				startDog[16] = '\0';
 			}
 		}
-
-		Dog::Dog(const Dog& MasterDog)
-		{}
+		
+		//copy constructor using pass object by reference, uses dot operator
+		Dog::Dog(const Dog& MasterDog): dogHeight(MasterDog.dogHeight), 
+				dogWeight(MasterDog.dogWeight), startDog(new char[17]) 
+		{
+						for ( int i = 0; i <= 15; ++i )
+			{
+				//initialize this.startDog
+				startDog[i] = '\0';
+			}
+			//ignore compiler warning: cannot use strncpy_s with char*
+			strncpy(startDog, MasterDog.startDog, 17);
+			if ( startDog[16] != '\0' )
+			{
+				startDog[16] = '\0';
+			}
+		}
 
 		//accessor methods
 		float Dog::getDogHeight() const

@@ -6,6 +6,7 @@
 
 //#include <stdio.h>
 #include <iostream>		//required for cin, cout, endl
+#include <assert.h>		//required for assert
 #include "Dog.h"	//includes class Dog file
 #include "GoldenRetriever.h"
 #include "Utils.h"  //used only when the class declaration is in 
@@ -34,8 +35,8 @@ int main()
 	//Must declare a dereferenced pointer for an object on the heap
 	Dog *Fido,*Fidonew, *FidoCopy;
 	Dog dogOne, dogTwo, dogThree;
-	char newDogID [16],
-		 retrieveDogID[17];
+	char*  newDogID;
+	char	retrieveDogID[17];
 	
 	float initDogHeight,
 		  initDogWeight;
@@ -74,7 +75,8 @@ int main()
 	cout<<useful->digitPub<<endl;
 
 	//enter a non-negative number and test it
-	int numberSum, num (-1);
+	int numberSum; 
+	unsigned int num (0);
 	do
 	{
 		cout<<"Enter non negative integer to be summed: ";
@@ -85,8 +87,8 @@ int main()
 
 	//function called with scope operator
 	//if sum is negative, then exit
-	if ( Utils::sumUp(num)<0 )		
-		exit(-1);				
+	//use assert to check for negative sum	
+	assert ( Utils::sumUp(num) >= 0 );
 	numberSum = Utils::sumUp(num); 
 
 	//stream result to std output
@@ -126,6 +128,7 @@ int main()
 		initDogWeight = 0;
 	cout<<"Enter the dog's tag (16 characters): ";
 	//initialize the name char array to null
+	newDogID = new char[17];
 	for ( int i = 0; i <= 16; ++i )
 	{
 		newDogID[i] = '\0';
@@ -208,12 +211,13 @@ int main()
 //--------------------------tut 5----------------------------------
 
 	cout<<"----------"<<endl;
-	cout<<"GR1's height is: "<<Dog::getDogName()->getDogHeight()<<endl;
+/*	cout<<"GR1's height is: "<<Dog::getDogName()->getDogHeight()<<endl;*/
 		
 	//code designed to exit program after review
-	cout<<"Enter number when ready: ";
-	cin>>ready;
-	cout<<ready;
+	
+	system("PAUSE");
+    //return EXIT_SUCCESS;
+
 	return 0;
 }
 

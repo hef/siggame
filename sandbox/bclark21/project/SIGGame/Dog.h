@@ -15,10 +15,8 @@ class Dog{
 	private:
 		//private data members
 		float dogHeight,
-			  dogWeight;
-		  
+			  dogWeight;  
 		char*	startDog;
-
 
 	//protected members
 	protected:
@@ -35,7 +33,7 @@ class Dog{
 
 		//Parameterized constructor:
 		Dog(const float initDogHeight, const float initDogWeight, 
-			const char newDogID[]);
+			const char* newDogID);
 
 		//copy constructor
 		//using a constant pointer as parameter
