@@ -186,6 +186,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\AIActor.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\AsteroidActor.cpp"
 				>
 			</File>
@@ -207,6 +211,10 @@
 			</File>
 			<File
 				RelativePath=".\Model.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NonInteractActor.cpp"
 				>
 			</File>
 			<File
@@ -248,6 +256,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\AIActor.h"
+				>
+			</File>
+			<File
 				RelativePath=".\AsteroidActor.h"
 				>
 			</File>
@@ -265,6 +277,10 @@
 			</File>
 			<File
 				RelativePath=".\Model.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NonInteractActor.h"
 				>
 			</File>
 			<File

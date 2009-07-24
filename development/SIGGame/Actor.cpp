@@ -1,9 +1,8 @@
 #include "Actor.h"
 #include "Input.h"
 #include "Surface.h"
-#include <vector>
 
-Actor::Actor( Model* model, const Vector3f position, const Vector3f rotation ) :
+Actor::Actor( Model* model, const Vector3f& position, const Vector3f& rotation ) :
 	model( model ),
 	position( position ),
 	rotation( rotation )
@@ -16,7 +15,7 @@ Actor::Actor( Model* model, const Vector3f position, const Vector3f rotation ) :
 	dRotation.elementArray[ 2 ] = 0.0f;
 }
 
-Actor::Actor( Model* model, const Vector3f position, const Vector3f dPosition, const Vector3f rotation, const Vector3f dRotation ) :
+Actor::Actor( Model* model, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation ) :
 	model( model ),
 	position( position ),
 	dPosition( dPosition ),
@@ -53,17 +52,10 @@ const Vector3f& Actor::getRotationVector3f() const
 	return rotation;
 }
 
-void Actor::tick( double dt )
+void Actor::setGLMatrix( float* mat )
 {
-	position[ 0 ] += dPosition[ 0 ] * (float)dt;
-	position[ 1 ] += dPosition[ 1 ] * (float)dt;
-	position[ 2 ] += dPosition[ 2 ] * (float)dt;
-
-	
-}
-
-void Actor::setGLMatrix( float* mat ){
-	for(int i = 0 ; i < 16 ; i++){
+	for ( int i = 0 ; i < 16 ; ++i )
+	{
 		glMatrix[i] = mat[i];
 	}
 
@@ -71,10 +63,10 @@ void Actor::setGLMatrix( float* mat ){
 
 	std::vector< Surface >::const_iterator j;
 
-	for( j = surfaces.begin(); j != surfaces.end(); ++j )
+	for ( j = surfaces.begin(); j != surfaces.end(); ++j )
 	{
 		
-		for( int k = 0; k < 3; ++k )
+		for ( int k = 0; k < 3; ++k )
 		{
 			
 			//Calculated vertex location will be stored here
@@ -91,33 +83,34 @@ void Actor::setGLMatrix( float* mat ){
 			temp[1] = tempOrig[0] * mat[1] + tempOrig[1] * mat[5] + tempOrig[2] * mat[9] + mat[13];
 			temp[2] = tempOrig[0] * mat[2] + tempOrig[1] * mat[6] + tempOrig[2] * mat[10] + mat[14];
 
-			if(j == surfaces.begin() && k == 0){
+			if ( j == surfaces.begin() && k == 0 )
+			{
 				boundingBox[0] = temp[0];
 				boundingBox[1] = temp[0];
 				boundingBox[2] = temp[1];
 				boundingBox[3] = temp[1];
 			}
-			else{
+			else {
 				//Update min x
-				if(boundingBox[0]>temp[0])
-					boundingBox[0]=temp[0];
+				if ( boundingBox[0] > temp[0] )
+					boundingBox[0] = temp[0];
 				//Update max x
-				if(boundingBox[1]<temp[0])
-					boundingBox[1]=temp[0];
+				if ( boundingBox[1] < temp[0] )
+					boundingBox[1] = temp[0];
 				//Update min y
-				if(boundingBox[2]>temp[1])
-					boundingBox[2]=temp[1];
+				if ( boundingBox[2] > temp[1] )
+					boundingBox[2] = temp[1];
 				//Update max y
-				if(boundingBox[3]<temp[1])
-					boundingBox[3]=temp[1];
+				if ( boundingBox[3] < temp[1] )
+					boundingBox[3] = temp[1];
 
 				//Z coordinate shouldn't matter... but just in case
 				//Update min z
-				if(boundingBox[2]>temp[1])
-					boundingBox[2]=temp[1];
+				if ( boundingBox[2] > temp[1] )
+					boundingBox[2] = temp[1];
 				//Update max z
-				if(boundingBox[3]<temp[1])
-					boundingBox[3]=temp[1];
+				if ( boundingBox[3] < temp[1] )
+					boundingBox[3] = temp[1];
 			}
 
 		}
