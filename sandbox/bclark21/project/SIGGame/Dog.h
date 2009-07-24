@@ -14,11 +14,17 @@ class Dog{
 	//private members
 	private:
 		//private data members
-		float dogHeightMeters,
+		float dogHeight,
 			  dogWeight;
 		  
 		char*	startDog;
-	
+
+
+	//protected members
+	protected:
+		//for pure virtual function thereby making Dog an abstract class
+/*		virtual void bark(int) = 0; 
+*/
 	//public members
 	public:
 		//public data
@@ -28,22 +34,24 @@ class Dog{
 		Dog();
 
 		//Parameterized constructor:
-		Dog(float initDogHeightMeters, float initDogWeight);
-		Dog(float initDogHeightMeters, float initDogWeight, char newDogID[]);
+		Dog(const float initDogHeight, const float initDogWeight, 
+			const char newDogID[]);
 
 		//copy constructor
 		//using a constant pointer as parameter
 		Dog::Dog(const Dog*  Fido);
+		//using a pass by reference parameter
+		Dog::Dog(const Dog& MasterDog);
 
 		//accessor methods
-		float Dog::getDogHeightMeters() const;
+		float Dog::getDogHeight() const;
 		float Dog::getDogWeight() const;
-		void  Dog::getDogName();
+		char*  Dog::getDogName() const;
 		void  Dog::getDogName(char retrieveDogID []);
 
 		//mutator methods
-		void Dog::setDogHeightMeters(float newDogHeightMeters);
-		void Dog::setDogWeight(float newDogWeight);
+		void Dog::setDogHeight(const float newDogHeight);
+		void Dog::setDogWeight(const float newDogWeight);
 
 		//Destructor method
 		~Dog();

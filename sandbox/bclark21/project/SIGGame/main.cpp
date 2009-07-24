@@ -7,6 +7,7 @@
 //#include <stdio.h>
 #include <iostream>		//required for cin, cout, endl
 #include "Dog.h"	//includes class Dog file
+#include "GoldenRetriever.h"
 #include "Utils.h"  //used only when the class declaration is in 
 					//a separate headerfile
 
@@ -36,8 +37,10 @@ int main()
 	char newDogID [16],
 		 retrieveDogID[17];
 	
-	float initDogHeightMeters,
+	float initDogHeight,
 		  initDogWeight;
+
+	GoldenRetriever GR1;
 
 	//std output of instance on the stack, declaration uses constructor
 	//private data requires accessor method, public data uses . operator
@@ -96,7 +99,7 @@ int main()
 	cout<<"----------"<<endl
 		<<"The default constructor for a dog returns the following data: "<<endl;
 	Fido = new Dog();
-	cout<<"Dog's height is: "<<Fido->getDogHeightMeters()<<endl
+	cout<<"Dog's height is: "<<Fido->getDogHeight()<<endl
 		<<"Dog's weight is: "<<Fido->getDogWeight()<<endl;
 	cout<<"Dog's tag as returned is: ";
 	Fido->getDogName(retrieveDogID);
@@ -114,9 +117,9 @@ int main()
 	//To create a record for a dog enter the following data if available
 	cout<<"----------"<<endl;
 	cout<<"Enter the dog's height in meters: ";
-	cin>>initDogHeightMeters;
-	if ( initDogHeightMeters <= 0 )
-		initDogHeightMeters = 0;
+	cin>>initDogHeight;
+	if ( initDogHeight <= 0 )
+		initDogHeight = 0;
 	cout<<"Enter the dog's weight: ";
 	cin>>initDogWeight;
 	if ( initDogWeight <= 0 )
@@ -142,9 +145,9 @@ int main()
 	}//while loop
 		
 	
-	Fidonew = new Dog(initDogHeightMeters, initDogWeight, newDogID);
+	Fidonew = new Dog(initDogHeight, initDogWeight, newDogID);
 	cout<<"The fully parameterized constructor yields the following"<<endl;
-	cout<<"Dog's height is: "<<Fidonew->getDogHeightMeters()<<endl
+	cout<<"Dog's height is: "<<Fidonew->getDogHeight()<<endl
 		<<"Dog's weight is: "<<Fidonew->getDogWeight()<<endl;
 	Fidonew->getDogName(retrieveDogID);
 	cout<<"Dog's name tag reads: ";
@@ -163,7 +166,7 @@ int main()
 	FidoCopy = &strangeDog;			//use a ptr to Dog and an object
 	//initialize new dog with a ponter to an existing dog
 	//copy works with a ptr 
-	cout<<"Dog's height is: "<<FidoCopy->getDogHeightMeters()<<endl
+	cout<<"Dog's height is: "<<FidoCopy->getDogHeight()<<endl
     //copy works with an object
 		<<"Dog's weight is: "<<strangeDog.getDogWeight()<<endl;
 	FidoCopy->getDogName(retrieveDogID);
@@ -177,11 +180,11 @@ int main()
 	//-----
 	cout<<"After altering the values of the copy a/k/a strangeDog\n"
 		<<"and the values of the original a/k/a Fidonew: "<<endl;
-	strangeDog.Dog::setDogHeightMeters(1.80000);
-	strangeDog.Dog::setDogWeight(120.0);
-	Fidonew->setDogHeightMeters(1.30000);
-	Fidonew->setDogWeight(80.0);
-	cout<<"strangeDog's height is: "<<strangeDog.getDogHeightMeters()<<endl
+	strangeDog.Dog::setDogHeight(1.80000f);
+	strangeDog.Dog::setDogWeight(120.0f);
+	Fidonew->setDogHeight(1.30000f);
+	Fidonew->setDogWeight(80.0f);
+	cout<<"strangeDog's height is: "<<strangeDog.getDogHeight()<<endl
 		<<"strangeDog's weight is: "<<strangeDog.getDogWeight()<<endl
 		<<"strangeDog's tag reads: ";
 	strangeDog.getDogName(retrieveDogID);
@@ -191,7 +194,7 @@ int main()
 			cout<<retrieveDogID[i];
 	}
 	cout<<endl;
-	cout<<"Fidonew's height is: "<<Fidonew->getDogHeightMeters()<<endl
+	cout<<"Fidonew's height is: "<<Fidonew->getDogHeight()<<endl
 		<<"Fidonew's weight is: "<<Fidonew->getDogWeight()<<endl
 		<<"Fidonew's tag reads: ";
 	Fidonew->getDogName(retrieveDogID);
@@ -201,6 +204,11 @@ int main()
 			cout<<retrieveDogID[i];
 	}
 	cout<<endl;
+
+//--------------------------tut 5----------------------------------
+
+	cout<<"----------"<<endl;
+	cout<<"GR1's height is: "<<Dog::getDogName()->getDogHeight()<<endl;
 		
 	//code designed to exit program after review
 	cout<<"Enter number when ready: ";
