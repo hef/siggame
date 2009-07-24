@@ -20,6 +20,18 @@ Log* Log::getInstanceOf()
 	return pInstance;
 }
 
+Log::~Log()
+{
+}
+
+void Log::destroy()
+{
+	if( pInstance != NULL )
+	{
+		delete pInstance;
+	}
+}
+
 void Log::setLogFile( const string& filePath )
 {
 	logFilePath = filePath;

@@ -25,7 +25,7 @@ Renderer::~Renderer()
 	SDL_Quit();
 }
 
-const Renderer* Renderer::getInstanceOf()
+Renderer* Renderer::getInstanceOf()
 {
 	if( instance == NULL )
 	{
@@ -34,6 +34,13 @@ const Renderer* Renderer::getInstanceOf()
 	return instance;
 }
 
+void Renderer::destroy()
+{
+	if( instance != NULL )
+	{
+		delete instance;
+	}
+}
 
 int Renderer::render( const World& gameWorld ) const
 {

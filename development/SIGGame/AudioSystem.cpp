@@ -52,7 +52,10 @@ AudioSystem::~AudioSystem()
  */
 void AudioSystem::destroy()
 {
-	delete this;
+	if( pInstance != NULL )
+	{
+		delete pInstance;
+	}
 }
 /* Adds a sound to the map. Could be a file name or relative path to file
  */
