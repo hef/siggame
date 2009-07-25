@@ -19,6 +19,13 @@ PhysicsEngine::PhysicsEngine()
 {
 }
 
+void PhysicsEngine::destroy()
+{
+	if( pInstance != NULL )
+	{
+		delete pInstance;
+	}
+}
 int PhysicsEngine::applyPhysics( const World& gameWorld ) const
 {
 	const vector< Actor* >& actors = gameWorld.getActors();
@@ -62,5 +69,4 @@ bool PhysicsEngine::containsAnyPartOf(Actor& outer, Actor& inner)
 
 PhysicsEngine::~PhysicsEngine()
 {
-	delete pInstance;
 }

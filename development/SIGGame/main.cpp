@@ -14,10 +14,9 @@ int main( int argc, char **argv )
 	}
 
 	//Initialize everything
-	const Renderer* r = Renderer::getInstanceOf();
+	Renderer* r = Renderer::getInstanceOf();
 	AudioSystem* audio = AudioSystem::getInstance();
 	PhysicsEngine* p = PhysicsEngine::Instance();
-
 	Input* input = Input::Instance();
 	World w;
 	audio->addSound( "Mac.wav" );
@@ -42,8 +41,11 @@ int main( int argc, char **argv )
 		r->render( w );
 	}
 	while( !bShouldExit );
-
+	//delete the instances
+	audio->destroy();
+	p->destroy();
 	input->destroy();
+	r->destroy();
 	return EXIT_SUCCESS;
 }
 

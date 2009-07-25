@@ -1,24 +1,24 @@
 #ifndef ASTERACT_H
 #define ASTERACT_H
-#include "Actor.h"
+#include "AIActor.h"
 
-class AsteroidActor : public Actor
+class AsteroidActor : public AIActor
 {
 public:
 	/** Constructor **/
-	AsteroidActor( Model* model, const Vector3f position, const Vector3f rotation );
+	AsteroidActor( Model* model, const Vector3f& position, const Vector3f& rotation );
 
 	/** Constructor **/
-	AsteroidActor( Model* model, const Vector3f position, const Vector3f dPosition,
-	               const Vector3f rotation, const Vector3f dRotation );
+	AsteroidActor( Model* model, const Vector3f& position, const Vector3f& dPosition,
+	               const Vector3f& rotation, const Vector3f& dRotation );
 
 	/** Copy constructor **/
-	AsteroidActor( const AsteroidActor& otherPlayer );
+	AsteroidActor( const AsteroidActor& otherAsteroid );
 
 	/** Destructor **/
 	~AsteroidActor();
 
-	///The tick
+	/** Tick Function */
 	void tick( const double dt );
 };
 #endif
