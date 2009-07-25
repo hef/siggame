@@ -7,6 +7,7 @@
 //#include <stdio.h>
 #include <iostream>		//required for cin, cout, endl
 #include <assert.h>		//required for assert
+#include <math.h>		//required for abs()
 #include "Dog.h"	//includes class Dog file
 #include "GoldenRetriever.h"
 #include "Utils.h"  //used only when the class declaration is in 
@@ -74,9 +75,12 @@ int main()
 	useful->digitPub = 3;
 	cout<<useful->digitPub<<endl;
 
+
+//-------------------------tut  -------------------------------------------
+
+
 	//enter a non-negative number and test it
-	int numberSum; 
-	unsigned int num (0);
+	unsigned int num (0), numberSum (0);
 	do
 	{
 		cout<<"Enter non negative integer to be summed: ";
@@ -89,7 +93,7 @@ int main()
 	//if sum is negative, then exit
 	//use assert to check for negative sum	
 	assert ( Utils::sumUp(num) >= 0 );
-	numberSum = Utils::sumUp(num); 
+	numberSum = abs( Utils::sumUp(num)); 
 
 	//stream result to std output
 	cout<<"The sum of num is: "<<numberSum<<endl;
@@ -211,7 +215,11 @@ int main()
 //--------------------------tut 5----------------------------------
 
 	cout<<"----------"<<endl;
-/*	cout<<"GR1's height is: "<<Dog::getDogName()->getDogHeight()<<endl;*/
+	cout<<"For a default GoldenRetriever the results are as follows: "
+		<<"GR1's height is: "<<GR1.GoldenRetriever::getDogHeight()<<endl
+		<<"GR1's weight is: "<<GR1.GoldenRetriever::getDogWeight()<<endl
+		<<"GR1's name is: "<<GR1.GoldenRetriever::getDogName()<<endl;
+
 		
 	//code designed to exit program after review
 	
