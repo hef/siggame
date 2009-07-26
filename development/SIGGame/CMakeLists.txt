@@ -3,6 +3,7 @@ Project(SIGGame)
 set(SOURCES
 	main.cpp
 	Actor.cpp
+	AIActor.cpp
 	AsteroidActor.cpp
 	AudioSystem.cpp
 	Input.cpp
