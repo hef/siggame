@@ -17,6 +17,7 @@ class ModelSceneNode : public SceneNode
 	public:
 		ModelSceneNode();
 		void render() const;
+		void addMesh(Vector3f newColor, std::vector< std::vector<int> > newMesh);
 	private:
 		std::vector<Vector3f> vertex;
 		std::vector<Mesh> mesh;
