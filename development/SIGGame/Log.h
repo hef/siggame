@@ -14,7 +14,7 @@ class Log
 {
 public:
 	static Log* getInstanceOf();
-
+	void destroy();
 	void setLogFile( const string& filePath );
 	void log( const string& data, SourceSystem source, Destination dest );
 

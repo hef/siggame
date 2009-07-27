@@ -9,10 +9,15 @@ using std::vector;
 class Renderer
 {
 public:
-	static const Renderer* getInstanceOf();
+	static Renderer* getInstanceOf();
+	void destroy();
 	int render( const World& gameWorld ) const;
 
 private:
+	GLuint texture;
+	SDL_Surface* surface;
+	GLenum texture_format;
+	GLint nOfColors;
 	GLsizei windowWidth;
 	GLsizei windowHeight;
 	GLfloat cubeRotateX;
