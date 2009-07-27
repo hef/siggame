@@ -2,18 +2,23 @@
 #define ModelSceneNode_h
 #include "SceneNode.h"
 #include <vector>
-class ModelSceneNode : SceneNode
+#include "Vector3f.h"
+class ModelSceneNode : public SceneNode
 {
+	private:
+	class Mesh
+	{
+		public:
+			Mesh(Vector3f const color, std::vector< std::vector<int> > vertexIndex);
+		private:
+		Vector3f color;
+		std::vector< std::vector<int> > vertexIndex;
+	};
 	public:
 		ModelSceneNode();
 		void render() const;
 	private:
-		vector<vector3f> vertex;
-		vector<Mesh> mesh;
-	class Mesh
-	{
-		vector3f color;
-		vector< Vector<int> > vertexIndex;
-	};
+		std::vector<Vector3f> vertex;
+		std::vector<Mesh> mesh;
 };
 #endif
