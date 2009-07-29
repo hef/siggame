@@ -43,7 +43,12 @@ public:
 	const Vector3f& getPositionVector3f() const;
 
 	/** Accessor. */
+	const Vector3f& getdPositionVector3f() const;
+
+	/** Accessor. */
 	const Vector3f& getRotationVector3f() const;
+
+	void setdPositionVector3f(const Vector3f& newdPosition);
 
 	virtual void tick( const double dt ) = 0;
 

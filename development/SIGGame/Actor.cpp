@@ -47,6 +47,16 @@ const Vector3f& Actor::getPositionVector3f() const
 	return position;
 }
 
+const Vector3f& Actor::getdPositionVector3f() const
+{
+	return dPosition;
+}
+
+void Actor::setdPositionVector3f(const Vector3f& newdPosition)
+{
+	 dPosition = newdPosition;
+}
+
 const Vector3f& Actor::getRotationVector3f() const
 {
 	return rotation;
