@@ -5,15 +5,7 @@
 #include "Vector3f.h"
 class ModelSceneNode : public SceneNode
 {
-	private:
-	class Mesh
-	{
-		public:
-			Mesh(Vector3f const color, std::vector< std::vector<int> > vertexIndex);
-		private:
-		Vector3f color;
-		std::vector< std::vector<int> > vertexIndex;
-	};
+	class Mesh;
 	public:
 		ModelSceneNode();
 		void render() const;
@@ -21,5 +13,13 @@ class ModelSceneNode : public SceneNode
 	private:
 		std::vector<Vector3f> vertex;
 		std::vector<Mesh> mesh;
+	class Mesh
+	{
+		public:
+			Mesh(Vector3f const color, std::vector< std::vector<int> > vertexIndex);
+		//private:
+		Vector3f color;
+		std::vector< std::vector<int> > vertexIndex;
+	};
 };
 #endif
