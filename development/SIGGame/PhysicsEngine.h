@@ -14,9 +14,6 @@ public:
 	void destroy();
 	int applyPhysics( const World& gameWorld ) const;
 	static bool containsAnyPartOf(Actor& outer, Actor& inner);
-
-	static void collision2D(Actor& ball1, Actor& ball2);
-
 	~PhysicsEngine();
 };
 #endif
