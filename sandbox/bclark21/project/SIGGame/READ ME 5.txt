@@ -1,0 +1,12 @@
+In order to use the project to test a pure virtual method in the Dog class do the following:
+
+comment out:	tutorial 4 commands in main
+				copy dogs
+				DoggiePtr assignments and the corus of doggies
+				
+declare golden retriever pointers, assign their values to dog pointers, use dog pointers to 
+access the classes ----- but gives error that objects are not initialized.
+				
+make bark in class Dog pure virtual  , comment out const in Dog.h and Dog.cpp
+
+reverse method comments out in GoldenRetriever
