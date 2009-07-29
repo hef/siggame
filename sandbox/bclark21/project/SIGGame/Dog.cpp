@@ -18,6 +18,7 @@ using std::endl;
 		Dog::Dog():dogHeight(0.0f), dogWeight(0.0f),
 			startDog(new char[17])
 		{
+			cout<<"Dog default constructor for "<<this<<endl;
 			//set each element of the char array to '-'
 			//startDog = new char[17];
 			for ( int i = 0; i <= 15; ++i )
@@ -27,7 +28,7 @@ using std::endl;
 			startDog[16] = '\0';	
 			//for ( int i = 0; i <=15; ++i )
 			//	cout<<startDog[i];
-			//cout<<"\ndefault constructor finished"<<endl;
+			//cout<<"\ndefault constructor finished"<<endl;		
 		}
 
 		//Parameterized constructor:
@@ -35,15 +36,17 @@ using std::endl;
 		Dog::Dog(const float initDogHeight, const float initDogWeight, 
 			const char* newDogID):
 			dogHeight(initDogHeight), dogWeight(initDogWeight),
-			startDog(new char [17])
+			startDog(new char [17])  
 		{
 			//ignore compiler warning: cannot use strncpy_s with char*
 			//alternative using strncpy(dest, source, length of dest)
+			cout<<"Dog parameterized constructor for "<<this<<endl;
 			strncpy(startDog, newDogID, 17);
 			if ( startDog[17-1] != '\0' )
 			{
 				startDog[16] = '\0';
 			}
+			//------ alternative approach using pointer arithmetic
 			/*
 			startDog = &newDogID[0];
 			cout<<"From triple constructor dog's tag is: ";
@@ -52,8 +55,9 @@ using std::endl;
 			{
 				cout<<*(transDog);
 				(transDog = transDog + 1);
-			}	*/
-			cout<<endl;	
+			}	*/ 
+			//------  end alternative
+			cout<<endl;	 
 					
 
 		}
@@ -83,7 +87,8 @@ using std::endl;
 		Dog::Dog(const Dog& MasterDog): dogHeight(MasterDog.dogHeight), 
 				dogWeight(MasterDog.dogWeight), startDog(new char[17]) 
 		{
-						for ( int i = 0; i <= 15; ++i )
+			cout<<"Making copy in dog "<<this<<endl;
+			for ( int i = 0; i <= 15; ++i )
 			{
 				//initialize this.startDog
 				startDog[i] = '\0';
@@ -107,17 +112,13 @@ using std::endl;
 			return dogWeight;
 		}
 
-
+		//copy the dogs name to the char array
 		void  Dog::getDogName(char retrieveDogID [])	
 		{
 			
 			//retrieve each element of the char array; copy it to an array
 			//startDog = new char[17];
 
-		/*	for ( int i = 0; i <= 16; ++i )
-			{
-					retrieveDogID[i] = startDog[i];
-			}*/
 			//ignore compiler warning: cannot use strncpy_s with char*
 			strncpy(retrieveDogID, startDog,17);
 			if ( retrieveDogID[17-1] != '\0' )
@@ -127,6 +128,7 @@ using std::endl;
 			
 		}
 
+		//return a pointer to the Dog's name
 		char* Dog::getDogName() const
 		{
 			
@@ -143,16 +145,18 @@ using std::endl;
 		{
 			dogWeight = newDogWeight;	
 		}
-/*
-		virtual void bark (int noise)
+
+		//No Definitions for pure virtual functions
+		void Dog::bark ()    const  //delete const for a pure virtual
 		{
+			cout<<"I am a happy dog....";
 		}
-*/
+
 
 		//Destructor method
 		Dog::~Dog()
 		{
-			delete [] startDog;
+				delete [] startDog;	
 		}
 
 /*---------------------------------------------------------------------------*/

@@ -183,6 +183,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PrairieDog.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Utils.cpp"
 				>
 			</File>
@@ -201,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PrairieDog.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Utils.h"
 				>
 			</File>
@@ -211,6 +219,10 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<File
+			RelativePath=".\READ ME 5.txt"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -10,6 +10,7 @@
 #include <math.h>		//required for abs()
 #include "Dog.h"	//includes class Dog file
 #include "GoldenRetriever.h"
+#include "PrairieDog.h"
 #include "Utils.h"  //used only when the class declaration is in 
 					//a separate headerfile
 
@@ -25,24 +26,36 @@ using std::endl;
 
 int main()
 {
-	int ready = 0;
-
 	//Declaration of Objects 
 	//a de-referenced pointer to useful for an instance on the heap
 	//a variable for an instance on the stack
 	Utils* useful;
 	
 	Utils semiuseful;
+
 	//Must declare a dereferenced pointer for an object on the heap
-	Dog *Fido,*Fidonew, *FidoCopy;
-	Dog dogOne, dogTwo, dogThree;
+	Dog *Fido,*Fidonew, *FidoCopy;		
+
+		//	Dog*	GoldenRet[2];
+
+		//	Dog dogOne, dogTwo, dogThree;
 	char*  newDogID;
 	char	retrieveDogID[17];
 	
 	float initDogHeight,
 		  initDogWeight;
 
-	GoldenRetriever GR1;
+	GoldenRetriever *GR1;
+	GoldenRetriever *GR2,
+					*GRCopy;
+
+
+	PrairieDog  *PD1, *PD2, *PDCopy;
+
+	//array of pointers for virtual functions
+	Dog*	doggiePtr[9];				
+
+//------------------------Begin user interface----------------------------
 
 	//std output of instance on the stack, declaration uses constructor
 	//private data requires accessor method, public data uses . operator
@@ -76,7 +89,7 @@ int main()
 	cout<<useful->digitPub<<endl;
 
 
-//-------------------------tut  -------------------------------------------
+//-------------------------tut #3 -------------------------------------------
 
 
 	//enter a non-negative number and test it
@@ -98,7 +111,7 @@ int main()
 	//stream result to std output
 	cout<<"The sum of num is: "<<numberSum<<endl;
 
-//-----------------------------------
+//--------------------------- tut #4  ----------------------------
 
 	//testing for tutorial 4 on class Dog
 	//use default constructor to create Fido
@@ -117,6 +130,7 @@ int main()
 		}
 	}
 	cout<<endl;
+
 
 //--------------
 	
@@ -164,6 +178,7 @@ int main()
 	}
 	cout<<endl;
 
+	//------------------------
 	//test copy constructor
 	cout<<"----------"<<endl
 		<<"The copy constructor yields the following"<<endl;
@@ -215,11 +230,276 @@ int main()
 //--------------------------tut 5----------------------------------
 
 	cout<<"----------"<<endl;
-	cout<<"For a default GoldenRetriever the results are as follows: "
-		<<"GR1's height is: "<<GR1.GoldenRetriever::getDogHeight()<<endl
-		<<"GR1's weight is: "<<GR1.GoldenRetriever::getDogWeight()<<endl
-		<<"GR1's name is: "<<GR1.GoldenRetriever::getDogName()<<endl;
+	GR1 = new GoldenRetriever();	
+	//added for pure virtual function
+	/*
+	GR1 = new GoldenRetriever();
+	doggiePtr[0] = &GR1;
+	doggiePtr[0]->Dog::setDogHeight(.000f);
+	doggiePtr[0]->Dog::setDogWeight(00.0f);
+*/
+	//end of addition
+	cout<<"For a default GoldenRetriever the results are as follows: "<<endl
+		<<"GR1's height is: "<<GR1->GoldenRetriever::getDogHeight()<<endl
+		<<"GR1's weight is: "<<GR1->GoldenRetriever::getDogWeight()<<endl
+	//access name through a char pointer - option 1 
+		<<"GR1's name is: "<<GR1->GoldenRetriever::getDogName()<<endl	
+	//acess name through copy to char array in main - option 2
+		<<"GR1's tag reads: ";
+	GR1->GoldenRetriever::getDogName(retrieveDogID);
+	for ( int i = 0; i <= 16; ++i )
+	{
+		if ( retrieveDogID[i] != '\0' )
+			cout<<retrieveDogID[i];
+	}
+	cout<<endl;
+		
+	//GoldenRetriever speaks
+	GR1->GoldenRetriever::bark();
+	//GoldenRet[0]->bark();
+	//-------------------------------PraireDog's turn---------------------
+	PD1 = new PrairieDog();	
+	//added for pure virtual
+	/*
+	PD1->setDogHeight(1.00f);
+	PD1->setDogWeight(50.0f);
+	*/
+	//end of addition
+	cout<<"For a default PrairieDog the results are as follows: "<<endl
+		<<"PD1's height is: "<<PD1->PrairieDog::getDogHeight()<<endl
+		<<"PD1's weight is: "<<PD1->PrairieDog::getDogWeight()<<endl
+	//access name through a char pointer - option 1 
+		<<"PD1's name is: "<<PD1->PrairieDog::getDogName()<<endl	
+	//acess name through copy to char array in main - option 2
+		<<"PD1's tag reads: ";
+	PD1->PrairieDog::getDogName(retrieveDogID);
+	for ( int i = 0; i <= 16; ++i )
+	{
+		if ( retrieveDogID[i] != '\0' )
+			cout<<retrieveDogID[i];
+	}
+	cout<<endl;
 
+
+	//PrairieDog speaks
+	PD1->PrairieDog::bark();
+
+
+	//---------------------------------fully parameterized dogs--------------
+	//for a fully parameterized GoldenRetriever
+	cout<<"----------"<<endl
+		<<"Enter the Golden Retriever's height: ";
+	cin>>initDogHeight;
+	cout<<"Enter the Golden Retriever's weight: ";
+	cin>>initDogWeight;
+	cout<<"Enter the Golden Retriever's name: ";
+
+	//initialize the name char array to null
+	newDogID = new char[17];
+	for ( int i = 0; i <= 16; ++i )
+	{
+		newDogID[i] = '\0';
+	}
+	//input the name up to 16 characters long
+	cin>>newDogID;
+	charInd = 0;
+
+	while ( charInd <= 16)
+	{
+		if (!( newDogID[charInd] >= 32 && newDogID[charInd] <= 126))
+		{
+			newDogID[charInd] = '\0';
+			break;
+		}
+		charInd += 1;
+	}//while loop
+
+	GR2 = new GoldenRetriever(initDogHeight, initDogWeight, newDogID);	
+	//added for pure virtual
+	/*
+	GR2->GoldenRetriever::setDogHeight(1.500f);
+	GR2->setDogWeight(100.0f);
+	*/
+	//end of addition
+	cout<<"For a parameterized GoldenRetriever the results are as follows: "
+		<<endl
+		<<"The Golden Retriever's height is: "<<GR2->GoldenRetriever::getDogHeight()<<endl
+		<<"The Golden Retriever's weight is: "<<GR2->GoldenRetriever::getDogWeight()<<endl
+	//access name through a char pointer - option 1 	
+		<<"The Golden Retriever's name is: "<<GR2->GoldenRetriever::getDogName()<<endl	
+	//acess name through copy to char array in main - option 2
+		<<"The Golden Retriever's tag reads: ";
+	GR2->GoldenRetriever::getDogName(retrieveDogID);
+	for ( int i = 0; i <= 16; ++i )
+	{
+		if ( retrieveDogID[i] != '\0' )
+			cout<<retrieveDogID[i];
+	}
+	cout<<endl;
+
+
+	//GoldenRetriever speaks
+	GR2->GoldenRetriever::bark();
+
+
+	//------------------- Prairie Dog's turn at full parameterization------------
+
+	//for a fully parameterized PrairieDog
+	cout<<"----------"<<endl
+		<<"Enter the Prairie Dog's height: ";
+	cin>>initDogHeight;
+	cout<<"Enter the Prairie Dog's weight: ";
+	cin>>initDogWeight;
+	cout<<"Enter the Prairie Dog's name: ";
+
+	//initialize the name char array to null
+	newDogID = new char[17];
+	for ( int i = 0; i <= 16; ++i )
+	{
+		newDogID[i] = '\0';
+	}
+	//input the name up to 16 characters long
+	cin>>newDogID;
+	charInd = 0;
+
+	while ( charInd <= 16)
+	{
+		if (!( newDogID[charInd] >= 32 && newDogID[charInd] <= 126))
+		{
+			newDogID[charInd] = '\0';
+			break;
+		}
+		charInd += 1;
+	}//while loop
+
+	PD2 = new PrairieDog(initDogHeight, initDogWeight, newDogID);	
+	//added for pure virtual
+	PD2->setDogHeight(1.500f);
+	PD2->setDogWeight(100.0f);
+	//end of addition
+	cout<<"For a parameterized Prairie Dog the results are as follows: "
+		<<endl
+		<<"The Prairie Dog's height is: "<<PD2->PrairieDog::getDogHeight()<<endl
+		<<"The Prairie Dog's weight is: "<<PD2->PrairieDog::getDogWeight()<<endl
+	//access name through a char pointer - option 1 	
+		<<"The Prairie Dog's name is: "<<PD2->PrairieDog::getDogName()<<endl	
+	//acess name through copy to char array in main - option 2
+		<<"The Prairie Dog's tag reads: ";
+	PD2->PrairieDog::getDogName(retrieveDogID);
+	for ( int i = 0; i <= 16; ++i )
+	{
+		if ( retrieveDogID[i] != '\0' )
+			cout<<retrieveDogID[i];
+	}
+	cout<<endl;
+
+
+	//PrairieDog speaks
+	PD2->PrairieDog::bark();
+
+//--------------------------------  copy dogs -------------------------------
+
+
+	//uses golden retriever copy constructor
+	cout<<"----------"<<endl
+		<<"For a copy of the golden retriever: "<<endl;
+	GoldenRetriever GR3(*GR2);		
+	GRCopy = &GR3;					
+	cout<<"The copied Golden Retriever's height is: "<<GRCopy->GoldenRetriever
+			::getDogHeight()<<endl
+		<<"The copied Golden Retriever's weight is: "<<GRCopy->GoldenRetriever
+			::getDogWeight()<<endl
+		<<"The copied Golden Retriever's name is: "<<GRCopy->GoldenRetriever
+			::getDogName()<<endl
+		<<"The copied Golden Retriever's tag reads: ";
+	GRCopy->GoldenRetriever::getDogName(retrieveDogID);
+	for ( int i = 0; i <= 16; ++i )
+	{
+		if ( retrieveDogID[i] != '\0' )
+		cout<<retrieveDogID[i];
+	}
+	cout<<endl;
+	
+	//GoldenRetriever speaks
+	GRCopy->GoldenRetriever::bark();
+
+	//------------------ testing the deep copy of the golden retriever---
+
+
+	cout<<"After altering the values of the copy a/k/a GRCopy\n"
+		<<"and the values of the original a/k/a GR2: "<<endl;
+	GRCopy->GoldenRetriever::setDogHeight(.800f);
+	
+	GRCopy->GoldenRetriever::setDogWeight(40.0f);
+	GR2->setDogHeight(1.30000f);
+	GR2->setDogWeight(80.0f);
+	cout<<"GRCopy's height is: "<<GRCopy->getDogHeight()<<endl
+		<<"GRCopy's weight is: "<<GRCopy->getDogWeight()<<endl
+		<<"GRCopy's tag reads: ";
+	GRCopy->getDogName(retrieveDogID);
+	for ( int i = 0; i <= 16; ++i )
+	{
+		if ( retrieveDogID[i] != '\0' )
+			cout<<retrieveDogID[i];
+	}
+	cout<<endl;
+	cout<<"GR2's height is: "<<GR2->getDogHeight()<<endl
+		<<"GR2's weight is: "<<GR2->getDogWeight()<<endl
+		<<"GR2's tag reads: ";
+	GR2->getDogName(retrieveDogID);
+	for ( int i = 0; i <= 16; ++i )
+	{
+		if ( retrieveDogID[i] != '\0' )
+			cout<<retrieveDogID[i];
+	}
+	cout<<endl;
+
+	//------------------------- prairie dog's turn to copy -------------------
+
+	//uses prairie dog copy constructor
+	cout<<"----------"<<endl
+		<<"For a copy of the prairie dog: "<<endl;
+	PrairieDog PD3(*PD2);
+	PDCopy = &PD3;
+	cout<<"The copied Prairie Dog's height is: "<<PDCopy->PrairieDog
+			::getDogHeight()<<endl
+		<<"The copied Prairie Dog's weight is: "<<PDCopy->PrairieDog
+			::getDogWeight()<<endl
+		<<"The copied Prairie Dog's name is: "<<PDCopy->PrairieDog
+			::getDogName()<<endl
+		<<"The copied Prairie Dog's tag reads: ";
+	PDCopy->PrairieDog::getDogName(retrieveDogID);
+	for ( int i = 0; i <= 16; ++i )
+	{
+		if ( retrieveDogID[i] != '\0' )
+		cout<<retrieveDogID[i];
+	}
+	cout<<endl;
+	
+	//PrairieDog speaks
+	PDCopy->PrairieDog::bark();
+
+	//summary of doggies
+
+	doggiePtr[0] = GR1;
+	doggiePtr[1] = GR2;
+	doggiePtr[2] = GRCopy;
+	doggiePtr[3] = PD1;
+	doggiePtr[4] = PD2;
+	doggiePtr[5] = PDCopy;
+	doggiePtr[6] = Fido;
+	doggiePtr[7] = Fidonew;
+	doggiePtr[8] = FidoCopy;	
+
+//-----------behold a corus of virtual barks-----------------------------
+
+	cout<<"----------Virtual Barking ----------"<<endl;
+	for ( int i = 0; i <= 8; ++i )
+	{
+		doggiePtr[i]->bark();
+	}
+	cout<<endl;
+//-----------------------------------------------------------------------------
 		
 	//code designed to exit program after review
 	
