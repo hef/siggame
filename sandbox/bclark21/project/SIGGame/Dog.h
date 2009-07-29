@@ -30,7 +30,7 @@ class Dog{
 		char*	startDog;	
 
 		//for pure virtual function thereby making Dog an abstract class
-		virtual void bark()  const ;		//delete const for pure virtual
+		virtual void bark()=0;		//delete const for pure virtual
 
 		//Default constructor:
 		Dog();

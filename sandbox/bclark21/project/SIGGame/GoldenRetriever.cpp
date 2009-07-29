@@ -189,16 +189,16 @@ using std::endl;
 */
 //------------------------------------------------------------------------------
 
-		void GoldenRetriever::bark() const
+		void GoldenRetriever::bark() 
 		{
-			Dog::bark();	   //comment out for pure virtual
+		//	Dog::bark();	   //comment out for pure virtual
 
 			cout<<"roof"<<endl;
 		}
 /* 
 //----------------------------overriding bark method --------------------------
 
-		void GoldenRetriever::bark() const
+		void GoldenRetriever::bark()
 		{
 			cout<<"roof"<<endl;
 		}
@@ -208,7 +208,7 @@ using std::endl;
 		//Destructor method
 		GoldenRetriever::~GoldenRetriever()
 		{
-			 Dog::~Dog();
+			// Dog::~Dog();
 
 		}
 

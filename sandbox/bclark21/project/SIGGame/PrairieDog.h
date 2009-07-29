@@ -40,7 +40,7 @@ public:
 	void getDogName(char retrieveDogID[]);
 
 	//method of derived class
-	virtual void bark()const;	
+	void PrairieDog::bark();	
 
 	//derived from pure virtual function in base class
 
