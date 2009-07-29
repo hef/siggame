@@ -14,26 +14,30 @@ class Dog{
 	//private members
 	private:
 		//private data members
-		float dogHeight,
+/*		float dogHeight,
 			  dogWeight;  
 		char*	startDog;
-
+*/
 	//protected members
 	protected:
-		//for pure virtual function thereby making Dog an abstract class
-/*		virtual void bark(int) = 0; 
-*/
+
+
 	//public members
 	public:
 		//public data
+			float dogHeight,
+			  dogWeight;  
+		char*	startDog;	
 
+		//for pure virtual function thereby making Dog an abstract class
+		virtual void bark()  const ;		//delete const for pure virtual
 
 		//Default constructor:
 		Dog();
 
 		//Parameterized constructor:
-		Dog(const float initDogHeight, const float initDogWeight, 
-			const char* newDogID);
+		Dog(const float initDogHeight, const float initDogWeight , 
+			const char* newDogID   );
 
 		//copy constructor
 		//using a constant pointer as parameter
@@ -52,7 +56,7 @@ class Dog{
 		void Dog::setDogWeight(const float newDogWeight);
 
 		//Destructor method
-		~Dog();
+		 ~Dog();
 
 };
 

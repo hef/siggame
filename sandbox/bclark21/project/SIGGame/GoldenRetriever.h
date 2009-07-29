@@ -16,22 +16,48 @@ protected:
 
 private:
 
+		//private data members
+		//these should be declared in the base class-not derived class
+/*	float dogHeight,
+			  dogWeight;  
+		char*	startDog;	*/
+
 public:
 	//default constructor
 	GoldenRetriever();
 
 	
 	//parameterized constructor
-/*	GoldenRetriever(float initDogHeight, float initDogWeight, 
-		char newDogID[]);
-*/
+	GoldenRetriever(float initDogHeight, float initDogWeight, 
+		char* newDogID);
+
+	//copy constructor
+	GoldenRetriever::GoldenRetriever(const GoldenRetriever& MasterDog);
+
+	//quasi-copy constructor
+	GoldenRetriever::GoldenRetriever(const GoldenRetriever* oldDog);
+
 
 	//accessor method
 	float getDogHeight()const;
 
+	float getDogWeight() const;
+
+	char* getDogName()const;
+
+	void getDogName(char retrieveDogID[]);
+
+	//mutator methods
+	void GoldenRetriever::setDogHeight(const float newDogHeight);
+	void GoldenRetriever::setDogWeight(const float newDogWeight);
+
 	//method of derived class
-	void bark()const;
+	virtual void bark()const;	
+
 	//derived from pure virtual function in base class
+
+	//Destructor method
+	GoldenRetriever::~GoldenRetriever();
 
 
 };
