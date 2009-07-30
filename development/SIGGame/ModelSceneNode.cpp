@@ -7,16 +7,17 @@ void ModelSceneNode::render() const
 	std::vector<Mesh>::const_iterator i;
 	for( i=mesh.begin(); i!=mesh.end(); ++i)
 	{
+		glColor3fv(i->color.elementArray);
 		std::vector< std::vector<int> >::const_iterator j;
 		for( j=i->vertexIndex.begin(); j!=i->vertexIndex.end(); ++j  )
 		{
+			glBegin(GL_TRIANGLE_FAN);
 			std::vector<int>::const_iterator k;
 			for( k=j->begin(); k!=j->end(); ++k)
 			{
-				glBegin(GL_TRIANGLE_FAN);
 				glVertex3fv( vertex[(*k)].elementArray );
-				glEnd();
 			}
+			glEnd();
 		}
 	}
 }
