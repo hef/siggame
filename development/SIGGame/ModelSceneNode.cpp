@@ -8,15 +8,15 @@ void ModelSceneNode::render() const
 	for( i=mesh.begin(); i!=mesh.end(); ++i)
 	{
 		std::vector< std::vector<int> >::const_iterator j;
-		for( j=i->begin; i!=i->end(); ++i  )
+		for( j=i->vertexIndex.begin(); j!=i->vertexIndex.end(); ++j  )
 		{
 			std::vector<int>::const_iterator k;
-			for( k=i)
-
-			//glBegin(GL_TRIANGLE_FAN);
-			//glEnd();
-
-			
+			for( k=j->begin(); k!=j->end(); ++k)
+			{
+				glBegin(GL_TRIANGLE_FAN);
+				glVertex3fv( vertex[(*k)].elementArray );
+				glEnd();
+			}
 		}
 	}
 }
