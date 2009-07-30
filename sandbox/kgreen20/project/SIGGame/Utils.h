@@ -3,11 +3,13 @@
 #ifndef U_H
 #define U_H
 
-class Utilities
+class Utils
 {
 	public:
-		Utilities(void);
-		~Utilities(void);
+		Utils(void);
+		~Utils(void);
+		int sumUp(int parameter);
+		
 };
 
 #endif /* U_H */

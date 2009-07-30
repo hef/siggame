@@ -4,6 +4,7 @@
 #include "Actor.h"
 #include <iostream>
 #include <time.h>
+#include <math.h>
 
 PhysicsEngine* PhysicsEngine::pInstance = NULL;
 PhysicsEngine* PhysicsEngine::Instance()
@@ -36,35 +37,29 @@ int PhysicsEngine::applyPhysics( const World& gameWorld ) const
 	{
 		for(j = i+1; j != actors.end(); j++ )
 		{
-			if( PhysicsEngine::containsAnyPartOf( *(*i),*(*j) ) ){
+			float overlapDistance = PhysicsEngine::getBoundingSpheresOverlapDistance( *(*i),*(*j) );
+			if( overlapDistance>0 ){
 				std::cout << time(NULL) << ": Collision!" << std::endl;
+				(*i)->bounceBackFrom(*(*j),overlapDistance);
 			}
 		}
 	}
 	return 0;
 }
 
-bool PhysicsEngine::containsAnyPartOf(Actor& outer, Actor& inner)
+float PhysicsEngine::getBoundingSpheresOverlapDistance( const Actor& outer, Actor& inner ) 
 {
-	const float* otherBoundingBox = inner.getBoundingBox();
-	const float* boundingBox = outer.getBoundingBox();
 
-	bool xIntersect=false;
+	Vector3f otherBoundingSphereCenter = inner.getBoundingSphereCenter();
+	Vector3f thisBoundingSphereCenter = outer.getBoundingSphereCenter();
 
-	if(otherBoundingBox[0]>=boundingBox[0] && otherBoundingBox[0]<=boundingBox[1])
-		xIntersect=true;
-	else if(otherBoundingBox[1]>=boundingBox[0] && otherBoundingBox[1]<=boundingBox[1])
-		xIntersect=true;
+	float distance = sqrt( (otherBoundingSphereCenter[0] - thisBoundingSphereCenter[0] ) * (otherBoundingSphereCenter[0]-thisBoundingSphereCenter[0]) +  (otherBoundingSphereCenter[1]-thisBoundingSphereCenter[1])*(otherBoundingSphereCenter[1]-thisBoundingSphereCenter[1]) + (otherBoundingSphereCenter[2]-thisBoundingSphereCenter[2])*(otherBoundingSphereCenter[2]-thisBoundingSphereCenter[2]));
 
-	if(xIntersect)
-	{
-		if(otherBoundingBox[2]>=boundingBox[2] && otherBoundingBox[2]<=boundingBox[3])
-			return true;
-		else if(otherBoundingBox[3]>=boundingBox[2] && otherBoundingBox[3]<=boundingBox[3])
-			return true;
+	if(distance<=outer.getBoundingSphereRadius()){
+		return outer.getBoundingSphereRadius()-distance;
 	}
 
-	return false;
+	return -1;
 }
 
 PhysicsEngine::~PhysicsEngine()

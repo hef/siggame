@@ -34,11 +34,9 @@ int main()
 	Utils semiuseful;
 
 	//Must declare a dereferenced pointer for an object on the heap
-	Dog *Fido,*Fidonew, *FidoCopy;		
+	//Dog pointers for tutorial 4
+/*	Dog *Fido,*Fidonew, *FidoCopy;	*/	
 
-		//	Dog*	GoldenRet[2];
-
-		//	Dog dogOne, dogTwo, dogThree;
 	char*  newDogID;
 	char	retrieveDogID[17];
 	
@@ -112,7 +110,7 @@ int main()
 	cout<<"The sum of num is: "<<numberSum<<endl;
 
 //--------------------------- tut #4  ----------------------------
-
+/*
 	//testing for tutorial 4 on class Dog
 	//use default constructor to create Fido
 	cout<<"----------"<<endl
@@ -226,18 +224,11 @@ int main()
 			cout<<retrieveDogID[i];
 	}
 	cout<<endl;
-
+*/
 //--------------------------tut 5----------------------------------
 
 	cout<<"----------"<<endl;
 	GR1 = new GoldenRetriever();	
-	//added for pure virtual function
-	/*
-	GR1 = new GoldenRetriever();
-	doggiePtr[0] = &GR1;
-	doggiePtr[0]->Dog::setDogHeight(.000f);
-	doggiePtr[0]->Dog::setDogWeight(00.0f);
-*/
 	//end of addition
 	cout<<"For a default GoldenRetriever the results are as follows: "<<endl
 		<<"GR1's height is: "<<GR1->GoldenRetriever::getDogHeight()<<endl
@@ -259,12 +250,6 @@ int main()
 	//GoldenRet[0]->bark();
 	//-------------------------------PraireDog's turn---------------------
 	PD1 = new PrairieDog();	
-	//added for pure virtual
-	/*
-	PD1->setDogHeight(1.00f);
-	PD1->setDogWeight(50.0f);
-	*/
-	//end of addition
 	cout<<"For a default PrairieDog the results are as follows: "<<endl
 		<<"PD1's height is: "<<PD1->PrairieDog::getDogHeight()<<endl
 		<<"PD1's weight is: "<<PD1->PrairieDog::getDogWeight()<<endl
@@ -302,7 +287,7 @@ int main()
 	}
 	//input the name up to 16 characters long
 	cin>>newDogID;
-	charInd = 0;
+	char charInd = 0;
 
 	while ( charInd <= 16)
 	{
@@ -315,12 +300,6 @@ int main()
 	}//while loop
 
 	GR2 = new GoldenRetriever(initDogHeight, initDogWeight, newDogID);	
-	//added for pure virtual
-	/*
-	GR2->GoldenRetriever::setDogHeight(1.500f);
-	GR2->setDogWeight(100.0f);
-	*/
-	//end of addition
 	cout<<"For a parameterized GoldenRetriever the results are as follows: "
 		<<endl
 		<<"The Golden Retriever's height is: "<<GR2->GoldenRetriever::getDogHeight()<<endl
@@ -373,10 +352,7 @@ int main()
 	}//while loop
 
 	PD2 = new PrairieDog(initDogHeight, initDogWeight, newDogID);	
-	//added for pure virtual
-	PD2->setDogHeight(1.500f);
-	PD2->setDogWeight(100.0f);
-	//end of addition
+
 	cout<<"For a parameterized Prairie Dog the results are as follows: "
 		<<endl
 		<<"The Prairie Dog's height is: "<<PD2->PrairieDog::getDogHeight()<<endl
@@ -487,14 +463,14 @@ int main()
 	doggiePtr[3] = PD1;
 	doggiePtr[4] = PD2;
 	doggiePtr[5] = PDCopy;
-	doggiePtr[6] = Fido;
+/*	doggiePtr[6] = Fido;
 	doggiePtr[7] = Fidonew;
 	doggiePtr[8] = FidoCopy;	
-
+*/
 //-----------behold a corus of virtual barks-----------------------------
 
 	cout<<"----------Virtual Barking ----------"<<endl;
-	for ( int i = 0; i <= 8; ++i )
+	for ( int i = 0; i <= 5; ++i )	/* change to 5 for pure virtual */
 	{
 		doggiePtr[i]->bark();
 	}

@@ -20,6 +20,7 @@ int main( int argc, char **argv )
 	Input* input = Input::Instance();
 	World w;
 	audio->addSound( "Mac.wav" );
+	audio->addSound( "doh.wav" );
 	audio->playSound( "Mac.wav" );
 	static unsigned int lastTime = SDL_GetTicks();
 	static unsigned int currentTime = lastTime;

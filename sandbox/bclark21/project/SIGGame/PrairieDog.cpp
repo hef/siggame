@@ -97,9 +97,9 @@ using std::endl;
 		}
 
 
-		void PrairieDog::bark() const
+		void PrairieDog::bark()
 		{
-			Dog::bark();	   //comment out for pure virtual
+			//Dog::bark();	   //comment out for pure virtual
 
 			cout<<"yelp"<<endl;
 		}
@@ -108,7 +108,7 @@ using std::endl;
 		//Destructor method
 		PrairieDog::~PrairieDog()
 		{
-			 Dog::~Dog();
+			// Dog::~Dog();
 
 		}
 

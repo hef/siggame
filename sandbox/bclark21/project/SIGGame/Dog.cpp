@@ -147,7 +147,7 @@ using std::endl;
 		}
 
 		//No Definitions for pure virtual functions
-		void Dog::bark ()    const  //delete const for a pure virtual
+		void Dog::bark ()  //delete const for a pure virtual
 		{
 			cout<<"I am a happy dog....";
 		}

@@ -52,7 +52,7 @@ public:
 	void GoldenRetriever::setDogWeight(const float newDogWeight);
 
 	//method of derived class
-	virtual void bark()const;	
+	void GoldenRetriever::bark();	
 
 	//derived from pure virtual function in base class
 
