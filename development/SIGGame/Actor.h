@@ -6,11 +6,6 @@ class Actor
 {
 private:
 	Model* model;
-	/*float minX;
-	float maxX;
-	float minY;
-	float maxY;*/
-	float boundingBox[6];
 protected:
 	/** x, y, z */
 	Vector3f position;
@@ -22,6 +17,10 @@ protected:
 	Vector3f dRotation;
 	/** current OpenGL matrix */
 	float glMatrix[16];
+	/** radius of the bounding sphere */
+	float boundingSphereRadius;
+	/** center of the bounding sphere */
+	Vector3f boundingSphereCenter;
 public:
 	/** Constructor. */
 	Actor( Model* model, const Vector3f& position, const Vector3f& rotation );
@@ -51,9 +50,15 @@ public:
 	void setGLMatrix( float* mat );
 
 	/** Accessor. */
-	const float* getGLMatrix();
+	const float* getGLMatrix() const;
 
 	/** Accessor. */
-	const float* getBoundingBox();
+	const float getBoundingSphereRadius() const;
+
+	/** Accessor. */
+	const Vector3f& getBoundingSphereCenter() const;
+
+	/** Causes a bounce back from another actor */
+	void bounceBackFrom(Actor& other, float distance );
 };
 #endif

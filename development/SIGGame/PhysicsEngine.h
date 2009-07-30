@@ -13,7 +13,7 @@ public:
 	static PhysicsEngine* Instance();
 	void destroy();
 	int applyPhysics( const World& gameWorld ) const;
-	static bool containsAnyPartOf(Actor& outer, Actor& inner);
+	static float getBoundingSpheresOverlapDistance( const Actor& outer, Actor& inner );
 	~PhysicsEngine();
 };
 #endif
