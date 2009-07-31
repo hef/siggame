@@ -8,6 +8,7 @@ class ModelSceneNode : public SceneNode
 	class Mesh;
 	public:
 		ModelSceneNode();
+		ModelSceneNode(std::vector<Vector3f> vertices);
 		void render() const;
 		void addMesh(Vector3f newColor, std::vector< std::vector<int> > newMesh);
 	private:

@@ -61,7 +61,7 @@ int Renderer::render( const World& gameWorld ) const
 
 	// camera translation
 	// you can pretend this is the camera location
-	glTranslatef( 0.0f, 0.0f, -15.0f );
+	//	glTranslatef( 0.0f, 0.0f, -15.0f );
 
 	for( i = actors.begin(); i != actors.end(); ++i )
 	{
@@ -82,36 +82,8 @@ int Renderer::render( const World& gameWorld ) const
 
 		if( actorRotation[ 2 ] != 0.0f )
 			glRotatef( actorRotation[ 2 ], 0.0f, 0.0f, 1.0f ); //rotate on the z axis
+		(*i)->getSceneNode().render();
 		
-		GLfloat mat[16];
-		glGetFloatv(GL_MODELVIEW_MATRIX, mat);
-
-		( *i )->setGLMatrix(mat);
-
-		glBegin( GL_TRIANGLES );
-
-		const vector< Surface >& surfaces = ( *i )->getModel().getSurfaces();
-
-		// j is the surface number
-		vector< Surface >::const_iterator j;
-
-		for( j = surfaces.begin(); j != surfaces.end(); ++j )
-		{
-			
-			glColor3fv( j->getColor().elementArray );
-			
-			// k is the vertex (corner) number
-			// TODO get properties of surface
-			for( int k = 0; k < 3; ++k )
-			{
-				// ( *j ) is a surface
-				// ( *j )[ k ] is a Vector3f
-				// ( *j )[ k ].elementArray is the array in the Vector3f
-				glVertex3fv( ( *j )[ k ].elementArray );
-			}
-		}
-
-		glEnd();
 	}
 
 

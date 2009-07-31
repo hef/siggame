@@ -1,42 +1,11 @@
 #include "World.h"
 World::World()
 {
-	pGenericModel = new Model;
-	Actor* pRock = new AsteroidActor
-	               (
-	        pGenericModel,
-	        Vector3f( -1, -3, 0 ),
-	        Vector3f( 1, 1.5, 0 ),
-	        Vector3f( 0, 0, 0 ),
-	        Vector3f( -1, 3, 15 )
-	               );
-	addActor( pRock );
-
-	pRock = new AsteroidActor
-	               (
-	        pGenericModel,
-	        Vector3f( -10, -30, 0 ),
-	        Vector3f( 5, -2.5, 0 ),
-	        Vector3f( 0, 0, 0 ),
-	        Vector3f( 105, -5, 5 )
-			);
-
-	addActor( pRock );
-
-	pRock = new AsteroidActor
-	               (
-	        pGenericModel,
-	        Vector3f( 100, -30, 0 ),
-	        Vector3f( -3, .5, 0 ),
-	        Vector3f( 0, 0, 0 ),
-	        Vector3f( -12, 2, -6 )
-			);
-
-	addActor( pRock );
-
+	std::string filename="spaceShip.obj";
+	pShipModel = new ModelSceneNode(OBJ2Model::file("spaceShip.obj"));
 	Actor* pPlayer = new PlayerActor
 	(
-		pGenericModel,
+		pShipModel,
 		Vector3f(0,0,0),
 		Vector3f(0,0,0)
 	);
@@ -45,7 +14,7 @@ World::World()
 
 World::~World()
 {
-	delete pGenericModel;
+	delete pShipModel;
 
 	//clean up the actors
 	vector< Actor* >::iterator i;

@@ -2,6 +2,10 @@
 ModelSceneNode::ModelSceneNode()
 {
 }
+ModelSceneNode::ModelSceneNode(std::vector<Vector3f> vertices) :
+	vertex(vertices)
+{
+}
 void ModelSceneNode::render() const
 {
 	std::vector<Mesh>::const_iterator i;

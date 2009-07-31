@@ -4,8 +4,8 @@
 #include <math.h>
 #include <iostream>
 
-Actor::Actor( Model* model, const Vector3f& position, const Vector3f& rotation ) :
-	model( model ),
+Actor::Actor( SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation ) :
+	pSceneNode( pSceneNode ),
 	position( position ),
 	rotation( rotation ),
 	boundingSphereRadius(0)
@@ -18,8 +18,8 @@ Actor::Actor( Model* model, const Vector3f& position, const Vector3f& rotation )
 	dRotation.elementArray[ 2 ] = 0.0f;
 }
 
-Actor::Actor( Model* model, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation ) :
-	model( model ),
+Actor::Actor( SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation ) :
+	pSceneNode( pSceneNode ),
 	position( position ),
 	dPosition( dPosition ),
 	rotation( rotation ),
@@ -29,7 +29,7 @@ Actor::Actor( Model* model, const Vector3f& position, const Vector3f& dPosition,
 }
 
 Actor::Actor( const Actor& actor ) :
-	model( actor.model ),
+	pSceneNode( actor.pSceneNode ),
 	position( actor.position ),
 	dPosition( actor.dPosition ),
 	rotation( actor.rotation ),
@@ -42,9 +42,9 @@ Actor::~Actor()
 {
 }
 
-const Model& Actor::getModel() const
+const SceneNode& Actor::getSceneNode() const
 {
-	return *model;
+	return *pSceneNode;
 }
 
 const Vector3f& Actor::getPositionVector3f() const
@@ -59,6 +59,7 @@ const Vector3f& Actor::getRotationVector3f() const
 
 void Actor::setGLMatrix( float* mat )
 {
+	/*
 	for ( int i = 0 ; i < 16 ; ++i )
 	{
 		glMatrix[i] = mat[i];
@@ -96,6 +97,7 @@ void Actor::setGLMatrix( float* mat )
 		}
 
 	}
+	*/
 }
 
 	

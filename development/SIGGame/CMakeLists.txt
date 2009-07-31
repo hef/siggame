@@ -10,6 +10,7 @@ set(SOURCES
 	Log.cpp
 	Model.cpp
 	ModelSceneNode.cpp
+	OBJ2Model.cpp
 	PhysicsEngine.cpp
 	PlayerActor.cpp
 	Renderer.cpp

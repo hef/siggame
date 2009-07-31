@@ -1,7 +1,8 @@
 #include "OBJ2Model.h"
 #include <iostream>
-void OBJ2Model::file(std::string const filename)
+ModelSceneNode OBJ2Model::file(std::string const filename)
 {
+	
 	std::vector<Vector3f> vertices;
 	std::vector< std::vector<int> > faces;
 	std::string line;
@@ -45,7 +46,10 @@ void OBJ2Model::file(std::string const filename)
 				break;
 		}
 	}//eof
-
+	ModelSceneNode model = ModelSceneNode(vertices);
+	model.addMesh(Vector3f(1.0f,0.0f,0.0f),faces);
+	return model;
+	/*
 	//print verices
 	std::vector<Vector3f>::const_iterator i;
 	for( i=vertices.begin(); i!=vertices.end(); ++i)
@@ -64,11 +68,11 @@ void OBJ2Model::file(std::string const filename)
 		}
 		std::cout << std::endl;
 
-	}
+	}*/
 }
-std::vector<std::string> OBJ2Model::tokenize(std::string string, std::string token, int start)
+std::vector<std::string> OBJ2Model::tokenize(std::string string, std::string token, unsigned int start)
 {
-	int end=start;
+	unsigned int end=start;
 	std::vector<std::string> tokens;
 	while(end!=std::string::npos)
 	{

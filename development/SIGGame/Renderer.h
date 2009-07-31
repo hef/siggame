@@ -1,6 +1,7 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 #include "World.h"
+#include "ModelSceneNode.h"
 #include <stdlib.h>
 #include "SDL.h"
 #include "SDL_opengl.h"

@@ -1,11 +1,12 @@
 #ifndef ACTOR_H
 #define ACTOR_H
-#include "Model.h"
+#include "SceneNode.h"
+#include "ModelSceneNode.h"
 #include "Vector3f.h"
 class Actor
 {
 private:
-	Model* model;
+	SceneNode* pSceneNode;
 protected:
 	/** x, y, z */
 	Vector3f position;
@@ -23,10 +24,10 @@ protected:
 	Vector3f boundingSphereCenter;
 public:
 	/** Constructor. */
-	Actor( Model* model, const Vector3f& position, const Vector3f& rotation );
+	Actor( SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation );
 
 	/** Constructor. */
-	Actor( Model* model, const Vector3f& position, const Vector3f& dPosition,
+	Actor( SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition,
 	       const Vector3f& rotation, const Vector3f& dRotation );
 
 	/** Copy constructor. */
@@ -36,7 +37,7 @@ public:
 	virtual ~Actor();
 
 	/** Accessor. */
-	const Model& getModel() const;
+	const SceneNode& getSceneNode() const;
 
 	/** Accessor. */
 	const Vector3f& getPositionVector3f() const;
@@ -62,3 +63,4 @@ public:
 	void bounceBackFrom(Actor& other, float distance );
 };
 #endif
+
