@@ -1,13 +1,8 @@
 #include "Utils.h"
 
-int Utils::sumUp(const int numberToSum)
+unsigned int Utils::sumUp( const unsigned int numberToSum )
 {
-	if (numberToSum > 0)
-    {
-		return numberToSum + sumUp(numberToSum - 1);
-	}
-	else
-	{
-		return 0;
-	}
-}
+	unsigned int result;
+	result = ( (numberToSum * (numberToSum + 1) ) / 2);
+	return result;
+}	
