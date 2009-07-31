@@ -13,6 +13,7 @@ class World
 {
 private:
 	ModelSceneNode* pShipModel;
+	ModelSceneNode* pCessnaModel;
 	vector< Actor* > actors;
 public:
 	World();

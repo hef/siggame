@@ -59,30 +59,24 @@ const Vector3f& Actor::getRotationVector3f() const
 
 void Actor::setGLMatrix( float* mat )
 {
-	/*
+	
 	for ( int i = 0 ; i < 16 ; ++i )
 	{
 		glMatrix[i] = mat[i];
 	}
 
-	const std::vector< Surface >& surfaces = model->getSurfaces();
-
-	std::vector< Surface >::const_iterator j;
-
-	for ( j = surfaces.begin(); j != surfaces.end(); ++j )
+	std::vector<Vector3f>::const_iterator j;
+	ModelSceneNode* pModelSceneNode= static_cast<ModelSceneNode*>(pSceneNode);
+	for( j=pModelSceneNode->getVertex().begin();j!=pModelSceneNode->getVertex().end();++j)
 	{
-		
-		for ( int k = 0; k < 3; ++k )
-		{
-			
 			//Calculated vertex location will be stored here
 			float temp[3];
 
 			//Using a separate array to make the code easier to read
 			float tempOrig[3];
-			tempOrig[0] = ( *j ).at( k ).elementArray[0];
-			tempOrig[1] = ( *j ).at( k ).elementArray[1];
-			tempOrig[2] = ( *j ).at( k ).elementArray[2];
+			tempOrig[0] = ( *j ).elementArray[0];
+			tempOrig[1] = ( *j ).elementArray[1];
+			tempOrig[2] = ( *j ).elementArray[2];
 
 			//Calculate the vertex's position on the screen
 			temp[0] = tempOrig[0] * mat[0] + tempOrig[1] * mat[4] + tempOrig[2] * mat[8] + mat[12];
@@ -95,9 +89,6 @@ void Actor::setGLMatrix( float* mat )
 			if(boundingSphereRadius<tempRadius)
 				boundingSphereRadius = tempRadius;
 		}
-
-	}
-	*/
 }
 
 	

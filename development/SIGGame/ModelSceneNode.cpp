@@ -34,3 +34,7 @@ ModelSceneNode::Mesh::Mesh(Vector3f const color, std::vector< std::vector<int> >
 	vertexIndex(vertexIndex)
 {
 }
+const std::vector<Vector3f>& ModelSceneNode::getVertex() const
+{
+	return vertex;
+}

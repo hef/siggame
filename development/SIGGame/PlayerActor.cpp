@@ -34,22 +34,22 @@ void PlayerActor::tick( const double dt )
 		const float PI = 3.14159265f;
 		// TODO 10.0f is a magnitude of speed change. make it configureable
 		// add the x vector componet of direction to x component of velocity
-		dPosition[0] += 10.0f * cosf( rotation[2] * PI/180.0f ) * (float)dt;
+		dPosition[0] += -30.0f * sinf( rotation[2] * PI/180.0f ) * (float)dt;
 		//add the y vector componet of rotation to y component of velocity
-		dPosition[1] += 10.0f * sinf( rotation[2] * PI/180.0f ) * (float)dt;
+		dPosition[1] += 30.0f * cosf( rotation[2] * PI/180.0f ) * (float)dt;
 	}
 
 	// TODO The numbers 7 and 14 need to be adjusted to fit veiwport size
 	for ( int i = 0; i < 3 ; ++i )
 	{
 		position[ i ] += dPosition[ i ] * (float)dt;
-		while ( position[ i ] > 7 )
+		while ( position[ i ] > 100 )
 		{
-			position[ i ] += -14;
+			position[ i ] += -200;
 		}
-		while ( position[ i ] < -7 )
+		while ( position[ i ] < -100 )
 		{
-			position[ i ] += 14;
+			position[ i ] += 200;
 		}
 	}
 
