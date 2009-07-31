@@ -47,7 +47,7 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 		}
 	}//eof
 	ModelSceneNode model = ModelSceneNode(vertices);
-	model.addMesh(Vector3f(1.0f,0.0f,0.0f),faces);
+	model.addMesh(Vector3f(0.5f,0.5f,0.5f),faces);
 	return model;
 	/*
 	//print verices
