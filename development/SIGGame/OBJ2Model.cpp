@@ -70,9 +70,9 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 
 	}*/
 }
-std::vector<std::string> OBJ2Model::tokenize(std::string string, std::string token, unsigned int start)
+std::vector<std::string> OBJ2Model::tokenize(std::string string, std::string token, long unsigned int start)
 {
-	unsigned int end=start;
+	long unsigned int end=start;
 	std::vector<std::string> tokens;
 	while(end!=std::string::npos)
 	{

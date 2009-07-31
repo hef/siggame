@@ -12,7 +12,7 @@
 class OBJ2Model
 {
 	private:
-	static std::vector<std::string> tokenize(std::string string, std::string token, unsigned int start);
+	static std::vector<std::string> tokenize(std::string string, std::string token, long unsigned int start);
 	public:
 	static ModelSceneNode file(std::string filename);
 };

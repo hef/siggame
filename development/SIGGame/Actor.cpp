@@ -84,7 +84,7 @@ void Actor::setGLMatrix( float* mat )
 			temp[2] = tempOrig[0] * mat[2] + tempOrig[1] * mat[6] + tempOrig[2] * mat[10] + mat[14];
 
 			//Get distance between vertex and center to get radius of bounding sphere
-			float tempRadius = sqrt( ( temp[0] - position[0] ) * ( temp[0] - position[0] ) +  ( temp[1] - position[1] ) * ( temp[1] - position[1] ) + ( temp[2] - position[2] ) * ( temp[2] - position[2] ) );
+			float tempRadius = sqrtf( ( temp[0] - position[0] ) * ( temp[0] - position[0] ) +  ( temp[1] - position[1] ) * ( temp[1] - position[1] ) + ( temp[2] - position[2] ) * ( temp[2] - position[2] ) );
 
 			if(boundingSphereRadius<tempRadius)
 				boundingSphereRadius = tempRadius;
@@ -97,7 +97,7 @@ const float* Actor::getGLMatrix() const
 	return glMatrix;
 }
 
-const float Actor::getBoundingSphereRadius() const
+float Actor::getBoundingSphereRadius() const
 {
 	return boundingSphereRadius;
 }

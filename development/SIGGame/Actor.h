@@ -54,7 +54,7 @@ public:
 	const float* getGLMatrix() const;
 
 	/** Accessor. */
-	const float getBoundingSphereRadius() const;
+	float getBoundingSphereRadius() const;
 
 	/** Accessor. */
 	const Vector3f& getBoundingSphereCenter() const;
