@@ -1,107 +1,80 @@
 #include "OBJ2Model.h"
 #include <iostream>
-Model OBJ2Model::file(std::string filename)
+void OBJ2Model::file(std::string const filename)
 {
 	std::vector<Vector3f> vertices;
-	std::vector<int> face;
 	std::vector< std::vector<int> > faces;
 	std::string line;
-	std::ifstream myfile(filename.data());
-	std::vector<Surface> surfaces;
+	std::ifstream myfile(filename.c_str());
 	assert(myfile.is_open());
-	size_t start=0;
-	size_t end;
-	int count = 0;
 	while( ! myfile.eof() )
 	{
 		std::getline(myfile,line);
-		std::cout << line << std::endl;
 		switch(line[0])
 		{
 			case 'v' :
 				if(line[1]==' ')
-				{	
-					start = 2;// skip 2 letters, we know what they are.
-					end = start;
-					count = 0;
-					float point;
-					vertices.push_back(Vector3f(0.0f, 0.0f, 0.0f));
-					while(end!=std::string::npos)
-					{
-						end = line.find(' ',start);
-						(std::stringstream)line.substr(start,end-start) >> point;
-						vertices.back()[count]=point;
-						++count;
-						start = end+1;
-
-					}
+				{
+					std::vector<std::string> tokens;
+					tokens = tokenize(line," ",2);
+					float point0, point1, point2;
+					(std::stringstream)tokens[0] >> point0;
+					(std::stringstream)tokens[1] >> point1;
+					(std::stringstream)tokens[2] >> point2;
+					vertices.push_back(Vector3f(point0,point1,point2));
 					break;
 				}
 			case 'f' :
 				if(line[1]==' ')
 				{
-					start = 2;
-					end = start;
-					int firstIndex;
-					int secondIndex;
-					int thirdIndex;
-					end = line.find(' ',start);
-					(std::stringstream)line.substr(start,end-start) >> firstIndex;
-					end = line.find(' ',start);
-					(std::stringstream)line.substr(start,end-start) >> secondIndex;
-					while(end!=std::string::npos)
+					std::vector<std::string> tokens = tokenize(line," ",2);	
+					std::vector<int> face;
+					std::vector<std::string>::const_iterator i;
+					for( i = tokens.begin(); i!=tokens.end(); ++i)
 					{
-						end = line.find(' ',start);
-						(std::stringstream)line.substr(start,end-start) >> thirdIndex;
-						start = end+1;
-						face.clear();
-						face.push_back(firstIndex);
-						face.push_back(secondIndex);
-						face.push_back(thirdIndex);
-						faces.push_back(face);
-						secondIndex=thirdIndex;
-
+						std::vector<std::string> subtoken = tokenize((*i),"/",0);
+						int iValue;
+						(std::stringstream)subtoken[0] >> iValue;
+						face.push_back(iValue-1);
 					}
-					break;
+					faces.push_back(face);
+
 				}
-
-
 			default :
 				//std::cout << line << std::endl;
 				break;
 		}
 	}//eof
 
-	std::vector< std::vector<int> >::const_iterator i;
-	for( i = faces.begin(); i != faces.end(); ++i)
+	//print verices
+	std::vector<Vector3f>::const_iterator i;
+	for( i=vertices.begin(); i!=vertices.end(); ++i)
 	{
-		surfaces.push_back
-		(
-			Surface
-			(
-				Vector3f
-				(
-					vertices.at(i->at(0)-1).at(0),
-					vertices.at(i->at(0)-1).at(1),
-					vertices.at(i->at(0)-1).at(2)
-				),
-				Vector3f
-				(
-					vertices.at(i->at(1)-1).at(0),
-					vertices.at(i->at(1)-1).at(1),
-					vertices.at(i->at(1)-1).at(2)
-				),
-				Vector3f
-				(
-					vertices.at(i->at(2)-1).at(0),
-					vertices.at(i->at(2)-1).at(1),
-					vertices.at(i->at(2)-1).at(2)
-				),
-				//color red for now
-				Vector3f(1,0,0)
-			)
-		);
+		std::cout << i->elementArray[0] << " " << i->elementArray[1] << " " << i->elementArray[2] << std::endl;
 	}
-	return Model(surfaces);
-	
+
+	//print faces
+	std::vector< std::vector<int> >::const_iterator j;
+	for(j=faces.begin(); j!=faces.end(); ++j)
+	{
+		std::vector<int>::const_iterator k;
+		for(k=j->begin(); k!=j->end(); ++k)
+		{
+			std::cout << (*k) << " ";
+		}
+		std::cout << std::endl;
+
+	}
+}
+std::vector<std::string> OBJ2Model::tokenize(std::string string, std::string token, int start)
+{
+	int end=start;
+	std::vector<std::string> tokens;
+	while(end!=std::string::npos)
+	{
+		end = string.find(token,start);
+		tokens.push_back(string.substr(start,end-start));
+		start=end+token.size();
+	}
+	return tokens; 
 }

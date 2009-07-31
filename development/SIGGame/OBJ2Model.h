@@ -6,14 +6,13 @@
 #include <assert.h>
 #include <vector>
 #include "Vector3f.h"
-#include "Surface.h"
 #include <sstream>
-#include "Model.h"
 
 class OBJ2Model
 {
 	private:
+	static std::vector<std::string> tokenize(std::string string, std::string token, int start);
 	public:
-	static Model file(std::string filename);
+	static void file(std::string filename);
 };
 #endif
