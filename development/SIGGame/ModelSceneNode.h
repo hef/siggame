@@ -13,15 +13,18 @@ class ModelSceneNode : public SceneNode
 		ModelSceneNode();
 		ModelSceneNode(std::vector<Vector3f> vertices);
 		void render() const;
-		void addMesh(Vector3f newColor, std::vector< std::vector<int> > newMesh);
+		void addMesh(std::vector< std::vector<int> > newMesh);
 		const std::vector<Vector3f>& getVertex() const;
 	private:
 	class Mesh
 	{
 		public:
-			Mesh(Vector3f const color, std::vector< std::vector<int> > vertexIndex);
+			Mesh(std::vector< std::vector<int> > vertexIndex);
 		//private:
-		Vector3f color;
+		Vector3f ambientColor; // ka
+		Vector3f diffuseColor;// kd
+		Vector3f specularColor;// ks
+		float shininess;  //ns
 		std::vector< std::vector<int> > vertexIndex;
 	};
 };

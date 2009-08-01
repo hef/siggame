@@ -11,7 +11,12 @@ void ModelSceneNode::render() const
 	std::vector<Mesh>::const_iterator i;
 	for( i=mesh.begin(); i!=mesh.end(); ++i)
 	{
-		glColor3fv(i->color.elementArray);
+		//glColor3fv(i->color.elementArray);
+		glMaterialfv(GL_FRONT, GL_AMBIENT, i->ambientColor.elementArray);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, i->diffuseColor.elementArray);
+		glMaterialfv(GL_FRONT, GL_SPECULAR, i->specularColor.elementArray);
+		glMaterialf(GL_FRONT, GL_SHININESS, i->shininess);
+
 		std::vector< std::vector<int> >::const_iterator j;
 		for( j=i->vertexIndex.begin(); j!=i->vertexIndex.end(); ++j  )
 		{
@@ -25,12 +30,11 @@ void ModelSceneNode::render() const
 		}
 	}
 }
-void ModelSceneNode::addMesh(Vector3f newColor, std::vector<std::vector<int> > newMesh)
+void ModelSceneNode::addMesh(std::vector<std::vector<int> > newMesh)
 {
-	mesh.push_back(Mesh(newColor, newMesh));
+	mesh.push_back(Mesh(newMesh));
 }
-ModelSceneNode::Mesh::Mesh(Vector3f const color, std::vector< std::vector<int> > vertexIndex) :
-	color(color),
+ModelSceneNode::Mesh::Mesh(std::vector< std::vector<int> > vertexIndex) :
 	vertexIndex(vertexIndex)
 {
 }
