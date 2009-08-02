@@ -3,8 +3,13 @@
 ModelSceneNode OBJ2Model::file(std::string const filename)
 {
 	
-	std::vector<Vector3f> vertices;
+	std::vector<Vector3f> positionVertex;
+	std::vector<Vector3f> normalVertex;
+	std::vector<Vector3f> textureVertex;
+
 	std::vector< std::vector<int> > faces;
+
+	std::set< std::string > vertexNames;
 	std::string line;
 	std::ifstream myfile(filename.c_str());
 	assert(myfile.is_open());
@@ -30,16 +35,18 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 				{
 					std::vector<std::string> tokens = tokenize(line," ",2);	
 					std::vector<int> face;
+					
 					std::vector<std::string>::const_iterator i;
 					for( i = tokens.begin(); i!=tokens.end(); ++i)
 					{
+						vertexNames.insert((*i));
+						/*
 						std::vector<std::string> subtoken = tokenize((*i),"/",0);
 						int iValue;
 						(std::stringstream)subtoken[0] >> iValue;
 						face.push_back(iValue-1);
+						*/
 					}
-					faces.push_back(face);
-
 				}
 			default :
 				//std::cout << line << std::endl;
