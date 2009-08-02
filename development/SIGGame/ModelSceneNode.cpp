@@ -2,10 +2,6 @@
 ModelSceneNode::ModelSceneNode()
 {
 }
-ModelSceneNode::ModelSceneNode(std::vector<Vector3f> vertices) :
-	vertex(vertices)
-{
-}
 void ModelSceneNode::render() const
 {
 	std::vector<Mesh>::const_iterator i;
@@ -24,21 +20,22 @@ void ModelSceneNode::render() const
 			std::vector<int>::const_iterator k;
 			for( k=j->begin(); k!=j->end(); ++k)
 			{
-				glVertex3fv( vertex[(*k)].elementArray );
+				glNormal3fv(vertex[(*k)].normal.elementArray );
+				glTexCoord2fv(vertex[(*k)].texture.elementArray );
+				glVertex3fv( vertex[(*k)].position.elementArray );
 			}
 			glEnd();
 		}
 	}
 }
-void ModelSceneNode::addMesh(std::vector<std::vector<int> > newMesh)
+//TODO make this more efficient, also name it better
+const std::vector<Vector3f> ModelSceneNode::getVertex() const
 {
-	mesh.push_back(Mesh(newMesh));
-}
-ModelSceneNode::Mesh::Mesh(std::vector< std::vector<int> > vertexIndex) :
-	vertexIndex(vertexIndex)
-{
-}
-const std::vector<Vector3f>& ModelSceneNode::getVertex() const
-{
-	return vertex;
+	std::vector<Vector3f> positionVertexVector;
+	std::vector<Vertex>::const_iterator i;
+	for(i=vertex.begin(); i!=vertex.end(); ++i)
+	{
+		positionVertexVector.push_back( i->position );
+	}
+	return positionVertexVector;
 }
