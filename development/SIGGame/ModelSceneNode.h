@@ -3,6 +3,7 @@
 #include "SceneNode.h"
 #include <vector>
 #include "Vector3f.h"
+#include "Vertex.h"
 class ModelSceneNode : public SceneNode
 {
 	private:
@@ -17,21 +18,15 @@ class ModelSceneNode : public SceneNode
 		/// returns a position vertex vector
 		const std::vector<Vector3f> getVertex() const;
 	private:
-	struct Vertex
-	{
-		public:
-			Vector3f position;
-			Vector3f texture;
-			Vector3f normal;
-	};
 	struct Mesh
 	{
 		public:
 			Vector3f ambientColor; // ka
 			Vector3f diffuseColor;// kd
 			Vector3f specularColor;// ks
-			float shininess;  //ns
+			float shininess;  //nsns
 			std::vector< std::vector<int> > vertexIndex;
+			std::
 	};
 };
 #endif
