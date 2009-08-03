@@ -9,16 +9,12 @@
 #include "ModelSceneNode.h"
 #include <sstream>
 #include <map>
+#include "Vertex.h"
 
 class OBJ2Model
 {
 	private:
 	static std::vector<std::string> tokenize(std::string string, std::string token, long unsigned int start);
-	std::vector<Vector3f> positionVertexVector;
-	std::vector<Vector3f> normalVertexVector;
-	std::vector<Vector3f> textureVertexVector;
-	std::map<std::string, int> vertexNames;
-	vertexVector
 	public:
 	static ModelSceneNode file(std::string filename);
 };

@@ -8,6 +8,7 @@ set(SOURCES
 	AudioSystem.cpp
 	Input.cpp
 	Log.cpp
+	Mesh.cpp
 	Model.cpp
 	ModelSceneNode.cpp
 	OBJ2Model.cpp
@@ -16,6 +17,7 @@ set(SOURCES
 	Renderer.cpp
 	Surface.cpp
 	Vector3f.cpp
+	Vertex.cpp
 	World.cpp
 	)
 IF(APPLE)

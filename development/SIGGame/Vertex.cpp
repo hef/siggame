@@ -5,3 +5,15 @@ Vertex::Vertex( const Vector3f position, const Vector3f texture, const Vector3f 
 	normal(normal)
 {
 }
+const Vector3f& Vertex::getPosition() const
+{
+	return position;
+}
+const Vector3f& Vertex::getTexture() const
+{
+	return texture;
+}
+const Vector3f& Vertex::getNormal() const
+{
+	return normal;
+}

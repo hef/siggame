@@ -4,11 +4,10 @@
 #include <vector>
 #include "Vector3f.h"
 #include "Vertex.h"
+#include "Mesh.h"
 class ModelSceneNode : public SceneNode
 {
 	private:
-		struct Mesh;
-		struct Vertex;
 		std::vector<Vertex> vertex;
 		std::vector<Mesh> mesh;
 	public:
@@ -17,16 +16,5 @@ class ModelSceneNode : public SceneNode
 		void render() const;
 		/// returns a position vertex vector
 		const std::vector<Vector3f> getVertex() const;
-	private:
-	struct Mesh
-	{
-		public:
-			Vector3f ambientColor; // ka
-			Vector3f diffuseColor;// kd
-			Vector3f specularColor;// ks
-			float shininess;  //nsns
-			std::vector< std::vector<int> > vertexIndex;
-			std::
-	};
 };
 #endif
