@@ -4,7 +4,8 @@
 #include <math.h>
 #include <iostream>
 
-Actor::Actor( Model* model, const Vector3f& position, const Vector3f& rotation ) :
+Actor::Actor( const string& name, Model* model, const Vector3f& position, const Vector3f& rotation )
+:
 	model( model ),
 	position( position ),
 	rotation( rotation ),
@@ -16,9 +17,12 @@ Actor::Actor( Model* model, const Vector3f& position, const Vector3f& rotation )
 	dRotation.elementArray[ 0 ] = 0.0f;
 	dRotation.elementArray[ 1 ] = 0.0f;
 	dRotation.elementArray[ 2 ] = 0.0f;
+
+	this->name = name;
 }
 
-Actor::Actor( Model* model, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation ) :
+Actor::Actor( const string& name, Model* model, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation )
+:
 	model( model ),
 	position( position ),
 	dPosition( dPosition ),
@@ -26,6 +30,7 @@ Actor::Actor( Model* model, const Vector3f& position, const Vector3f& dPosition,
 	dRotation( dRotation ),
 	boundingSphereRadius(0)
 {
+	this->name = name;
 }
 
 Actor::Actor( const Actor& actor ) :
@@ -36,6 +41,7 @@ Actor::Actor( const Actor& actor ) :
 	dRotation( actor.dRotation ),
 	boundingSphereRadius(0)
 {
+	this->name = actor.name + "_copy";
 }
 
 Actor::~Actor()
@@ -47,6 +53,11 @@ const Model& Actor::getModel() const
 	return *model;
 }
 
+const string& Actor::getName() const
+{
+	return name;
+}
+
 const Vector3f& Actor::getPositionVector3f() const
 {
 	return position;
@@ -55,6 +66,11 @@ const Vector3f& Actor::getPositionVector3f() const
 const Vector3f& Actor::getRotationVector3f() const
 {
 	return rotation;
+}
+
+void Actor::setName( const string& name )
+{
+	this->name = name;
 }
 
 void Actor::setGLMatrix( float* mat )
@@ -146,7 +162,7 @@ void Actor::bounceBackFrom(Actor& other, float distance)
 	}
 	
 	//if(position[0]<-14)
-	std::cout << "pos:" << position[0] << std::endl;
+	std::cout << "    pos:" << position[0] << std::endl;
 
 	if(other.dPosition[0]!=0 && other.dPosition[1]!=0){
 		double backTrackAmt = ( distance * distance ) / ( ( other.dPosition[0] * other.dPosition[0] ) + ( other.dPosition[1] * other.dPosition[1] ) );

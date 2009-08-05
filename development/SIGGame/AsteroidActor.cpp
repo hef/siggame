@@ -1,12 +1,12 @@
 #include "AsteroidActor.h"
 
-AsteroidActor::AsteroidActor( Model* model, const Vector3f& position, const Vector3f& rotation )
-	: AIActor( model, position, rotation )
+AsteroidActor::AsteroidActor( const string& name, Model* model, const Vector3f& position, const Vector3f& rotation )
+	: AIActor( name, model, position, rotation )
 {
 }
 
-AsteroidActor::AsteroidActor( Model* model, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation )
-	: AIActor( model, position, dPosition, rotation, dRotation )
+AsteroidActor::AsteroidActor( const string& name, Model* model, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation )
+	: AIActor( name, model, position, dPosition, rotation, dRotation )
 {
 }
 

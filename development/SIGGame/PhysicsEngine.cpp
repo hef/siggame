@@ -35,11 +35,12 @@ int PhysicsEngine::applyPhysics( const World& gameWorld ) const
 
 	for( i = actors.begin(); i != actors.end(); ++i )
 	{
-		for(j = i+1; j != actors.end(); j++ )
+		for( j = i + 1; j != actors.end(); ++j )
 		{
 			float overlapDistance = PhysicsEngine::getBoundingSpheresOverlapDistance( *(*i),*(*j) );
 			if( overlapDistance>0 ){
-				std::cout << time(NULL) << ": Collision!" << std::endl;
+				std::cout << time(NULL) << ": Collision!" << std::endl
+						<< "    " << (*i)->getName() << " Collided with " << (*j)->getName() << std::endl;
 				(*i)->bounceBackFrom(*(*j),overlapDistance);
 			}
 		}

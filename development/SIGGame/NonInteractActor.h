@@ -6,10 +6,10 @@ class NonInteractActor : public Actor
 {
 public:
 	/** Constructor */
-	NonInteractActor( Model* model, const Vector3f& position, const Vector3f& rotation );
+	NonInteractActor( const string& name, Model* model, const Vector3f& position, const Vector3f& rotation );
 
 	/** Constructor */
-	NonInteractActor( Model* model, const Vector3f& position, const Vector3f& dPosition,
+	NonInteractActor( const string& name, Model* model, const Vector3f& position, const Vector3f& dPosition,
 					const Vector3f& rotation, const Vector3f& dRotation );
 
 	/** Copy Constructor */

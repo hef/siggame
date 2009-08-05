@@ -4,6 +4,7 @@ World::World()
 	pGenericModel = new Model;
 	Actor* pRock = new AsteroidActor
 	               (
+			"Asteroid_1",
 	        pGenericModel,
 	        Vector3f( -1, -3, 0 ),
 	        Vector3f( 1, 1.5, 0 ),
@@ -14,6 +15,7 @@ World::World()
 
 	pRock = new AsteroidActor
 	               (
+			"Asteroid_2",
 	        pGenericModel,
 	        Vector3f( -10, -30, 0 ),
 	        Vector3f( 5, -2.5, 0 ),
@@ -25,6 +27,7 @@ World::World()
 
 	pRock = new AsteroidActor
 	               (
+			"Asteroid_3",
 	        pGenericModel,
 	        Vector3f( 100, -30, 0 ),
 	        Vector3f( -3, .5, 0 ),
@@ -36,6 +39,7 @@ World::World()
 
 	Actor* pPlayer = new PlayerActor
 	(
+		"Player_1",
 		pGenericModel,
 		Vector3f(0,0,0),
 		Vector3f(0,0,0)

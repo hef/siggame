@@ -6,10 +6,10 @@ class AIActor : public Actor
 {
 public:
 	/** Constructor */
-	AIActor( Model* model, const Vector3f& position, const Vector3f& rotation );
+	AIActor( const string& name, Model* model, const Vector3f& position, const Vector3f& rotation );
 
 	/** Constructor */
-	AIActor( Model* model, const Vector3f& position, const Vector3f& dPosition,
+	AIActor( const string& name, Model* model, const Vector3f& position, const Vector3f& dPosition,
 			const Vector3f& rotation, const Vector3f& dRotation );
 
 	/** Copy Constructor */
