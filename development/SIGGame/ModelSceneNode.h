@@ -5,6 +5,7 @@
 #include "Vector3f.h"
 #include "Vertex.h"
 #include "Mesh.h"
+#include "Material.h"
 class ModelSceneNode : public SceneNode
 {
 	private:

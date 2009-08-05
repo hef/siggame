@@ -8,10 +8,10 @@ void ModelSceneNode::render() const
 	for( i=mesh.begin(); i!=mesh.end(); ++i)
 	{
 		//glColor3fv(i->color.elementArray);
-		glMaterialfv(GL_FRONT, GL_AMBIENT, i->getAmbientColor().elementArray);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, i->getDiffuseColor().elementArray);
-		glMaterialfv(GL_FRONT, GL_SPECULAR, i->getSpecularColor().elementArray);
-		glMaterialf(GL_FRONT, GL_SHININESS, i->getShininess());
+		glMaterialfv(GL_FRONT, GL_AMBIENT, i->getMaterial().getAmbientColor().elementArray);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, i->getMaterial().getDiffuseColor().elementArray);
+		glMaterialfv(GL_FRONT, GL_SPECULAR, i->getMaterial().getSpecularColor().elementArray);
+		glMaterialf(GL_FRONT, GL_SHININESS, i->getMaterial().getShininess());
 
 		std::vector< std::vector<int> >::const_iterator j;
 		for( j=i->getVertexIndex().begin(); j!=i->getVertexIndex().end(); ++j  )

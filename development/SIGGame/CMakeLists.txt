@@ -8,9 +8,11 @@ set(SOURCES
 	AudioSystem.cpp
 	Input.cpp
 	Log.cpp
+	Material.cpp
 	Mesh.cpp
 	Model.cpp
 	ModelSceneNode.cpp
+	MTL2Materials.cpp
 	OBJ2Model.cpp
 	PhysicsEngine.cpp
 	PlayerActor.cpp
