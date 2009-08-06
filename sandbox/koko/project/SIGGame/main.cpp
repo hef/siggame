@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include "Utilities.h"
+#include "Utils.h"
 
 int main()
 {
-	Utilities utilityStack;
-	Utilities* utilityHeap = new Utilities;
+	Utils utilityStack;
+	Utils* utilityHeap = new Utils;
 
 	delete utilityHeap;
 	return 0;
