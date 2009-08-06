@@ -17,13 +17,25 @@ const Vector3f& Material::getAmbientColor() const
 {
 	return ambientColor;
 }
+void Material::setAmbientColor(Vector3f const newAmbientColor)
+{
+	ambientColor=newAmbientColor;
+}
 const Vector3f& Material::getDiffuseColor() const
 {
 	return diffuseColor;
 }
+void Material::setDiffuseColor(const Vector3f newDiffuseColor)
+{
+	diffuseColor=newDiffuseColor;
+}
 const Vector3f& Material::getSpecularColor() const
 {
 	return specularColor;
+}
+void Material::setSpecularColor(const Vector3f newSpecularColor)
+{
+	specularColor=newSpecularColor;
 }
 const float& Material::getShininess() const
 {
