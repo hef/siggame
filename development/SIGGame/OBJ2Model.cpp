@@ -49,7 +49,7 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 			{
 				if ( vertexNames.find( (*i) )==vertexNames.end() ) // if (*i) not found
 				{
-					vertexNames[ (*i) ]=vertexNames.size();
+					vertexNames[ (*i) ]=static_cast<int>(vertexNames.size());
 					std::vector<std::string> faceToken;
 					faceToken = tokenize( (*i) , "/" , 0 );
 					(std::stringstream)tokens[0] >> index0;
@@ -83,6 +83,25 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 	}//eof
 	ModelSceneNode model = ModelSceneNode();
 	return model;
+}
+std::map<std::string, Material> OBJ2Model::mtl2materials(std::string const filename)
+{
+	std::map<std::string, Material> materialMap;
+	std::string line;
+	std::ifstream myfile(filename.c_str());
+	assert(myfile.is_open());
+	std::vector<std::string> tokens;
+	tokens = tokenize(line," ",0);
+	std::string currentName="";
+	if (tokens[0] == "newmtl")
+	{
+		currentName=tokens[1];
+
+	}
+
+
+	return materialMap;
+
 }
 std::vector<std::string> OBJ2Model::tokenize(std::string string, std::string token, long unsigned int start)
 {
