@@ -15,6 +15,7 @@ class OBJ2Model
 {
 	private:
 	static std::vector<std::string> tokenize(std::string string, std::string token, long unsigned int start);
+	static std::map<std::string, Materials> mtl2materials(std::string filename);
 	public:
 	static ModelSceneNode file(std::string filename);
 };

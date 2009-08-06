@@ -12,7 +12,6 @@ set(SOURCES
 	Mesh.cpp
 	Model.cpp
 	ModelSceneNode.cpp
-	MTL2Materials.cpp
 	OBJ2Model.cpp
 	PhysicsEngine.cpp
 	PlayerActor.cpp
