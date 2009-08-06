@@ -7,6 +7,7 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 	std::vector<Vector3f> textureVertexVector;
 	std::map<std::string, int> vertexNames;
 	std::vector<Vertex> vertexVector;
+	std::map<std::string, Material> materialMap;
 
 	std::vector< std::vector<int> > faces;
 	std::string line;
@@ -73,12 +74,13 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 		}
 		else if (tokens[0]=="usemtl")
 		{
-			std::map<std::string, int>::const_iterator i;
-			for(i=vertexNames.begin(); i!=vertexNames.end(); ++i)
-			{
+			//close off previous material group
 
-			}
 
+		}
+		else if (tokens[0]=="mtllib")
+		{
+			materialMap=mtl2materials(tokens[1]);
 		}
 	}//eof
 	ModelSceneNode model = ModelSceneNode();
@@ -97,6 +99,7 @@ std::map<std::string, Material> OBJ2Model::mtl2materials(std::string const filen
 	if (tokens[0] == "newmtl")
 	{
 		materialMap[tokens[1]]=Material();
+		currentMaterial=tokens[1];
 	}
 	else if(tokens[0] == "Ka")
 	{
@@ -127,15 +130,16 @@ std::map<std::string, Material> OBJ2Model::mtl2materials(std::string const filen
 	return materialMap;
 
 }
-std::vector<std::string> OBJ2Model::tokenize(std::string string, std::string token, long unsigned int start)
+std::vector<std::string> OBJ2Model::tokenize(std::string string, std::string delimiters, std::string::size_type const startingPoint)
 {
-	long unsigned int end=start;
 	std::vector<std::string> tokens;
-	while(end!=std::string::npos)
+	std::string::size_type start = string.find_first_of(delimiters,startingPoint);
+	std::string::size_type end = string.find_first_of(delimiters,start);
+	while(end!=std::string::npos || std::string::npos != start)
 	{
-		end = string.find(token,start);
 		tokens.push_back(string.substr(start,end-start));
-		start=end+token.size();
+		start = string.find_first_not_of(delimiters, end);
+		end = string.find_first_of(delimiters,start);
 	}
 	return tokens; 
 }
