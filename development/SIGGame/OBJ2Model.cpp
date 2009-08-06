@@ -92,14 +92,38 @@ std::map<std::string, Material> OBJ2Model::mtl2materials(std::string const filen
 	assert(myfile.is_open());
 	std::vector<std::string> tokens;
 	tokens = tokenize(line," ",0);
-	std::string currentName="";
+	std::string currentMaterial="";
+	float point0,point1,point2;
 	if (tokens[0] == "newmtl")
 	{
-		currentName=tokens[1];
-
+		materialMap[tokens[1]]=Material();
 	}
-
-
+	else if(tokens[0] == "Ka")
+	{
+		(std::stringstream)tokens[1] >> point0;
+		(std::stringstream)tokens[2] >> point1;
+		(std::stringstream)tokens[3] >> point2;
+		materialMap[currentMaterial].setAmbientColor(Vector3f(point0,point1,point2));
+	}
+	else if(tokens[0] == "Kd")
+	{
+		(std::stringstream)tokens[1] >> point0;
+		(std::stringstream)tokens[2] >> point1;
+		(std::stringstream)tokens[3] >> point2;
+		materialMap[currentMaterial].setDiffuseColor(Vector3f(point0,point1,point2));
+	}
+	else if(tokens[0] == "Ks")
+	{
+		(std::stringstream)tokens[1] >> point0;
+		(std::stringstream)tokens[2] >> point1;
+		(std::stringstream)tokens[3] >> point2;
+		materialMap[currentMaterial].setSpecularColor(Vector3f(point0,point1,point2));
+	}
+	else if(tokens[0] == "Ns")
+	{
+		(std::stringstream)tokens[1] >> point0;
+		materialMap[currentMaterial].setShininess(point0);
+	}
 	return materialMap;
 
 }
