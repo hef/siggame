@@ -41,3 +41,7 @@ const float& Material::getShininess() const
 {
     return shininess;
 }
+void Material::setShininess(const float newShinieness)
+{
+	shininess=newShinieness;
+}
