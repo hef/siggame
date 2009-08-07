@@ -126,7 +126,6 @@ void Renderer::initGL( GLsizei width, GLsizei height )
 	
 	glEnable(GL_LIGHTING);
 	glEnable(GL_COLOR_MATERIAL);
-	glEnable(GL_LIGHT0);
 
 	// Create light components
 	float ambientLight[] = { 0.2f, 0.2f, 0.2f, 1.0f };
@@ -138,6 +137,7 @@ void Renderer::initGL( GLsizei width, GLsizei height )
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);
 	glLightfv(GL_LIGHT0, GL_POSITION, position);
+	glEnable(GL_LIGHT0);
 
 }
 
