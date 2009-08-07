@@ -3,10 +3,14 @@
 #include "SceneNode.h"
 #include "ModelSceneNode.h"
 #include "Vector3f.h"
+#include <string>
+using std::string;
 class Actor
 {
 private:
 	SceneNode* pSceneNode;
+	/** Actor Name */
+	string name;
 protected:
 	/** x, y, z */
 	Vector3f position;
@@ -23,44 +27,49 @@ protected:
 	/** center of the bounding sphere */
 	Vector3f boundingSphereCenter;
 public:
-	/** Constructor. */
-	Actor( SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation );
+	Actor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation );
 
 	/** Constructor. */
-	Actor( SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition,
+	Actor( const string& name. SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition,
 	       const Vector3f& rotation, const Vector3f& dRotation );
 
-	/** Copy constructor. */
+	/** Copy constructor */
 	Actor( const Actor& actor );
 
-	/** Destructor. */
+	/** Destructor */
 	virtual ~Actor();
 
 	/** Accessor. */
 	const SceneNode& getSceneNode() const;
 
-	/** Accessor. */
+	/** Accessor */
+	const string& getName() const;
+
+	/** Accessor */
 	const Vector3f& getPositionVector3f() const;
 
-	/** Accessor. */
+	/** Accessor */
 	const Vector3f& getRotationVector3f() const;
 
 	virtual void tick( const double dt ) = 0;
 
-	/** Sets the current OpenGL matrix for rendering/physics. */
+	/** Sets the current OpenGL matrix for rendering/physics */
 	void setGLMatrix( float* mat );
 
-	/** Accessor. */
+	/** Accessor */
 	const float* getGLMatrix() const;
 
 	/** Accessor. */
 	float getBoundingSphereRadius() const;
 
-	/** Accessor. */
+	/** Accessor */
 	const Vector3f& getBoundingSphereCenter() const;
 
+	/** Mutator */
+	void setName( const string& name );
+
 	/** Causes a bounce back from another actor */
-	void bounceBackFrom(Actor& other, float distance );
+	void bounceBackFrom( Actor& other, float distance );
 };
 #endif
 
