@@ -13,7 +13,7 @@ class ModelSceneNode : public SceneNode
 		std::vector<Mesh> mesh;
 	public:
 		ModelSceneNode();
-		//ModelSceneNode(std::vector<Vector3f> vertices);
+		ModelSceneNode(std::vector<Vertex> const vertexVector, std::vector<Mesh> const meshVector);
 		void render() const;
 		/// returns a position vertex vector
 		const std::vector<Vector3f> getVertex() const;

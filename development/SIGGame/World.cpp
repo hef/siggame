@@ -2,11 +2,9 @@
 World::World()
 {
 	pShipModel = new ModelSceneNode(OBJ2Model::file("spaceShip.obj"));
-	pCessnaModel = new ModelSceneNode(OBJ2Model::file("cessna.obj"));
 	Actor* pPlayer = new PlayerActor
 	(
 		pShipModel,
-		//pCessnaModel,
 		Vector3f(0,0,0),
 		Vector3f(0,0,0)
 	);
@@ -16,7 +14,6 @@ World::World()
 World::~World()
 {
 	delete pShipModel;
-	delete pCessnaModel;
 
 	//clean up the actors
 	vector< Actor* >::iterator i;

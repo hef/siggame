@@ -8,6 +8,8 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 	std::map<std::string, int> vertexNames;
 	std::vector<Vertex> vertexVector;
 	std::map<std::string, Material> materialMap;
+	std::vector<Mesh> meshVector;
+	std::string previousMaterial="";
 
 	std::vector< std::vector<int> > faces;
 	std::string line;
@@ -39,8 +41,8 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 		{
 			(std::stringstream)tokens[1] >> point0;
 			(std::stringstream)tokens[2] >> point1;
-			(std::stringstream)tokens[3] >> point2;
-			textureVertexVector.push_back(Vector3f(point0,point1,point2));
+			//(std::stringstream)tokens[3] >> point2;
+			textureVertexVector.push_back(Vector3f(point0,point1,0));
 		}
 		else if (tokens[0]=="f")
 		{
@@ -50,12 +52,13 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 			{
 				if ( vertexNames.find( (*i) )==vertexNames.end() ) // if (*i) not found
 				{
+
 					vertexNames[ (*i) ]=static_cast<int>(vertexNames.size());
 					std::vector<std::string> faceToken;
 					faceToken = tokenize( (*i) , "/" , 0 );
-					(std::stringstream)tokens[0] >> index0;
-					(std::stringstream)tokens[1] >> index1;
-					(std::stringstream)tokens[2] >> index2;
+					(std::stringstream)faceToken[0] >> index0;
+					(std::stringstream)faceToken[1] >> index1;
+					(std::stringstream)faceToken[2] >> index2;
 
 					vertexVector.push_back
 					(
@@ -75,6 +78,13 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 		else if (tokens[0]=="usemtl")
 		{
 			//close off previous material group
+			if(faces.size() >0)
+			{
+				meshVector.push_back
+				(Mesh(materialMap[previousMaterial], faces));
+				faces.clear();
+			}
+			previousMaterial=tokens[1];
 
 
 		}
@@ -83,7 +93,8 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 			materialMap=mtl2materials(tokens[1]);
 		}
 	}//eof
-	ModelSceneNode model = ModelSceneNode();
+	meshVector.push_back(Mesh(materialMap[previousMaterial], faces));
+	ModelSceneNode model = ModelSceneNode(vertexVector, meshVector);
 	return model;
 }
 std::map<std::string, Material> OBJ2Model::mtl2materials(std::string const filename)
@@ -96,44 +107,50 @@ std::map<std::string, Material> OBJ2Model::mtl2materials(std::string const filen
 	tokens = tokenize(line," ",0);
 	std::string currentMaterial="";
 	float point0,point1,point2;
-	if (tokens[0] == "newmtl")
+
+	while( ! myfile.eof() )
 	{
-		materialMap[tokens[1]]=Material();
-		currentMaterial=tokens[1];
-	}
-	else if(tokens[0] == "Ka")
-	{
-		(std::stringstream)tokens[1] >> point0;
-		(std::stringstream)tokens[2] >> point1;
-		(std::stringstream)tokens[3] >> point2;
-		materialMap[currentMaterial].setAmbientColor(Vector3f(point0,point1,point2));
-	}
-	else if(tokens[0] == "Kd")
-	{
-		(std::stringstream)tokens[1] >> point0;
-		(std::stringstream)tokens[2] >> point1;
-		(std::stringstream)tokens[3] >> point2;
-		materialMap[currentMaterial].setDiffuseColor(Vector3f(point0,point1,point2));
-	}
-	else if(tokens[0] == "Ks")
-	{
-		(std::stringstream)tokens[1] >> point0;
-		(std::stringstream)tokens[2] >> point1;
-		(std::stringstream)tokens[3] >> point2;
-		materialMap[currentMaterial].setSpecularColor(Vector3f(point0,point1,point2));
-	}
-	else if(tokens[0] == "Ns")
-	{
-		(std::stringstream)tokens[1] >> point0;
-		materialMap[currentMaterial].setShininess(point0);
-	}
+		std::getline(myfile,line);
+		tokens=tokenize(line," ",0);
+		if (tokens[0] == "newmtl")
+		{
+			materialMap[tokens[1]]=Material();
+			currentMaterial=tokens[1];
+		}
+		else if(tokens[0] == "Ka")
+		{
+			(std::stringstream)tokens[1] >> point0;
+			(std::stringstream)tokens[2] >> point1;
+			(std::stringstream)tokens[3] >> point2;
+			materialMap[currentMaterial].setAmbientColor(Vector3f(point0,point1,point2));
+		}
+		else if(tokens[0] == "Kd")
+		{
+			(std::stringstream)tokens[1] >> point0;
+			(std::stringstream)tokens[2] >> point1;
+			(std::stringstream)tokens[3] >> point2;
+			materialMap[currentMaterial].setDiffuseColor(Vector3f(point0,point1,point2));
+		}
+		else if(tokens[0] == "Ks")
+		{
+			(std::stringstream)tokens[1] >> point0;
+			(std::stringstream)tokens[2] >> point1;
+			(std::stringstream)tokens[3] >> point2;
+			materialMap[currentMaterial].setSpecularColor(Vector3f(point0,point1,point2));
+		}
+		else if(tokens[0] == "Ns")
+		{
+			(std::stringstream)tokens[1] >> point0;
+			materialMap[currentMaterial].setShininess(point0);
+		}
+	}//eof
 	return materialMap;
 
 }
 std::vector<std::string> OBJ2Model::tokenize(std::string string, std::string delimiters, std::string::size_type const startingPoint)
 {
 	std::vector<std::string> tokens;
-	std::string::size_type start = string.find_first_of(delimiters,startingPoint);
+	std::string::size_type start = string.find_first_not_of(delimiters,startingPoint);
 	std::string::size_type end = string.find_first_of(delimiters,start);
 	while(end!=std::string::npos || std::string::npos != start)
 	{

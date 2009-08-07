@@ -1,5 +1,11 @@
 #include "ModelSceneNode.h"
+#include <iostream>
 ModelSceneNode::ModelSceneNode()
+{
+}
+ModelSceneNode::ModelSceneNode(std::vector<Vertex> const vertexVector, std::vector<Mesh> const meshVector) :
+	vertex(vertexVector),
+	mesh(meshVector)
 {
 }
 void ModelSceneNode::render() const
@@ -7,7 +13,22 @@ void ModelSceneNode::render() const
 	std::vector<Mesh>::const_iterator i;
 	for( i=mesh.begin(); i!=mesh.end(); ++i)
 	{
-		//glColor3fv(i->color.elementArray);
+		/*
+		std::cout << "ambient: ";
+		std::cout << i->getMaterial().getAmbientColor().elementArray[0] << " ";
+		std::cout << i->getMaterial().getAmbientColor().elementArray[1] << " ";
+		std::cout << i->getMaterial().getAmbientColor().elementArray[2] << std::endl;
+		std::cout << "diffuse: ";
+		std::cout << i->getMaterial().getDiffuseColor().elementArray[0] << " ";
+		std::cout << i->getMaterial().getDiffuseColor().elementArray[1] << " ";
+		std::cout << i->getMaterial().getDiffuseColor().elementArray[2] << std::endl;
+		std::cout << "specular: ";
+		std::cout << i->getMaterial().getSpecularColor().elementArray[0] << " ";
+		std::cout << i->getMaterial().getSpecularColor().elementArray[1] << " ";
+		std::cout << i->getMaterial().getSpecularColor().elementArray[2] << std::endl;
+		std::cout << "shininess: " 
+		std::cout << i->getMaterial().getShininess()) << std::endl;
+		*/
 		glMaterialfv(GL_FRONT, GL_AMBIENT, i->getMaterial().getAmbientColor().elementArray);
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, i->getMaterial().getDiffuseColor().elementArray);
 		glMaterialfv(GL_FRONT, GL_SPECULAR, i->getMaterial().getSpecularColor().elementArray);
@@ -20,6 +41,19 @@ void ModelSceneNode::render() const
 			std::vector<int>::const_iterator k;
 			for( k=j->begin(); k!=j->end(); ++k)
 			{
+				/*
+				std::cout << "normal: "; 
+				std::cout << vertex[(*k)].getNormal().elementArray[0] <<  " ";
+				std::cout << vertex[(*k)].getNormal().elementArray[1] <<  " ";
+				std::cout << vertex[(*k)].getNormal().elementArray[2] <<  std::endl;
+				std::cout << "texture: "; 
+				std::cout << vertex[(*k)].getTexture().elementArray[0] <<  " ";
+				std::cout << vertex[(*k)].getTexture().elementArray[1] <<  std::endl;
+				std::cout << "position: "; 
+				std::cout << vertex[(*k)].getPosition().elementArray[0] <<  " ";
+				std::cout << vertex[(*k)].getPosition().elementArray[1] <<  " ";
+				std::cout << vertex[(*k)].getPosition().elementArray[2] <<  std::endl;
+				*/
 				glNormal3fv(vertex[(*k)].getNormal().elementArray );
 				glTexCoord2fv(vertex[(*k)].getTexture().elementArray );
 				glVertex3fv( vertex[(*k)].getPosition().elementArray );
