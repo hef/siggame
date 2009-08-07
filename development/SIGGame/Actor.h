@@ -30,7 +30,7 @@ public:
 	Actor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation );
 
 	/** Constructor. */
-	Actor( const string& name. SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition,
+	Actor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition,
 	       const Vector3f& rotation, const Vector3f& dRotation );
 
 	/** Copy constructor */

@@ -6,8 +6,6 @@
 
 Actor::Actor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation ) :
 	pSceneNode( pSceneNode ),
-:
-	model( model ),
 	position( position ),
 	rotation( rotation ),
 	boundingSphereRadius(0)
@@ -24,7 +22,6 @@ Actor::Actor( const string& name, SceneNode* pSceneNode, const Vector3f& positio
 
 Actor::Actor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation ) :
 	pSceneNode( pSceneNode ),
-Actor::Actor( const string& name, Model* model, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation )
 	position( position ),
 	dPosition( dPosition ),
 	rotation( rotation ),
