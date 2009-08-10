@@ -1,12 +1,12 @@
 #include "NonInteractActor.h"
 
-NonInteractActor::NonInteractActor( const string& name, Model* model, const Vector3f& position, const Vector3f& rotation )
-: Actor( name, model, position, rotation )
+NonInteractActor::NonInteractActor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation )
+: Actor( name, pSceneNode, position, rotation )
 {
 }
 
-NonInteractActor::NonInteractActor( const string& name, Model* model, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation )
-: Actor( name, model, position, dPosition, rotation, dRotation )
+NonInteractActor::NonInteractActor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation )
+: Actor( name, pSceneNode, position, dPosition, rotation, dRotation )
 {
 }
 

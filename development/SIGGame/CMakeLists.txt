@@ -13,6 +13,7 @@ set(SOURCES
 	Model.cpp
 	ModelSceneNode.cpp
 	OBJ2Model.cpp
+	NonInteractActor.cpp
 	PhysicsEngine.cpp
 	PlayerActor.cpp
 	Renderer.cpp
