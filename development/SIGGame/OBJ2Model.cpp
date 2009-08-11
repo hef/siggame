@@ -98,7 +98,7 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 	ModelSceneNode model = ModelSceneNode(vertexVector, meshVector);
 	return model;
 }
-std::map<std::string, Material> OBJ2Model::mtl2materials(std::string const filename)
+std::map<std::string, Material> OBJ2Model::mtl2materials(const std::string& filename)
 {
 	std::map<std::string, Material> materialMap;
 	std::string line;
@@ -148,7 +148,7 @@ std::map<std::string, Material> OBJ2Model::mtl2materials(std::string const filen
 	return materialMap;
 
 }
-std::vector<std::string> OBJ2Model::tokenize(std::string string, std::string delimiters, std::string::size_type const startingPoint)
+std::vector<std::string> OBJ2Model::tokenize(const std::string& string, const std::string& delimiters, const std::string::size_type& startingPoint)
 {
 	std::vector<std::string> tokens;
 	std::string::size_type start = string.find_first_not_of(delimiters,startingPoint);

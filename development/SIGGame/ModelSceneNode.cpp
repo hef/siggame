@@ -3,7 +3,7 @@
 ModelSceneNode::ModelSceneNode()
 {
 }
-ModelSceneNode::ModelSceneNode(std::vector<Vertex> const vertexVector, std::vector<Mesh> const meshVector) :
+ModelSceneNode::ModelSceneNode(const std::vector<Vertex>& vertexVector, const std::vector<Mesh>& meshVector) :
 	vertex(vertexVector),
 	mesh(meshVector)
 {
