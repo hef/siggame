@@ -16,7 +16,7 @@ public:
 
 	/** Copy constructor **/
 	PlayerActor( const PlayerActor& otherPlayer );
-	
+
 	/** Tick Function **/
 	void tick( const double dt );
 
@@ -24,3 +24,4 @@ public:
 	~PlayerActor();
 };
 #endif
+

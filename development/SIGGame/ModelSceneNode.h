@@ -8,14 +8,15 @@
 #include "Material.h"
 class ModelSceneNode : public SceneNode
 {
-	private:
-		std::vector<Vertex> vertex;
-		std::vector<Mesh> mesh;
-	public:
-		ModelSceneNode();
-		ModelSceneNode(const std::vector<Vertex>& vertexVector, const std::vector<Mesh>& meshVector);
-		void render() const;
-		/// returns a position vertex vector
-		const std::vector<Vector3f> getVertex() const;
+private:
+	std::vector<Vertex> vertex;
+	std::vector<Mesh> mesh;
+public:
+	ModelSceneNode();
+	ModelSceneNode( const std::vector<Vertex>& vertexVector, const std::vector<Mesh>& meshVector );
+	void render() const;
+	/// returns a position vertex vector
+	const std::vector<Vector3f> getVertex() const;
 };
 #endif
+

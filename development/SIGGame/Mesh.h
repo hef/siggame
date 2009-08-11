@@ -5,13 +5,14 @@
 #include "Material.h"
 class Mesh
 {
-	public:
-		Mesh();
-		Mesh(const Material& material, const std::vector< std::vector<int> >& vertexIndex);
-		const Material& getMaterial() const;
-		const std::vector< std::vector<int> >& getVertexIndex() const;
-	private:
-		Material material;
-		std::vector< std::vector<int> > vertexIndex;
+public:
+	Mesh();
+	Mesh( const Material& material, const std::vector< std::vector<int> >& vertexIndex );
+	const Material& getMaterial() const;
+	const std::vector< std::vector<int> >& getVertexIndex() const;
+private:
+	Material material;
+	std::vector< std::vector<int> > vertexIndex;
 };
 #endif
+

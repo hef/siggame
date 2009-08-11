@@ -1,11 +1,11 @@
 #include "Mesh.h"
 Mesh::Mesh() :
-	material(Material())
+	material( Material())
 {
 }
-Mesh::Mesh(const Material& material, const std::vector< std::vector<int> >& vertexIndex) :
-	material(material),
-	vertexIndex(vertexIndex)
+Mesh::Mesh( const Material& material, const std::vector< std::vector<int> >& vertexIndex ) :
+	material( material ),
+	vertexIndex( vertexIndex )
 {
 }
 const Material& Mesh::getMaterial() const
@@ -14,5 +14,6 @@ const Material& Mesh::getMaterial() const
 }
 const std::vector< std::vector<int> >& Mesh::getVertexIndex() const
 {
-    return vertexIndex;
+	return vertexIndex;
 }
+

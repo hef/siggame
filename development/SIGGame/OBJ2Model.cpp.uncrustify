@@ -57,7 +57,7 @@ ModelSceneNode OBJ2Model::file( std::string const filename )
 				if ( vertexNames.find( (*i) ) == vertexNames.end() ) // if (*i) not found
 				{
 
-					vertexNames[ (*i) ] = static_cast<int>(++vertexNamesIndex);
+					vertexNames[ (*i) ] = static_cast<int>( ++vertexNamesIndex );
 					std::vector<std::string> faceToken;
 					faceToken = tokenize( (*i), "/", 0 );
 					(std::stringstream)faceToken[0] >> index0;
