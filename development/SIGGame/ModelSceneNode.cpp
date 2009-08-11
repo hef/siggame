@@ -62,7 +62,6 @@ void ModelSceneNode::render() const
 			glEnd();
 			//std::cout << "=================" << std::endl;
 		}
-		std::cout << std::endl;
 	}
 }
 //TODO make this more efficient, also name it better

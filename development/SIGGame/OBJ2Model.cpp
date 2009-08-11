@@ -35,7 +35,8 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 			(std::stringstream)tokens[1] >> point0;
 			(std::stringstream)tokens[2] >> point1;
 			(std::stringstream)tokens[3] >> point2;
-			normalVertexVector.push_back(Vector3f(point0,point1,point2));
+			//it seems that normals point inward on obj files. invert it
+			normalVertexVector.push_back(Vector3f(point0 * -1,point1 * -1,point2 * -1));
 		}
 		else if (tokens[0]=="vt")
 		{

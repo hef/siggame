@@ -30,13 +30,13 @@ void AsteroidActor::tick( const double dt )
 		//handle spinning
 		rotation[ i ] += dRotation[ i ] * (float)dt;
 		//handle wrapping
-		while ( position[ i ] > 7 )
+		while ( position[ i ] > 100 )
 		{
-			position[ i ] += -14;
+			position[ i ] += -200;
 		}
-		while ( position[ i ] < -7 )
+		while ( position[ i ] < -100 )
 		{
-			position[ i ] += 14;
+			position[ i ] += 200;
 		}
 	}
 
