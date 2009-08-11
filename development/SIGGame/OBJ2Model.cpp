@@ -6,6 +6,7 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 	std::vector<Vector3f> normalVertexVector;
 	std::vector<Vector3f> textureVertexVector;
 	std::map<std::string, int> vertexNames;
+	int vertexNamesIndex =0;
 	std::vector<Vertex> vertexVector;
 	std::map<std::string, Material> materialMap;
 	std::vector<Mesh> meshVector;
@@ -22,6 +23,8 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 	{
 		std::getline(myfile,line);
 		tokens=tokenize(line," ",0);
+		if (tokens.empty())
+			continue;
 		if(tokens[0]=="v" )
 		{
 			(std::stringstream)tokens[1] >> point0;
@@ -54,7 +57,7 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 				if ( vertexNames.find( (*i) )==vertexNames.end() ) // if (*i) not found
 				{
 
-					vertexNames[ (*i) ]=static_cast<int>(vertexNames.size());
+					vertexNames[ (*i) ]=static_cast<int>(++vertexNamesIndex);
 					std::vector<std::string> faceToken;
 					faceToken = tokenize( (*i) , "/" , 0 );
 					(std::stringstream)faceToken[0] >> index0;
@@ -71,7 +74,7 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 						)
 					);
 				}
-				face.push_back( vertexNames[ (*i) ] -1 );
+				face.push_back( vertexNames[ (*i) ] -1  );
 			}
 			faces.push_back(face);
 
@@ -105,7 +108,7 @@ std::map<std::string, Material> OBJ2Model::mtl2materials(const std::string& file
 	std::ifstream myfile(filename.c_str());
 	assert(myfile.is_open());
 	std::vector<std::string> tokens;
-	tokens = tokenize(line," ",0);
+	//tokens = tokenize(line," ",0);
 	std::string currentMaterial="";
 	float point0,point1,point2;
 
@@ -113,6 +116,8 @@ std::map<std::string, Material> OBJ2Model::mtl2materials(const std::string& file
 	{
 		std::getline(myfile,line);
 		tokens=tokenize(line," ",0);
+		if (tokens.empty())
+			continue;
 		if (tokens[0] == "newmtl")
 		{
 			materialMap[tokens[1]]=Material();
