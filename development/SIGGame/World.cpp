@@ -1,7 +1,7 @@
 #include "World.h"
 World::World()
 {
-	pShipModel = new ModelSceneNode(OBJ2Model::file("spaceShip.obj"));
+	pShipModel = new ModelSceneNode(OBJ2Model::file("cube.obj"));
 	Actor* pRock = new AsteroidActor
 	(
 		"Asteroid_1",

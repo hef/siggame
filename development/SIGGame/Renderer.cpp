@@ -104,7 +104,7 @@ void Renderer::establishProjectionMatrix( GLsizei width, GLsizei height )
 
 	glLoadIdentity();
 
-	glOrtho(-100.0f, 100.0f, -100.0f, 100.0f, -100.0f, 100.0f);
+	glOrtho(-6.0f, 6.0f, -6.0f, 6.0f, -100.0f, 100.0f);
 	
 
 

@@ -42,7 +42,7 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 			(std::stringstream)tokens[1] >> point0;
 			(std::stringstream)tokens[2] >> point1;
 			//(std::stringstream)tokens[3] >> point2;
-			textureVertexVector.push_back(Vector3f(point0,point1,0));
+			textureVertexVector.push_back(Vector3f(point0,point1,0.0f));
 		}
 		else if (tokens[0]=="f")
 		{
@@ -65,12 +65,12 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 						Vertex
 						(
 							positionVertexVector[ index0-1 ],
-							normalVertexVector[ index1-1 ],
-							textureVertexVector[ index2-1 ]
+							textureVertexVector[ index1-1 ],
+							normalVertexVector[ index2-1 ]
 						)
 					);
 				}
-				face.push_back( vertexNames[ (*i) ] );
+				face.push_back( vertexNames[ (*i) ] -1 );
 			}
 			faces.push_back(face);
 

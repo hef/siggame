@@ -43,13 +43,13 @@ void PlayerActor::tick( const double dt )
 	for ( int i = 0; i < 3 ; ++i )
 	{
 		position[ i ] += dPosition[ i ] * (float)dt;
-		while ( position[ i ] > 100 )
+		while ( position[ i ] > 7 )
 		{
-			position[ i ] += -200;
+			position[ i ] += -14;
 		}
-		while ( position[ i ] < -100 )
+		while ( position[ i ] < -7 )
 		{
-			position[ i ] += 200;
+			position[ i ] += 14;
 		}
 	}
 
