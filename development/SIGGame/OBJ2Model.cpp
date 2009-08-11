@@ -6,6 +6,7 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 	std::vector<Vector3f> normalVertexVector;
 	std::vector<Vector3f> textureVertexVector;
 	std::map<std::string, int> vertexNames;
+	int vertexNamesIndex =0;
 	std::vector<Vertex> vertexVector;
 	std::map<std::string, Material> materialMap;
 	std::vector<Mesh> meshVector;
@@ -22,6 +23,8 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 	{
 		std::getline(myfile,line);
 		tokens=tokenize(line," ",0);
+		if (tokens.empty())
+			continue;
 		if(tokens[0]=="v" )
 		{
 			(std::stringstream)tokens[1] >> point0;
@@ -35,14 +38,15 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 			(std::stringstream)tokens[1] >> point0;
 			(std::stringstream)tokens[2] >> point1;
 			(std::stringstream)tokens[3] >> point2;
-			normalVertexVector.push_back(Vector3f(point0,point1,point2));
+			//it seems that normals point inward on obj files. invert it
+			normalVertexVector.push_back(Vector3f(point0 * -1,point1 * -1,point2 * -1));
 		}
 		else if (tokens[0]=="vt")
 		{
 			(std::stringstream)tokens[1] >> point0;
 			(std::stringstream)tokens[2] >> point1;
 			//(std::stringstream)tokens[3] >> point2;
-			textureVertexVector.push_back(Vector3f(point0,point1,0));
+			textureVertexVector.push_back(Vector3f(point0,point1,0.0f));
 		}
 		else if (tokens[0]=="f")
 		{
@@ -53,7 +57,7 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 				if ( vertexNames.find( (*i) )==vertexNames.end() ) // if (*i) not found
 				{
 
-					vertexNames[ (*i) ]=static_cast<int>(vertexNames.size());
+					vertexNames[ (*i) ]=static_cast<int>(++vertexNamesIndex);
 					std::vector<std::string> faceToken;
 					faceToken = tokenize( (*i) , "/" , 0 );
 					(std::stringstream)faceToken[0] >> index0;
@@ -65,12 +69,12 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 						Vertex
 						(
 							positionVertexVector[ index0-1 ],
-							normalVertexVector[ index1-1 ],
-							textureVertexVector[ index2-1 ]
+							textureVertexVector[ index1-1 ],
+							normalVertexVector[ index2-1 ]
 						)
 					);
 				}
-				face.push_back( vertexNames[ (*i) ] );
+				face.push_back( vertexNames[ (*i) ] -1  );
 			}
 			faces.push_back(face);
 
@@ -97,14 +101,14 @@ ModelSceneNode OBJ2Model::file(std::string const filename)
 	ModelSceneNode model = ModelSceneNode(vertexVector, meshVector);
 	return model;
 }
-std::map<std::string, Material> OBJ2Model::mtl2materials(std::string const filename)
+std::map<std::string, Material> OBJ2Model::mtl2materials(const std::string& filename)
 {
 	std::map<std::string, Material> materialMap;
 	std::string line;
 	std::ifstream myfile(filename.c_str());
 	assert(myfile.is_open());
 	std::vector<std::string> tokens;
-	tokens = tokenize(line," ",0);
+	//tokens = tokenize(line," ",0);
 	std::string currentMaterial="";
 	float point0,point1,point2;
 
@@ -112,6 +116,8 @@ std::map<std::string, Material> OBJ2Model::mtl2materials(std::string const filen
 	{
 		std::getline(myfile,line);
 		tokens=tokenize(line," ",0);
+		if (tokens.empty())
+			continue;
 		if (tokens[0] == "newmtl")
 		{
 			materialMap[tokens[1]]=Material();
@@ -147,7 +153,7 @@ std::map<std::string, Material> OBJ2Model::mtl2materials(std::string const filen
 	return materialMap;
 
 }
-std::vector<std::string> OBJ2Model::tokenize(std::string string, std::string delimiters, std::string::size_type const startingPoint)
+std::vector<std::string> OBJ2Model::tokenize(const std::string& string, const std::string& delimiters, const std::string::size_type& startingPoint)
 {
 	std::vector<std::string> tokens;
 	std::string::size_type start = string.find_first_not_of(delimiters,startingPoint);

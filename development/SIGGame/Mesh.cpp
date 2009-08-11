@@ -3,7 +3,7 @@ Mesh::Mesh() :
 	material(Material())
 {
 }
-Mesh::Mesh(const Material material, const std::vector< std::vector<int> > vertexIndex) :
+Mesh::Mesh(const Material& material, const std::vector< std::vector<int> >& vertexIndex) :
 	material(material),
 	vertexIndex(vertexIndex)
 {

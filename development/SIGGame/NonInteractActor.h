@@ -1,15 +1,16 @@
 #ifndef NON_INTER_ACT_H
 #define NON_INTER_ACT_H
 #include "Actor.h"
+#include "ModelSceneNode.h"
 
 class NonInteractActor : public Actor
 {
 public:
 	/** Constructor */
-	NonInteractActor( const string& name, Model* model, const Vector3f& position, const Vector3f& rotation );
+	NonInteractActor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation );
 
 	/** Constructor */
-	NonInteractActor( const string& name, Model* model, const Vector3f& position, const Vector3f& dPosition,
+	NonInteractActor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition,
 					const Vector3f& rotation, const Vector3f& dRotation );
 
 	/** Copy Constructor */
