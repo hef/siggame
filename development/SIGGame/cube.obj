@@ -1,5 +1,5 @@
-#box
-mtllibe box.mtl
+#cube
+mtllib cube.mtl
 v 1 1 -1
 v -1 1 -1
 v -1 -1 -1
@@ -23,12 +23,12 @@ vt 300 100
 vt 100 0
 vt 200 0
 vn 0 0 -1
-vn 0 1 0
-vn -1 0 0
-vn 0 0 1
-vn 1 0 0
 vn 0 -1 0
-usemtl box
+vn 1 0 0
+vn 0 0 1
+vn -1 0 0
+vn 0 1 0
+usemtl cube
 f 8/2/1 7/1/1 6/3/1 5/4/1
 f 5/4/2 6/3/2 2/6/2 1/7/2
 f 2/6/3 6/5/3 7/9/3 3/10/3
