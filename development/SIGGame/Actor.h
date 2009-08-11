@@ -8,7 +8,7 @@ using std::string;
 class Actor
 {
 private:
-	SceneNode* pSceneNode;
+	const SceneNode* pSceneNode;
 	/** Actor Name */
 	string name;
 protected:
@@ -27,10 +27,10 @@ protected:
 	/** center of the bounding sphere */
 	Vector3f boundingSphereCenter;
 public:
-	Actor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation );
+	Actor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation );
 
 	/** Constructor. */
-	Actor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition,
+	Actor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition,
 	       const Vector3f& rotation, const Vector3f& dRotation );
 
 	/** Copy constructor */

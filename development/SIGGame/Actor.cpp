@@ -4,7 +4,7 @@
 #include <math.h>
 #include <iostream>
 
-Actor::Actor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation ) :
+Actor::Actor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation ) :
 	pSceneNode( pSceneNode ),
 	position( position ),
 	rotation( rotation ),
@@ -20,7 +20,7 @@ Actor::Actor( const string& name, SceneNode* pSceneNode, const Vector3f& positio
 	this->name = name;
 }
 
-Actor::Actor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation ) :
+Actor::Actor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation ) :
 	pSceneNode( pSceneNode ),
 	position( position ),
 	dPosition( dPosition ),
@@ -80,7 +80,7 @@ void Actor::setGLMatrix( float* mat )
 	}
 
 	std::vector<Vector3f>::const_iterator j;
-	ModelSceneNode* pModelSceneNode= static_cast<ModelSceneNode*>(pSceneNode);
+	const ModelSceneNode* pModelSceneNode= static_cast<const ModelSceneNode*>(pSceneNode);
 	for( j=pModelSceneNode->getVertex().begin();j!=pModelSceneNode->getVertex().end();++j)
 	{
 			//Calculated vertex location will be stored here
