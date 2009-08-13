@@ -149,8 +149,23 @@ void Renderer::initGL( GLsizei width, GLsizei height )
 	glEnable( GL_DEPTH_TEST );
 	glDepthFunc( GL_LEQUAL );
 
-	glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST ); // nicest calculation possible
-	glEnable( GL_PERSPECTIVE_CORRECTION_HINT ); // enabled above
+	//glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST ); // nicest calculation possible
+	//glEnable( GL_PERSPECTIVE_CORRECTION_HINT ); // enabled above
+	
+	glEnable(GL_LIGHTING);
+	glEnable(GL_COLOR_MATERIAL);
+
+	// Create light components
+	float ambientLight[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+	float diffuseLight[] = { 1.0f, 0.3f, 0.0f, 1.0f };
+	float specularLight[] = { 0.0f, 0.0f, 0.8f, 1.0f };
+	float position[] = { 0.0f, 0.0f, -100.0f, 1.0f };
+	//
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);
+	glLightfv(GL_LIGHT0, GL_POSITION, position);
+	glEnable(GL_LIGHT0);
 
 }
 
