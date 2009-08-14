@@ -7,11 +7,11 @@ class NonInteractActor : public Actor
 {
 public:
 	/** Constructor */
-	NonInteractActor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation );
+	NonInteractActor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation );
 
 	/** Constructor */
-	NonInteractActor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition,
-					const Vector3f& rotation, const Vector3f& dRotation );
+	NonInteractActor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition,
+	                  const Vector3f& rotation, const Vector3f& dRotation );
 
 	/** Copy Constructor */
 	NonInteractActor( const NonInteractActor& other );
@@ -23,3 +23,4 @@ public:
 	void tick( const double dt );
 };
 #endif
+

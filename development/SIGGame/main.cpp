@@ -3,7 +3,6 @@
 #include "AudioSystem.h"
 #include "PhysicsEngine.h"
 #include "World.h"
-#include "Model.h"
 #include "Vector3f.h"
 
 int main( int argc, char **argv )
@@ -41,7 +40,7 @@ int main( int argc, char **argv )
 		//Rerender the world every iteration
 		r->render( w );
 	}
-	while( !bShouldExit );
+	while ( !bShouldExit );
 	//delete the instances
 	audio->destroy();
 	p->destroy();

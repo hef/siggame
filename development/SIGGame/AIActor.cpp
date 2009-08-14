@@ -1,11 +1,11 @@
 #include "AIActor.h"
 
-AIActor::AIActor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation )
+AIActor::AIActor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation )
 : Actor( name, pSceneNode, position, rotation )
 {
 }
 
-AIActor::AIActor( const string& name, SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation )
+AIActor::AIActor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation )
 : Actor( name, pSceneNode, position, dPosition, rotation, dRotation )
 {
 }
