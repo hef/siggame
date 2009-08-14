@@ -10,14 +10,12 @@ set(SOURCES
 	Log.cpp
 	Material.cpp
 	Mesh.cpp
-	Model.cpp
 	ModelSceneNode.cpp
 	OBJ2Model.cpp
 	NonInteractActor.cpp
 	PhysicsEngine.cpp
 	PlayerActor.cpp
 	Renderer.cpp
-	Surface.cpp
 	Vector3f.cpp
 	Vertex.cpp
 	World.cpp
