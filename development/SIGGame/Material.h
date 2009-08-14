@@ -21,3 +21,4 @@ private:
 	float shininess;
 };
 #endif
+
