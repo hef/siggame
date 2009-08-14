@@ -43,7 +43,7 @@ Vector3f Vector3f::operator +( const Vector3f& v1 ) const
 		result.elementArray[ dimensions ] = this->elementArray[ dimensions ] + v1.elementArray[ dimensions ];
 	}
 	return result;
-};
+}
 
 Vector3f Vector3f::operator -( const Vector3f& v1 ) const
 {
@@ -53,7 +53,7 @@ Vector3f Vector3f::operator -( const Vector3f& v1 ) const
 		result.elementArray[ dimensions ] = this->elementArray[ dimensions ] - v1.elementArray[ dimensions ];
 	}
 	return result;
-};
+}
 
 float Vector3f::dotProduct( const Vector3f& v1, const Vector3f& v2 ) const
 {
@@ -63,12 +63,12 @@ float Vector3f::dotProduct( const Vector3f& v1, const Vector3f& v2 ) const
 		result += ( ( v1.elementArray[ dimensions ] ) * ( v2.elementArray[ dimensions ] ) );
 	}
 	return result;
-};
+}
 
 float Vector3f::dotProduct( const Vector3f& v1 ) const
 {
 	return dotProduct( *this, v1 );
-};
+}
 
 Vector3f Vector3f::crossProduct( const Vector3f& v1, const Vector3f& v2 ) const
 {
@@ -78,12 +78,12 @@ Vector3f Vector3f::crossProduct( const Vector3f& v1, const Vector3f& v2 ) const
 		result.elementArray[ i ] = ( v1.elementArray[ (i+1)%3 ] * v2.elementArray[ (i+2)%3 ] ) - ( v1.elementArray[ (i+2)%3 ] * v2.elementArray[ (i+1)%3 ] );
 	}
 	return result;
-};
+}
 
 Vector3f Vector3f::crossProduct( const Vector3f& v1 ) const
 {
 	return crossProduct( *this, v1 );
-};
+}
 
 Vector3f Vector3f::translatePosition( const Vector3f& position, const Vector3f& velocity, const Vector3f& accelaration, const float& tick ) const
 {	
@@ -94,7 +94,7 @@ Vector3f Vector3f::translatePosition( const Vector3f& position, const Vector3f& 
 		result.elementArray[ i ] = position.elementArray[ i ] + ( velocity.elementArray[ i ] ) * tick + ( 0.5f ) * ( accelaration.elementArray[i] ) * ( tick * tick );
 	}
 	return result;
-};
+}
 
 Vector3f Vector3f::translateVelocity( const Vector3f& velocity, const Vector3f& accelaration, const float& tick ) const
 {	
@@ -105,7 +105,7 @@ Vector3f Vector3f::translateVelocity( const Vector3f& velocity, const Vector3f& 
 		result.elementArray[ i ] = velocity.elementArray[ i ] + ( accelaration.elementArray[ i ] ) * tick;
 	}
 	return result;
-};
+}
 
 
 void Vector3f::scale( Vector3f& v1, const float scalar )
@@ -134,9 +134,9 @@ void Vector3f::scale( Vector3f& v1, const float scalar )
 	}
 	
 	return;
-};
+}
 
 void Vector3f::scale( const float scalar )
 {
 	return scale( *this, scalar );
-};
+}
