@@ -12,7 +12,7 @@
 #include "Vertex.h"
 #include "Material.h"
 /**
- * OBJ2Model reads an obj file from disk.  it the obj file refereneces a 
+ * OBJ2Model reads an obj file from disk.  it the obj file refereneces a
  * mtllib file (it should) that mtl file will also be read.
  * this supports a subset of all OBJ options, it will probably fail in the
  * following caes:

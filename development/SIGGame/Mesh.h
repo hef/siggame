@@ -12,10 +12,11 @@ class Mesh
 public:
 	Mesh();
 	Mesh( const Material& material, const std::vector< std::vector<int> >& vertexIndex );
-	/** the material that is used for all vertexs contained withing
+	/**
+	 * The material that is used for all vertexs contained within.
 	 */
 	const Material& getMaterial() const;
-	/** 
+	/**
 	 * index of the vertices contained in the parent modelSceneNode that
 	* contains this object
 	*/
