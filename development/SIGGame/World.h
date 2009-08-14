@@ -4,13 +4,16 @@
 #include "Actor.h"
 #include "AsteroidActor.h"
 #include "PlayerActor.h"
-#include "Model.h"
+#include "ModelSceneNode.h"
+#include "OBJ2Model.h"
+#include <string>
 using std::vector;
 
 class World
 {
 private:
-	Model* pGenericModel;
+	ModelSceneNode* pShipModel;
+	ModelSceneNode* pCessnaModel;
 	vector< Actor* > actors;
 public:
 	World();

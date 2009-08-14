@@ -3,8 +3,10 @@
 #include "SDL_opengl.h"
 class SceneNode
 {
-	public:
-	virtual void render() = 0;
-	virtual ~SceneNode(){}
+public:
+	virtual void render() const = 0;
+	virtual ~SceneNode(){
+	}
 };
 #endif
+

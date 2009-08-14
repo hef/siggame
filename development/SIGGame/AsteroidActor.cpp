@@ -1,12 +1,12 @@
 #include "AsteroidActor.h"
 
-AsteroidActor::AsteroidActor( const string& name, Model* model, const Vector3f& position, const Vector3f& rotation )
-	: AIActor( name, model, position, rotation )
+AsteroidActor::AsteroidActor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation )
+	: AIActor( name, pSceneNode, position, rotation )
 {
 }
 
-AsteroidActor::AsteroidActor( const string& name, Model* model, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation )
-	: AIActor( name, model, position, dPosition, rotation, dRotation )
+AsteroidActor::AsteroidActor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation )
+	: AIActor( name, pSceneNode, position, dPosition, rotation, dRotation )
 {
 }
 
@@ -30,13 +30,13 @@ void AsteroidActor::tick( const double dt )
 		//handle spinning
 		rotation[ i ] += dRotation[ i ] * (float)dt;
 		//handle wrapping
-		while ( position[ i ] > 7 )
+		while ( position[ i ] > 100 )
 		{
-			position[ i ] += -14;
+			position[ i ] += -200;
 		}
-		while ( position[ i ] < -7 )
+		while ( position[ i ] < -100 )
 		{
-			position[ i ] += 14;
+			position[ i ] += 200;
 		}
 	}
 

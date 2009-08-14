@@ -210,11 +210,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Material.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Mesh.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Model.cpp"
 				>
 			</File>
 			<File
+				RelativePath=".\ModelSceneNode.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\NonInteractActor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\OBJ2Model.cpp"
 				>
 			</File>
 			<File
@@ -239,6 +255,10 @@
 			</File>
 			<File
 				RelativePath=".\Vector3f.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Vertex.cpp"
 				>
 			</File>
 			<File
@@ -276,11 +296,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Material.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Mesh.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Model.h"
 				>
 			</File>
 			<File
+				RelativePath=".\ModelSceneNode.h"
+				>
+			</File>
+			<File
 				RelativePath=".\NonInteractActor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\OBJ2Model.h"
 				>
 			</File>
 			<File
@@ -296,7 +332,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\SceneNode.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Surface.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Utils.h"
 				>
 			</File>
 			<File
@@ -305,6 +349,10 @@
 			</File>
 			<File
 				RelativePath=".\Vector3f.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Vertex.h"
 				>
 			</File>
 			<File

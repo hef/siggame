@@ -8,13 +8,16 @@ set(SOURCES
 	AudioSystem.cpp
 	Input.cpp
 	Log.cpp
-	Model.cpp
+	Material.cpp
+	Mesh.cpp
 	ModelSceneNode.cpp
+	OBJ2Model.cpp
+	NonInteractActor.cpp
 	PhysicsEngine.cpp
 	PlayerActor.cpp
 	Renderer.cpp
-	Surface.cpp
 	Vector3f.cpp
+	Vertex.cpp
 	World.cpp
 	)
 IF(APPLE)

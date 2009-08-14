@@ -1,12 +1,10 @@
 #include "Actor.h"
 #include "Input.h"
-#include "Surface.h"
 #include <math.h>
 #include <iostream>
 
-Actor::Actor( const string& name, Model* model, const Vector3f& position, const Vector3f& rotation )
-:
-	model( model ),
+Actor::Actor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation ) :
+	pSceneNode( pSceneNode ),
 	position( position ),
 	rotation( rotation ),
 	boundingSphereRadius(0)
@@ -21,9 +19,8 @@ Actor::Actor( const string& name, Model* model, const Vector3f& position, const 
 	this->name = name;
 }
 
-Actor::Actor( const string& name, Model* model, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation )
-:
-	model( model ),
+Actor::Actor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition, const Vector3f& rotation, const Vector3f& dRotation ) :
+	pSceneNode( pSceneNode ),
 	position( position ),
 	dPosition( dPosition ),
 	rotation( rotation ),
@@ -34,7 +31,7 @@ Actor::Actor( const string& name, Model* model, const Vector3f& position, const 
 }
 
 Actor::Actor( const Actor& actor ) :
-	model( actor.model ),
+	pSceneNode( actor.pSceneNode ),
 	position( actor.position ),
 	dPosition( actor.dPosition ),
 	rotation( actor.rotation ),
@@ -48,9 +45,9 @@ Actor::~Actor()
 {
 }
 
-const Model& Actor::getModel() const
+const SceneNode& Actor::getSceneNode() const
 {
-	return *model;
+	return *pSceneNode;
 }
 
 const string& Actor::getName() const
@@ -75,29 +72,24 @@ void Actor::setName( const string& name )
 
 void Actor::setGLMatrix( float* mat )
 {
+	
 	for ( int i = 0 ; i < 16 ; ++i )
 	{
 		glMatrix[i] = mat[i];
 	}
 
-	const std::vector< Surface >& surfaces = model->getSurfaces();
-
-	std::vector< Surface >::const_iterator j;
-
-	for ( j = surfaces.begin(); j != surfaces.end(); ++j )
+	std::vector<Vector3f>::const_iterator j;
+	const ModelSceneNode* pModelSceneNode= static_cast<const ModelSceneNode*>(pSceneNode);
+	for( j=pModelSceneNode->getVertex().begin();j!=pModelSceneNode->getVertex().end();++j)
 	{
-		
-		for ( int k = 0; k < 3; ++k )
-		{
-			
 			//Calculated vertex location will be stored here
 			float temp[3];
 
 			//Using a separate array to make the code easier to read
 			float tempOrig[3];
-			tempOrig[0] = ( *j ).at( k ).elementArray[0];
-			tempOrig[1] = ( *j ).at( k ).elementArray[1];
-			tempOrig[2] = ( *j ).at( k ).elementArray[2];
+			tempOrig[0] = ( *j ).elementArray[0];
+			tempOrig[1] = ( *j ).elementArray[1];
+			tempOrig[2] = ( *j ).elementArray[2];
 
 			//Calculate the vertex's position on the screen
 			temp[0] = tempOrig[0] * mat[0] + tempOrig[1] * mat[4] + tempOrig[2] * mat[8] + mat[12];
@@ -105,13 +97,11 @@ void Actor::setGLMatrix( float* mat )
 			temp[2] = tempOrig[0] * mat[2] + tempOrig[1] * mat[6] + tempOrig[2] * mat[10] + mat[14];
 
 			//Get distance between vertex and center to get radius of bounding sphere
-			float tempRadius = sqrt( ( temp[0] - position[0] ) * ( temp[0] - position[0] ) +  ( temp[1] - position[1] ) * ( temp[1] - position[1] ) + ( temp[2] - position[2] ) * ( temp[2] - position[2] ) );
+			float tempRadius = sqrtf( ( temp[0] - position[0] ) * ( temp[0] - position[0] ) +  ( temp[1] - position[1] ) * ( temp[1] - position[1] ) + ( temp[2] - position[2] ) * ( temp[2] - position[2] ) );
 
 			if(boundingSphereRadius<tempRadius)
 				boundingSphereRadius = tempRadius;
 		}
-
-	}
 }
 
 	
@@ -120,7 +110,7 @@ const float* Actor::getGLMatrix() const
 	return glMatrix;
 }
 
-const float Actor::getBoundingSphereRadius() const
+float Actor::getBoundingSphereRadius() const
 {
 	return boundingSphereRadius;
 }

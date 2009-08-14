@@ -1,14 +1,14 @@
 #ifndef ACTOR_H
 #define ACTOR_H
-#include "Model.h"
+#include "SceneNode.h"
+#include "ModelSceneNode.h"
 #include "Vector3f.h"
 #include <string>
 using std::string;
 class Actor
 {
 private:
-	Model* model;
-
+	const SceneNode* pSceneNode;
 	/** Actor Name */
 	string name;
 protected:
@@ -27,11 +27,10 @@ protected:
 	/** center of the bounding sphere */
 	Vector3f boundingSphereCenter;
 public:
-	/** Constructor */
-	Actor( const string& name, Model* model, const Vector3f& position, const Vector3f& rotation );
+	Actor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& rotation );
 
-	/** Constructor */
-	Actor( const string& name, Model* model, const Vector3f& position, const Vector3f& dPosition,
+	/** Constructor. */
+	Actor( const string& name, const SceneNode* pSceneNode, const Vector3f& position, const Vector3f& dPosition,
 	       const Vector3f& rotation, const Vector3f& dRotation );
 
 	/** Copy constructor */
@@ -40,8 +39,8 @@ public:
 	/** Destructor */
 	virtual ~Actor();
 
-	/** Accessor */
-	const Model& getModel() const;
+	/** Accessor. */
+	const SceneNode& getSceneNode() const;
 
 	/** Accessor */
 	const string& getName() const;
@@ -60,8 +59,8 @@ public:
 	/** Accessor */
 	const float* getGLMatrix() const;
 
-	/** Accessor */
-	const float getBoundingSphereRadius() const;
+	/** Accessor. */
+	float getBoundingSphereRadius() const;
 
 	/** Accessor */
 	const Vector3f& getBoundingSphereCenter() const;
@@ -73,3 +72,4 @@ public:
 	void bounceBackFrom( Actor& other, float distance );
 };
 #endif
+
