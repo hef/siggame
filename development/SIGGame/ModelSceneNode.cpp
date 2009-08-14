@@ -75,4 +75,3 @@ const std::vector<Vector3f> ModelSceneNode::getVertex() const
 	}
 	return positionVertexVector;
 }
-

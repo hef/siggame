@@ -138,6 +138,7 @@ void Renderer::initGL( GLsizei width, GLsizei height )
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);
 	glLightfv(GL_LIGHT0, GL_POSITION, position);
+<<<<<<< HEAD:development/SIGGame/Renderer.cpp
 
 }
 

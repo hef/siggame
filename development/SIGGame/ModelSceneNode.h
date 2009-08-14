@@ -19,4 +19,3 @@ public:
 	const std::vector<Vector3f> getVertex() const;
 };
 #endif
-
