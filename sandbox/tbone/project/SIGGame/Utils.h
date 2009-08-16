@@ -10,8 +10,8 @@ class Utils
 
 	private:
 		// Make calls to sumUp from all other types cause a compile-time error
-		template< class t >
-		unsigned int sumUp( const t ) const { return 0; }
+		template< class T >
+		unsigned int sumUp( const T n ) const { return 0; }
 };
 
 #endif /* Utils_H */
