@@ -14,3 +14,4 @@ class Vertex
 		Vector3f normal;
 };
 #endif
+
