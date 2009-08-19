@@ -1,6 +1,10 @@
 #ifndef Material_h
 #define Material_h
 #include "Vector3f.h"
+/**
+ * A Material contains the properties of surfaces displayed that are associated
+ * with it.  a Mesh combines a Material with a set of Vertices.
+ * */
 class Material
 {
 public:

@@ -1,9 +1,15 @@
 #ifndef Vector3f_H
 #define Vector3f_H
 #include <assert.h>
+/**
+ * A Vector/Array of 3 floats.
+ * This is used heavily through the code, as we frequently represent x,y,z data
+ * as a Vector3f.
+ * */
 class Vector3f
 {
 public:
+	///used to pass a float* array into OpenGL commands
 	float elementArray[ 3 ];
 	Vector3f();
 	Vector3f( const float x, const float y, const float z );
