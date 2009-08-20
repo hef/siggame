@@ -59,10 +59,20 @@ ModelSceneNode OBJ2Model::file( std::string const filename )
 
 					vertexNames[ (*i) ] = static_cast<int>(++vertexNamesIndex);
 					std::vector<std::string> faceToken;
-					faceToken = tokenize( (*i), "/", 0 );
+					faceToken = moreTokenize( (*i), "/", 0 );
 					(std::stringstream)faceToken[0] >> index0;
 					(std::stringstream)faceToken[1] >> index1;
 					(std::stringstream)faceToken[2] >> index2;
+					//TODO this is to make textureless blender exports work.
+					//there is probably a better way
+					if( textureVertexVector.empty() )
+					{
+						textureVertexVector.push_back(Vector3f(0.0f,0.0f,0.0f));
+					}
+					if(faceToken[1]=="")
+					{
+						index1=1;
+					}
 
 					vertexVector.push_back
 					(
@@ -153,6 +163,7 @@ std::map<std::string, Material> OBJ2Model::mtl2materials( const std::string& fil
 	return materialMap;
 
 }
+//this version of tokenize will skip repeated delimiters
 std::vector<std::string> OBJ2Model::tokenize( const std::string& string, const std::string& delimiters, const std::string::size_type& startingPoint )
 {
 	std::vector<std::string> tokens;
@@ -166,4 +177,19 @@ std::vector<std::string> OBJ2Model::tokenize( const std::string& string, const s
 	}
 	return tokens;
 }
-
+//this version will create empty nodes in the vector for repated delimiters
+std::vector<std::string> OBJ2Model::moreTokenize(const std::string& string, const std::string& delimiters, const std::string::size_type& startingPoint)
+{
+	std::cout << "newtokens" << std::endl;
+	std::vector<std::string> tokens;
+	std::string::size_type start = startingPoint;
+	std::string::size_type end = string.find_first_of( delimiters, start );
+	while (end != std::string::npos)
+	{
+		end=string.find_first_of( delimiters, start );
+		std::cout << string.substr( start, end-start ) << std::endl;
+		tokens.push_back( string.substr( start, end-start ));
+		start=end+1;
+	}
+	return tokens;
+}
