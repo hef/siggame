@@ -180,14 +180,12 @@ std::vector<std::string> OBJ2Model::tokenize( const std::string& string, const s
 //this version will create empty nodes in the vector for repated delimiters
 std::vector<std::string> OBJ2Model::moreTokenize(const std::string& string, const std::string& delimiters, const std::string::size_type& startingPoint)
 {
-	std::cout << "newtokens" << std::endl;
 	std::vector<std::string> tokens;
 	std::string::size_type start = startingPoint;
 	std::string::size_type end = string.find_first_of( delimiters, start );
 	while (end != std::string::npos)
 	{
 		end=string.find_first_of( delimiters, start );
-		std::cout << string.substr( start, end-start ) << std::endl;
 		tokens.push_back( string.substr( start, end-start ));
 		start=end+1;
 	}
