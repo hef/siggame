@@ -218,10 +218,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Model.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\ModelSceneNode.cpp"
 				>
 			</File>
@@ -243,10 +239,6 @@
 			</File>
 			<File
 				RelativePath=".\Renderer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Surface.cpp"
 				>
 			</File>
 			<File
@@ -304,10 +296,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Model.h"
-				>
-			</File>
-			<File
 				RelativePath=".\ModelSceneNode.h"
 				>
 			</File>
@@ -333,10 +321,6 @@
 			</File>
 			<File
 				RelativePath=".\SceneNode.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Surface.h"
 				>
 			</File>
 			<File

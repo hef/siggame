@@ -11,7 +11,16 @@
 #include <map>
 #include "Vertex.h"
 #include "Material.h"
-
+/**
+ * OBJ2Model reads an obj file from disk.  it the obj file refereneces a
+ * mtllib file (it should) that mtl file will also be read.
+ * this supports a subset of all OBJ options, it will probably fail in the
+ * following caes:
+ * faces that do not contain 2 slashes (//)
+ * faces that use negative indices.
+ * this also does not yet support reading maps (e.g. texutre maps) from disk
+ * yet.
+ * */
 class OBJ2Model
 {
 private:
