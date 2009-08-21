@@ -177,7 +177,10 @@ std::vector<std::string> OBJ2Model::tokenize( const std::string& string, const s
 	}
 	return tokens;
 }
-//this version will create empty nodes in the vector for repated delimiters
+/** This version will create empty nodes in the vector for repated delimiters
+ *  this one was created to handle faces that sometimes don't have textures
+ *
+ *?
 std::vector<std::string> OBJ2Model::moreTokenize(const std::string& string, const std::string& delimiters, const std::string::size_type& startingPoint)
 {
 	std::vector<std::string> tokens;
