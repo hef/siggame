@@ -94,7 +94,7 @@ ModelSceneNode OBJ2Model::file( std::string const filename )
 		}
 		else if ( tokens[0] == "mtllib" )
 		{
-			materialMap = mtl2materials( tokens[1] );
+			materialMap = mtl2materials( "data/models/" + tokens[1] );
 		}
 	} //eof
 	meshVector.push_back( Mesh( materialMap[previousMaterial], faces ));

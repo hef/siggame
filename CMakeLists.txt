@@ -20,6 +20,7 @@ set(SOURCES
 	src/Vertex.cpp
 	src/World.cpp
 	)
+file(GLOB_RECURSE DATA data)
 IF(APPLE)
 	set(SOURCES ${SOURCES} src/SDLMain.m)
 ENDIF(APPLE)
@@ -32,7 +33,7 @@ INCLUDE_DIRECTORIES(${SDL_INCLUDE_DIR})
 INCLUDE_DIRECTORIES(${SDLMIXER_INCLUDE_DIR})
 add_executable(
 	siggame
-	MACOSX_BUNDLE
+	#MACOSX_BUNDLE
 	${SOURCES}
 	)
 target_link_libraries(
@@ -46,6 +47,10 @@ INSTALL(TARGETS siggame
 	BUNDLE DESTINATION "/Applications"
 	RUNTIME DESTINATION bin
 	)
+INSTALL(
+	FILES ${DATA}
+	)
+set(CPACK_BUNDLE_NAME ${CMAKE_PROJECT_NAME})
 add_custom_command(
 		TARGET siggame
 		POST_BUILD
