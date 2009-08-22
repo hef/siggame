@@ -1,5 +1,5 @@
 #include "Vector3f.h"
-#include <Math.h>
+#include <math.h>
 #include <iostream>
 Vector3f::Vector3f()
 {
