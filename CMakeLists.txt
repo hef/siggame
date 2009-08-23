@@ -51,6 +51,7 @@ INSTALL(
 	FILES ${DATA}
 	)
 set(CPACK_BUNDLE_NAME ${CMAKE_PROJECT_NAME})
+set(CPACK_BUNDLE_PLIST contrib/Info.plist)
 add_custom_command(
 		TARGET siggame
 		POST_BUILD
