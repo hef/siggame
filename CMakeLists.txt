@@ -20,10 +20,12 @@ set(SOURCES
 	src/Vertex.cpp
 	src/World.cpp
 	)
-file(GLOB_RECURSE DATA data)
+#in order for sdl to use cocoa on apple we need this file
 IF(APPLE)
 	set(SOURCES ${SOURCES} src/SDLMain.m)
 ENDIF(APPLE)
+#resources/assets/whatever
+file(GLOB_RECURSE DATAFILES	data/*)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wconversion")
 Find_Package(SDL REQUIRED)
 Find_Package(SDL_mixer REQUIRED)
@@ -44,21 +46,24 @@ target_link_libraries(
 	#SDLmain
 	)
 INSTALL(TARGETS siggame
-	BUNDLE DESTINATION "/Applications"
+	#BUNDLE DESTINATION "/Applications"
 	RUNTIME DESTINATION bin
 	)
 INSTALL(
-	FILES ${DATA}
+	FILES ${DATAFILES}
+	DESTINATION data
 	)
 add_custom_command(
 		TARGET siggame
 		POST_BUILD
 		COMMAND ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/data ${PROJECT_BINARY_DIR}/data
+		COMMAND ${CMAKE_COMMAND} -E echo ${DATAFILES}
 )
 
 ##cpack stuff
 set(CPACK_BUNDLE_NAME ${CMAKE_PROJECT_NAME})
 set(CPACK_BUNDLE_PLIST ${PROJECT_SOURCE_DIR}/contrib/Info.plist)
 set(CPACK_BUNDLE_ICON  ${PROJECT_SOURCE_DIR}/contrib/siggame.icns)
+set(CPACK_BUNDLE_STARTUP_COMMAND siggame)
 #SET(CPACK_GENERATOR "DragNDrop")
 INCLUDE(CPack)
