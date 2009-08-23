@@ -50,8 +50,6 @@ INSTALL(TARGETS siggame
 INSTALL(
 	FILES ${DATA}
 	)
-set(CPACK_BUNDLE_NAME ${CMAKE_PROJECT_NAME})
-set(CPACK_BUNDLE_PLIST contrib/Info.plist)
 add_custom_command(
 		TARGET siggame
 		POST_BUILD
@@ -59,5 +57,8 @@ add_custom_command(
 )
 
 ##cpack stuff
+set(CPACK_BUNDLE_NAME ${CMAKE_PROJECT_NAME})
+set(CPACK_BUNDLE_PLIST ${PROJECT_SOURCE_DIR}/contrib/Info.plist)
+set(CPACK_BUNDLE_ICON  ${PROJECT_SOURCE_DIR}/contrib/siggame.icns)
 #SET(CPACK_GENERATOR "DragNDrop")
 INCLUDE(CPack)
