@@ -25,7 +25,7 @@ IF(APPLE)
 	set(SOURCES ${SOURCES} src/SDLMain.m)
 ENDIF(APPLE)
 #resources/assets/whatever
-file(GLOB_RECURSE DATAFILES	data/*)
+file(GLOB DATAFILES	data/*)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wconversion")
 Find_Package(SDL REQUIRED)
 Find_Package(SDL_mixer REQUIRED)

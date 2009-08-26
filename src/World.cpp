@@ -13,7 +13,7 @@ World* World::getInstance()
 
 World::World()
 {
-	pShipModel = new ModelSceneNode(OBJ2Model::file("data/models/spaceShip.obj"));
+	pShipModel = new ModelSceneNode(OBJ2Model::file("spaceShip.obj"));
 	Actor* pRock = new AsteroidActor
 	(
 		"Asteroid_1",
