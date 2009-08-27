@@ -1,4 +1,16 @@
 #include "World.h"
+
+World* World::pInstance = NULL;
+
+World* World::getInstance()
+{
+	if( pInstance == NULL )
+	{
+		pInstance = new World;
+	}
+	return pInstance;
+}
+
 World::World()
 {
 	pShipModel = new ModelSceneNode(OBJ2Model::file("data/models/spaceShip.obj"));
@@ -57,6 +69,11 @@ World::~World()
 	{
 		delete *i;
 	}
+}
+
+void World::destroy()
+{
+	delete pInstance;
 }
 
 const vector< Actor* >& World::getActors() const

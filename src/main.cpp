@@ -17,7 +17,7 @@ int main( int argc, char **argv )
 	AudioSystem* audio = AudioSystem::getInstance();
 	PhysicsEngine* p = PhysicsEngine::Instance();
 	Input* input = Input::Instance();
-	World w;
+	World* w = World::getInstance();
 	audio->addSound( "Mac.wav" );
 	audio->addSound( "doh.wav" );
 	audio->playSound( "Mac.wav" );
@@ -35,10 +35,10 @@ int main( int argc, char **argv )
 		input->tick( dt );
 		bShouldExit = input->escKeyDown();
 		//process world logic
-		w.tick( dt );
-		p->applyPhysics( w );
+		w->tick( dt );
+		p->applyPhysics( *w );
 		//Rerender the world every iteration
-		r->render( w );
+		r->render( *w );
 	}
 	while ( !bShouldExit );
 	//delete the instances
@@ -46,6 +46,7 @@ int main( int argc, char **argv )
 	p->destroy();
 	input->destroy();
 	r->destroy();
+	w->destroy();
 	return EXIT_SUCCESS;
 }
 
