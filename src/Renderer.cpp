@@ -129,8 +129,8 @@ void Renderer::initGL( GLsizei width, GLsizei height )
 
 	// Create light components
 	float ambientLight[] = { 0.2f, 0.2f, 0.2f, 1.0f };
-	float diffuseLight[] = { 1.0f, 0.3f, 0.0f, 1.0f };
-	float specularLight[] = { 0.0f, 0.0f, 0.8f, 1.0f };
+	float diffuseLight[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+	float specularLight[] = { 0.5f, 0.5f, 0.5f, 1.0f };
 	float position[] = { 0.0f, 0.0f, -100.0f, 1.0f };
 	//
 	glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
