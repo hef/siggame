@@ -29,10 +29,18 @@ void ModelSceneNode::render() const
 		   std::cout << "shininess: ";
 		   std::cout << i->getMaterial().getShininess() << std::endl;
 		 */
-		glMaterialfv( GL_FRONT, GL_AMBIENT, i->getMaterial().getAmbientColor().elementArray );
+		//TODO sotre this is a 4 element array later
+		float ambientMaterial[4] = 
+		{
+			i->getMaterial().getAmbientColor().elementArray[0],
+			i->getMaterial().getAmbientColor().elementArray[1],
+			i->getMaterial().getAmbientColor().elementArray[2],
+			1.0f
+		};
+		glMaterialfv( GL_FRONT, GL_AMBIENT, ambientMaterial );
 		glMaterialfv( GL_FRONT, GL_DIFFUSE, i->getMaterial().getDiffuseColor().elementArray );
 		glMaterialfv( GL_FRONT, GL_SPECULAR, i->getMaterial().getSpecularColor().elementArray );
-		glMaterialf( GL_FRONT, GL_SHININESS, i->getMaterial().getShininess());
+		glMaterialf( GL_FRONT, GL_SHININESS, i->getMaterial().getShininess() * 128.0f );
 
 		std::vector< std::vector<int> >::const_iterator j;
 		for ( j = i->getVertexIndex().begin(); j != i->getVertexIndex().end(); ++j )
