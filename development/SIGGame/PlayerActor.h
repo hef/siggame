@@ -2,6 +2,8 @@
 #define PLAYACT_H
 #include "Actor.h"
 #include "Input.h"
+#include "World.h"
+#include "AsteroidActor.h"
 #include <math.h>
 
 class PlayerActor : public Actor
