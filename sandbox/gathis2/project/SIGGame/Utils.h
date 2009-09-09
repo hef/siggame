@@ -1,18 +1,18 @@
-#ifndef UTILITIES_H
-#define UTILITIES_H
+#ifndef UTILS_H
+#define UTILS_H
 
 #include <iostream>
 
 using namespace std;
 
-class Utilities //Sample Class for the C++ Tutorial 
+class Utils //Sample Class for the C++ Tutorial 
    {
          public: 
-         Utilities() //Constructor for the C++ tutorial 
+         Utils() //Constructor for the C++ tutorial 
          { 
              cout<< "Constructor" << endl;
          }
-       ~Utilities() //destructor for the C++ Tutorial 
+       ~Utils() //destructor for the C++ Tutorial 
        { cout<< "Constructor" << endl; } 
       
 }; 
