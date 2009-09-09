@@ -5,5 +5,7 @@
 int main()           
 {
 	Utils U;
+	cout<<endl;
+	cout<<U.sumUp(5);
 	getch();
 }
