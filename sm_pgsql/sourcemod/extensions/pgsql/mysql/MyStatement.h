@@ -49,7 +49,7 @@ struct ParamBind
 class MyStatement : public IPreparedQuery
 {
 public:
-	MyStatement(MyDatabase *db, MYSQL_STMT *stmt);
+	MyStatement(MyDatabase *db /*, MYSQL_STMT *stmt*/);
 	~MyStatement();
 public: //IQuery
 	IResultSet *GetResultSet();
@@ -68,11 +68,13 @@ public: //IPreparedQuery
 private:
 	void *CopyBlob(unsigned int param, const void *blobptr, size_t length);
 private:
-	MYSQL *m_mysql;
+	//@TODO: Fix Me
+	//MYSQL *m_mysql;
 	MyDatabase *m_pParent;
-	MYSQL_STMT *m_stmt;
-	MYSQL_BIND *m_bind;
-	MYSQL_RES *m_pRes;
+	//@TODO: Fix Me
+	//MYSQL_STMT *m_stmt;
+	//MYSQL_BIND *m_bind;
+	//MYSQL_RES *m_pRes;
 	ParamBind *m_pushinfo;
 	unsigned int m_Params;
 	MyBoundResults *m_rs;

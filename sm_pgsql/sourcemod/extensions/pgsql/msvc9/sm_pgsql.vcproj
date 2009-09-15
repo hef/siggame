@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..;..\sdk;..\..\..\public;..\..\..\public\sourcepawn;&quot;$(MMSOURCE17)\core\sourcehook&quot;;&quot;$(MYSQL5)\include&quot;"
+				AdditionalIncludeDirectories="..;..\sdk;..\..\..\public;..\..\..\public\sourcepawn;&quot;$(MMSOURCE17)\core\sourcehook&quot;;&quot;$(POSTGRES)\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SDK_EXPORTS;_CRT_SECURE_NO_DEPRECATE;SOURCEMOD_BUILD"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -66,8 +66,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib &quot;$(MYSQL5)\lib\opt\mysqlclient.lib&quot; zlib.lib"
-				OutputFile="$(OutDir)\dbi.mysql.ext.dll"
+				AdditionalDependencies="wsock32.lib &quot;$(POSTGRES)\lib\libpq.lib&quot; ..\zlib\zlib.lib"
+				OutputFile="$(OutDir)\dbi.pqsql.ext.dll"
 				LinkIncremental="2"
 				IgnoreDefaultLibraryNames="LIBC;LIBCD;LIBCMT"
 				GenerateDebugInformation="true"
@@ -124,7 +124,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="..;..\sdk;..\..\..\public;..\..\..\public\sourcepawn;&quot;$(MMSOURCE17)\core\sourcehook&quot;;&quot;$(MYSQL5)\include&quot;"
+				AdditionalIncludeDirectories="..;..\sdk;..\..\..\public;..\..\..\public\sourcepawn;&quot;$(MMSOURCE17)\core\sourcehook&quot;;&quot;$(POSTGRES)\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;SDK_EXPORTS;_CRT_SECURE_NO_DEPRECATE;SOURCEMOD_BUILD"
 				RuntimeLibrary="0"
 				StructMemberAlignment="3"
@@ -147,8 +147,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib &quot;$(MYSQL5)\lib\opt\mysqlclient.lib&quot;"
-				OutputFile="$(OutDir)\dbi.mysql.ext.dll"
+				AdditionalDependencies="wsock32.lib &quot;$(POSTGRES)\lib\libpq.lib&quot;"
+				OutputFile="$(OutDir)\dbi.pqsql.ext.dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="LIBC;LIBCD;LIBCMTD"
 				GenerateDebugInformation="true"

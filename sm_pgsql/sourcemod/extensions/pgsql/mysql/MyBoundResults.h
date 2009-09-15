@@ -38,7 +38,8 @@ class MyStatement;
 
 struct ResultBind
 {
-	my_bool my_null;
+	//@TODO: Fix Me
+	//my_bool my_null;
 	unsigned long my_length;
 	union
 	{
@@ -55,7 +56,8 @@ class MyBoundResults :
 {
 	friend class MyStatement;
 public:
-	MyBoundResults(MYSQL_STMT *stmt, MYSQL_RES *res);
+	//@TODO: Fix Me
+	MyBoundResults(/*MYSQL_STMT *stmt, MYSQL_RES *res*/);
 	~MyBoundResults();
 public: //IResultSet
 	unsigned int GetRowCount();
@@ -84,14 +86,13 @@ public:
 	bool Initialize();
 	void Update();
 private:
-	bool RefetchField(MYSQL_STMT *stmt, 
-		unsigned int id,
-		size_t initSize,
-		enum_field_types type);
+	//@TODO: Fix Me
+	bool RefetchField(/*MYSQL_STMT *stmt, */ unsigned int id, size_t initSize /*, enum_field_types type*/);
 private:
-	MYSQL_STMT *m_stmt;
-	MYSQL_RES *m_pRes;
-	MYSQL_BIND *m_bind;
+	//@TODO: Fix Me
+	//MYSQL_STMT *m_stmt;
+	//MYSQL_RES *m_pRes;
+	//MYSQL_BIND *m_bind;
 	ResultBind *m_pull;
 	unsigned int m_ColCount;
 	bool m_Initialized;

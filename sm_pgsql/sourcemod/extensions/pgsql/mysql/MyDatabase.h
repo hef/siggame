@@ -43,7 +43,7 @@ class MyDatabase : public IDatabase
 	friend class MyQuery;
 	friend class MyStatement;
 public:
-	MyDatabase(MYSQL *mysql, const DatabaseInfo *info, bool persistent);
+	MyDatabase(PGconn *pgsql, const DatabaseInfo *info, bool persistent);
 	~MyDatabase();
 public: //IDatabase
 	bool Close();
@@ -63,7 +63,7 @@ public: //IDatabase
 public:
 	const DatabaseInfo &GetInfo();
 private:
-	MYSQL *m_mysql;
+	PGconn *m_pgsql;
 	unsigned int m_refcount;
 	IMutex *m_pFullLock;
 	IMutex *m_pRefLock;
@@ -77,6 +77,7 @@ private:
 	bool m_bPersistent;
 };
 
-DBType GetOurType(enum_field_types type);
+//@TODO: Fix Me
+DBType GetOurType(/*enum_field_types type*/);
 
 #endif //_INCLUDE_SM_MYSQL_DATABASE_H_

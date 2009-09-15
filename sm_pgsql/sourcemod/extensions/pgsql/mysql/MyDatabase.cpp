@@ -34,8 +34,11 @@
 #include "MyBasicResults.h"
 #include "MyStatement.h"
 
-DBType GetOurType(enum_field_types type)
+//@TODO: Fix Me
+DBType GetOurType(/*enum_field_types type*/)
 {
+	//@TODO: Fix Me
+	/*
 	switch (type)
 	{
 	case MYSQL_TYPE_DOUBLE:
@@ -82,12 +85,12 @@ DBType GetOurType(enum_field_types type)
 			return DBType_String;
 		}
 	}
-
+	*/
 	return DBType_Unknown;
 }
 
-MyDatabase::MyDatabase(MYSQL *mysql, const DatabaseInfo *info, bool persistent)
-: m_mysql(mysql), m_refcount(1), m_pFullLock(NULL), m_bPersistent(persistent)
+MyDatabase::MyDatabase(PGconn *pgsql, const DatabaseInfo *info, bool persistent)
+: m_pgsql(pgsql), m_refcount(1), m_pFullLock(NULL), m_bPersistent(persistent)
 {
 	m_Host.assign(info->host);
 	m_Database.assign(info->database);
@@ -107,8 +110,9 @@ MyDatabase::MyDatabase(MYSQL *mysql, const DatabaseInfo *info, bool persistent)
 
 MyDatabase::~MyDatabase()
 {
-	mysql_close(m_mysql);
-	m_mysql = NULL;
+	//@TODO: Fix me
+	//mysql_close(m_mysql);
+	m_pgsql = NULL;
 
 	m_pRefLock->DestroyThis();
 	if (m_pFullLock)
@@ -154,22 +158,29 @@ const DatabaseInfo &MyDatabase::GetInfo()
 
 unsigned int MyDatabase::GetInsertID()
 {
-	return (unsigned int)mysql_insert_id(m_mysql);
+	//@TODO: Fix me
+	//return (unsigned int)mysql_insert_id(m_mysql);
+	return 0;
 }
 
 unsigned int MyDatabase::GetAffectedRows()
 {
-	return (unsigned int)mysql_affected_rows(m_mysql);
+	//@TODO: Fix me
+	//return (unsigned int)mysql_affected_rows(m_mysql);
+	return 0;
 }
 
 const char *MyDatabase::GetError(int *errCode)
 {
 	if (errCode)
 	{
-		*errCode = mysql_errno(m_mysql);
+		//@TODO: Fix me
+		//*errCode = mysql_errno(m_mysql);
 	}
 
-	return mysql_error(m_mysql);
+	//@TODO: Fix me
+	//return mysql_error(m_mysql);
+	return "";
 }
 
 bool MyDatabase::QuoteString(const char *str, char buffer[], size_t maxlength, size_t *newSize)
@@ -186,7 +197,8 @@ bool MyDatabase::QuoteString(const char *str, char buffer[], size_t maxlength, s
 		return false;
 	}
 
-	needed = mysql_real_escape_string(m_mysql, buffer, str, size);
+	//@TODO: Fix me
+	//needed = mysql_real_escape_string(m_mysql, buffer, str, size);
 	if (newSize)
 	{
 		*newSize = (size_t)needed;
@@ -208,22 +220,26 @@ bool MyDatabase::DoSimpleQuery(const char *query)
 
 IQuery *MyDatabase::DoQuery(const char *query)
 {
-	if (mysql_real_query(m_mysql, query, strlen(query)) != 0)
+	//@TODO: Fix me
+	if (TRUE /*mysql_real_query(m_mysql, query, strlen(query)) != 0*/ )
 	{
 		return NULL;
 	}
 
-	MYSQL_RES *res = NULL;
-	if (mysql_field_count(m_mysql))
-	{
-		res = mysql_store_result(m_mysql);
-		if (!res)
-		{
-			return NULL;
-		}
-	}
+	//@TODO: Fix me
+	//MYSQL_RES *res = NULL;
+	//if (mysql_field_count(m_mysql))
+	//{
+	//	res = mysql_store_result(m_mysql);
+	//	if (!res)
+	//	{
+	//		return NULL;
+	//	}
+	//}
 
-	return new MyQuery(this, res);
+	//@TODO: Fix me
+	//return new MyQuery(this, res);
+	return NULL;
 }
 
 bool MyDatabase::DoSimpleQueryEx(const char *query, size_t len)
@@ -239,53 +255,61 @@ bool MyDatabase::DoSimpleQueryEx(const char *query, size_t len)
 
 IQuery *MyDatabase::DoQueryEx(const char *query, size_t len)
 {
-	if (mysql_real_query(m_mysql, query, len) != 0)
+	//@TODO: Fix me
+	if ( TRUE /*mysql_real_query(m_mysql, query, len) != 0*/ )
 	{
 		return NULL;
 	}
 
-	MYSQL_RES *res = NULL;
-	if (mysql_field_count(m_mysql))
-	{
-		res = mysql_store_result(m_mysql);
-		if (!res)
-		{
-			return NULL;
-		}
-	}
+	//@TODO: Fix me
+	//MYSQL_RES *res = NULL;
+	//if (mysql_field_count(m_mysql))
+	//{
+	//	res = mysql_store_result(m_mysql);
+	//	if (!res)
+	//	{
+	//		return NULL;
+	//	}
+	//}
 
-	return new MyQuery(this, res);
+	//@TODO: Fix me
+	//return new MyQuery(this, res);
+	return NULL;
 }
 
 IPreparedQuery *MyDatabase::PrepareQuery(const char *query, char *error, size_t maxlength, int *errCode)
 {
-	MYSQL_STMT *stmt = mysql_stmt_init(m_mysql);
-	if (!stmt)
-	{
-		if (error)
-		{
-			strncopy(error, GetError(errCode), maxlength);
-		} else if (errCode) {
-			*errCode = mysql_errno(m_mysql);
-		}
-		return NULL;
-	}
+	//@TODO: Fix me
+	//MYSQL_STMT *stmt = mysql_stmt_init(m_mysql);
+	//if (!stmt)
+	//{
+	//	if (error)
+	//	{
+	//		strncopy(error, GetError(errCode), maxlength);
+	//	} else if (errCode) {
+	//		*errCode = mysql_errno(m_mysql);
+	//	}
+	//	return NULL;
+	//}
 
-	if (mysql_stmt_prepare(stmt, query, strlen(query)) != 0)
-	{
-		if (error)
-		{
-			strncopy(error, mysql_stmt_error(stmt), maxlength);
-		}
-		if (errCode)
-		{
-			*errCode = mysql_stmt_errno(stmt);
-		}
-		mysql_stmt_close(stmt);
-		return NULL;
-	}
+	//@TODO: Fix me
+	//if (mysql_stmt_prepare(stmt, query, strlen(query)) != 0)
+	//{
+	//	if (error)
+	//	{
+	//		strncopy(error, mysql_stmt_error(stmt), maxlength);
+	//	}
+	//	if (errCode)
+	//	{
+	//		*errCode = mysql_stmt_errno(stmt);
+	//	}
+	//	mysql_stmt_close(stmt);
+	//	return NULL;
+	//}
 
-	return new MyStatement(this, stmt);
+	//@TODO: Fix me
+	//return new MyStatement(this, stmt);
+	return NULL;
 }
 
 bool MyDatabase::LockForFullAtomicOperation()

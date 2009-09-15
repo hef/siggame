@@ -68,7 +68,7 @@ void MyDriver::Shutdown()
 
 const char *MyDriver::GetIdentifier()
 {
-	return "mysql";
+	return "pgsql";
 }
 
 Handle_t MyDriver::GetHandle()
@@ -91,21 +91,24 @@ const char *MyDriver::GetProductName()
 	return "MySQL";
 }
 
-MYSQL *Connect(const DatabaseInfo *info, char *error, size_t maxlength)
+PGconn *Connect(const DatabaseInfo *info, char *error, size_t maxlength)
 {
-	MYSQL *mysql = mysql_init(NULL);
+	//@TODO: Fix me
+	//MYSQL *mysql = mysql_init(NULL);
 	const char *host = NULL, *socket = NULL;
 
 	if (info->maxTimeout > 0)
 	{
-		mysql_options(mysql, MYSQL_OPT_CONNECT_TIMEOUT, (const char *)&(info->maxTimeout));
+		//@TODO: Fix me
+		//mysql_options(mysql, MYSQL_OPT_CONNECT_TIMEOUT, (const char *)&(info->maxTimeout));
 	}
 
 	/* Have MySQL automatically reconnect if it times out or loses connection.
 	 * This will prevent "MySQL server has gone away" errors after a while.
 	 */
-	my_bool my_true = true;
-	mysql_options(mysql, MYSQL_OPT_RECONNECT, (const char *)&my_true);
+	//@TODO: Fix me
+	//my_bool my_true = true;
+	//mysql_options(mysql, MYSQL_OPT_RECONNECT, (const char *)&my_true);
 
 	if (info->host[0] == '/')
 	{
@@ -118,22 +121,25 @@ MYSQL *Connect(const DatabaseInfo *info, char *error, size_t maxlength)
 		socket = NULL;
 	}
 
-	if (!mysql_real_connect(mysql,
-		host,
-		info->user, 
-		info->pass,
-		info->database,
-		info->port,
-		socket,
-		M_CLIENT_MULTI_RESULTS))
-	{
-		/* :TODO: expose UTIL_Format from smutil! */
-		snprintf(error, maxlength, "[%d]: %s", mysql_errno(mysql), mysql_error(mysql));
-		mysql_close(mysql);
-		return NULL;
-	}
+	//@TODO: Fix me
+	//if (!mysql_real_connect(mysql,
+	//	host,
+	//	info->user, 
+	//	info->pass,
+	//	info->database,
+	//	info->port,
+	//	socket,
+	//	M_CLIENT_MULTI_RESULTS))
+	//{
+	//	/* :TODO: expose UTIL_Format from smutil! */
+	//	snprintf(error, maxlength, "[%d]: %s", mysql_errno(mysql), mysql_error(mysql));
+	//	mysql_close(mysql);
+	//	return NULL;
+	//}
 
-	return mysql;
+	//@TODO: Fix me
+	//return mysql;
+	return NULL;
 }
 
 bool CompareField(const char *str1, const char *str2)
@@ -176,13 +182,15 @@ IDatabase *MyDriver::Connect(const DatabaseInfo *info, bool persistent, char *er
 		}
 	}
 
-	MYSQL *mysql = ::Connect(info, error, maxlength);
-	if (!mysql)
-	{
-		return NULL;
-	}
+	//@TODO: Fix me
+	//MYSQL *mysql = ::Connect(info, error, maxlength);
+	//if (!mysql)
+	//{
+	//	return NULL;
+	//}
 
-	MyDatabase *db = new MyDatabase(mysql, info, persistent);
+	//@TODO: Fix me
+	MyDatabase *db = new MyDatabase(NULL, info, persistent);
 
 	if (persistent)
 	{
@@ -202,17 +210,22 @@ void MyDriver::RemoveFromList(MyDatabase *pdb, bool persistent)
 
 bool MyDriver::IsThreadSafe()
 {
-	return (mysql_thread_safe() != 0);
+	//@TODO: Fix me
+	//return (mysql_thread_safe() != 0);
+	return false;
 }
 
 bool MyDriver::InitializeThreadSafety()
 {
-	return (mysql_thread_init() == 0);
+	//@TODO: Fix me
+	//return (mysql_thread_init() == 0);
+	return false;
 }
 
 void MyDriver::ShutdownThreadSafety()
 {
-	mysql_thread_end();
+	//@TODO: Fix me
+	//mysql_thread_end();
 }
 
 unsigned int strncopy(char *dest, const char *src, size_t count)

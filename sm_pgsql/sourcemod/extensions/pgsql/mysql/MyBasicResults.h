@@ -42,7 +42,8 @@ class MyBasicResults :
 {
 	friend class MyQuery;
 public:
-	MyBasicResults(MYSQL_RES *res);
+	//@TODO: Fix Me
+	MyBasicResults(/*MYSQL_RES *res*/);
 	~MyBasicResults();
 public: //IResultSet
 	unsigned int GetRowCount();
@@ -70,9 +71,11 @@ public: //IResultRow
 protected:
 	void Update();
 private:
-	MYSQL_RES *m_pRes;
+	//@TODO: Fix Me
+	//MYSQL_RES *m_pRes;
 	unsigned int m_CurRow;
-	MYSQL_ROW m_Row;
+	//@TODO: Fix Me
+	//MYSQL_ROW m_Row;
 	unsigned long *m_Lengths;
 	unsigned int m_ColCount;
 	unsigned int m_RowCount;
@@ -82,7 +85,8 @@ class MyQuery : public IQuery
 {
 	friend class MyBasicResults;
 public:
-	MyQuery(MyDatabase *db, MYSQL_RES *res);
+	//@TODO: Fix Me
+	MyQuery(MyDatabase *db /*, MYSQL_RES *res*/);
 public:
 	IResultSet *GetResultSet();
 	bool FetchMoreResults();

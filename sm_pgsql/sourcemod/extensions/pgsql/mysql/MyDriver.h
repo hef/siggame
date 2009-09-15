@@ -38,7 +38,8 @@
 #include <winsock.h>
 #endif
 
-#include <mysql.h>
+//#include <mysql.h>
+#include <libpq-fe.h>
 
 #include <sh_string.h>
 #include <sh_list.h>

@@ -31,8 +31,9 @@
 #include <stdlib.h>
 #include "MyBasicResults.h"
 
-MyBasicResults::MyBasicResults(MYSQL_RES *res)
-: m_pRes(res)
+//@TODO: Fix Me
+MyBasicResults::MyBasicResults(/*MYSQL_RES *res*/)
+//: m_pRes(res)
 {
 	Update();
 }
@@ -43,12 +44,15 @@ MyBasicResults::~MyBasicResults()
 
 void MyBasicResults::Update()
 {
-	if (m_pRes)
+	//@TODO: Fix Me
+	//if (m_pRes)
 	{
-		m_ColCount = (unsigned int)mysql_num_fields(m_pRes);
-		m_RowCount = (unsigned int)mysql_num_rows(m_pRes);
+		//@TODO: Fix Me
+		//m_ColCount = (unsigned int)mysql_num_fields(m_pRes);
+		//m_RowCount = (unsigned int)mysql_num_rows(m_pRes);
 		m_CurRow = 0;
-		m_Row = NULL;
+		//@TODO: Fix Me
+		//m_Row = NULL;
 	}
 }
 
@@ -85,8 +89,10 @@ const char *MyBasicResults::FieldNumToName(unsigned int colId)
 		return NULL;
 	}
 
-	MYSQL_FIELD *field = mysql_fetch_field_direct(m_pRes, colId);
-	return field ? (field->name ? field->name : "") : "";
+	//@TODO: Fix me
+	//MYSQL_FIELD *field = mysql_fetch_field_direct(m_pRes, colId);
+	//return field ? (field->name ? field->name : "") : "";
+	return "";
 }
 
 bool MyBasicResults::MoreRows()
@@ -102,15 +108,19 @@ IResultRow *MyBasicResults::FetchRow()
 		m_CurRow = m_RowCount + 1;
 		return NULL;
 	}
-	m_Row = mysql_fetch_row(m_pRes);
-	m_Lengths = mysql_fetch_lengths(m_pRes);
+
+	//@TODO: Fix me
+	//m_Row = mysql_fetch_row(m_pRes);
+	//m_Lengths = mysql_fetch_lengths(m_pRes);
+
 	m_CurRow++;
 	return this;
 }
 
 IResultRow *MyBasicResults::CurrentRow()
 {
-	if (!m_pRes
+	//@TODO: Fix Me
+	if (/*!m_pRes*/ TRUE
 		|| !m_CurRow
 		|| m_CurRow > m_RowCount)
 	{
@@ -122,7 +132,8 @@ IResultRow *MyBasicResults::CurrentRow()
 
 bool MyBasicResults::Rewind()
 {
-	mysql_data_seek(m_pRes, 0);
+	//@TODO: Fix me
+	//mysql_data_seek(m_pRes, 0);
 	m_CurRow = 0;
 	return true;
 }
@@ -134,13 +145,15 @@ DBType MyBasicResults::GetFieldType(unsigned int field)
 		return DBType_Unknown;
 	}
 
-	MYSQL_FIELD *fld = mysql_fetch_field_direct(m_pRes, field);
-	if (!fld)
+	//@TODO: Fix me
+	//MYSQL_FIELD *fld = mysql_fetch_field_direct(m_pRes, field);
+	if ( TRUE /*!fld*/ )
 	{
 		return DBType_Unknown;
 	}
 
-	return GetOurType(fld->type);
+	//@TODO: Fix Me
+	return GetOurType(/*fld->type*/);
 }
 
 DBType MyBasicResults::GetFieldDataType(unsigned int field)
@@ -161,7 +174,8 @@ bool MyBasicResults::IsNull(unsigned int columnId)
 		return true;
 	}
 
-	return (m_Row[columnId] == NULL);
+	//@TODO: Fix Me
+	return FALSE; //(m_Row[columnId] == NULL);
 }
 
 DBResult MyBasicResults::GetString(unsigned int columnId, const char **pString, size_t *length)
@@ -169,7 +183,10 @@ DBResult MyBasicResults::GetString(unsigned int columnId, const char **pString, 
 	if (columnId >= m_ColCount)
 	{
 		return DBVal_Error;
-	} else if (m_Row[columnId] == NULL) {
+	} 
+	//@TODO: Fix Me
+	else if (FALSE /*m_Row[columnId] == NULL*/) 
+	{
 		*pString = "";
 		if (length)
 		{
@@ -178,7 +195,8 @@ DBResult MyBasicResults::GetString(unsigned int columnId, const char **pString, 
 		return DBVal_Null;
 	}
 
-	*pString = m_Row[columnId];
+	//@TODO: Fix Me
+	//*pString = m_Row[columnId];
 
 	if (length)
 	{
@@ -224,12 +242,16 @@ DBResult MyBasicResults::GetFloat(unsigned int col, float *fval)
 	if (col >= m_ColCount)
 	{
 		return DBVal_Error;
-	} else if (m_Row[col] == NULL) {
+	} 
+	//@TODO: Fix Me
+	else if (FALSE /*m_Row[col] == NULL*/) 
+	{
 		*fval = 0.0f;
 		return DBVal_Null;
 	}
 
-	*fval = (float)atof(m_Row[col]);
+	//@TODO: Fix Me
+	//*fval = (float)atof(m_Row[col]);
 
 	return DBVal_Data;
 }
@@ -239,12 +261,16 @@ DBResult MyBasicResults::GetInt(unsigned int col, int *val)
 	if (col >= m_ColCount)
 	{
 		return DBVal_Error;
-	} else if (m_Row[col] == NULL) {
+	}
+	//@TODO: Fix Me
+	else if (FALSE /*m_Row[col] == NULL*/) 
+	{
 		*val = 0;
 		return DBVal_Null;
 	}
 
-	*val = atoi(m_Row[col]);
+	//@TODO: Fix Me
+	//*val = atoi(m_Row[col]);
 
 	return DBVal_Data;
 }
@@ -254,7 +280,10 @@ DBResult MyBasicResults::GetBlob(unsigned int col, const void **pData, size_t *l
 	if (col >= m_ColCount)
 	{
 		return DBVal_Error;
-	} else if (m_Row[col] == NULL) {
+	} 
+	//@TODO: Fix Me
+	else if (FALSE /*m_Row[col] == NULL*/) 
+	{
 		*pData = NULL;
 		if (length)
 		{
@@ -263,7 +292,8 @@ DBResult MyBasicResults::GetBlob(unsigned int col, const void **pData, size_t *l
 		return DBVal_Null;
 	}
 
-	*pData = m_Row[col];
+	//@TODO: Fix Me
+	//*pData = m_Row[col];
 
 	if (length)
 	{
@@ -303,15 +333,17 @@ DBResult MyBasicResults::CopyBlob(unsigned int columnId, void *buffer, size_t ma
 	return res;
 }
 
-MyQuery::MyQuery(MyDatabase *db, MYSQL_RES *res)
-: m_pParent(db), m_rs(res)
+//@TODO: Fix Me
+MyQuery::MyQuery(MyDatabase *db /*, MYSQL_RES *res */)
+: m_pParent(db) //, m_rs(res)
 {
 	m_pParent->IncReferenceCount();
 }
 
 IResultSet *MyQuery::GetResultSet()
 {
-	if (m_rs.m_pRes == NULL)
+	//@TODO: Fix Me
+	if (TRUE /*m_rs.m_pRes == NULL*/)
 	{
 		return NULL;
 	}
@@ -321,25 +353,36 @@ IResultSet *MyQuery::GetResultSet()
 
 bool MyQuery::FetchMoreResults()
 {
-	if (m_rs.m_pRes == NULL)
-	{
-		return false;
-	} else if (!mysql_more_results(m_pParent->m_mysql)) {
-		return false;
-	}
-
-	mysql_free_result(m_rs.m_pRes);
-	m_rs.m_pRes = NULL;
-
-	if (mysql_next_result(m_pParent->m_mysql) != 0)
+	//@TODO: Fix Me
+	if (TRUE /*m_rs.m_pRes == NULL*/)
 	{
 		return false;
 	}
+	//@TODO: Fix me
+	//else if (!mysql_more_results(m_pParent->m_mysql)) {
+	//	return false;
+	//}
+	else
+	{
+		return false;
+	}
 
-	m_rs.m_pRes = mysql_store_result(m_pParent->m_mysql);
+	//@TODO: Fix me
+	//mysql_free_result(m_rs.m_pRes);
+	//m_rs.m_pRes = NULL;
+
+	//@TODO: Fix me
+	//if (mysql_next_result(m_pParent->m_mysql) != 0)
+	//{
+	//	return false;
+	//}
+
+	//@TODO: Fix me
+	//m_rs.m_pRes = mysql_store_result(m_pParent->m_mysql);
 	m_rs.Update();
 
-	return (m_rs.m_pRes != NULL);
+	//@TODO: Fix Me
+	return FALSE; //(m_rs.m_pRes != NULL);
 }
 
 void MyQuery::Destroy()
@@ -354,10 +397,11 @@ void MyQuery::Destroy()
 	}
 
 	/* Free the last, if any */
-	if (m_rs.m_pRes != NULL)
-	{
-		mysql_free_result(m_rs.m_pRes);
-	}
+	//@TODO: Fix Me
+	//if (m_rs.m_pRes != NULL)
+	//{
+	//	mysql_free_result(m_rs.m_pRes);
+	//}
 
 	/* Tell our parent we're done */
 	m_pParent->Close();

@@ -47,7 +47,8 @@ bool DBI_MySQL::SDK_OnLoad(char *error, size_t maxlength, bool late)
 {
 	dbi->AddDriver(&g_MyDriver);
 
-	my_init();
+	// @TODO: A PQSQL Equivalent?
+	//my_init();
 
 	return true;
 }
