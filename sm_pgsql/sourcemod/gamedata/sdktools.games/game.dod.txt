@@ -1,0 +1,90 @@
+"Games"
+{
+	/* Day of Defeat: Source */
+	"dod"
+	{
+		"Offsets"
+		{
+			"GiveNamedItem"
+			{
+				"windows"	"357"
+				"linux"		"358"
+			}
+			"RemovePlayerItem"
+			{
+				"windows"	"244"
+				"linux"		"245"
+			}
+			"Weapon_GetSlot"
+			{
+				"windows"	"242"
+				"linux"		"243"
+			}
+			"Ignite"
+			{
+				"windows"	"199"
+				"linux"		"200"
+			}
+			"Extinguish"
+			{
+				"windows"	"203"
+				"linux"		"204"
+			}
+			"Teleport"
+			{
+				"windows"	"105"
+				"linux"		"106"
+			}
+			"CommitSuicide"
+			{
+				"windows"	"396"
+				"linux"		"396"
+			}
+			"GetVelocity"
+			{
+				"windows"	"136"
+				"linux"		"137"
+			}
+			"EyeAngles"
+			{
+				"windows"	"127"
+				"linux"		"128"
+			}
+			"AcceptInput"
+			{
+				"windows"	"34"
+				"linux"		"35"
+			}
+			"DispatchKeyValue"
+			{
+				"windows"	"29"
+				"linux"		"28"
+			}
+			"DispatchKeyValueFloat"
+			{
+				"windows"	"28"
+				"linux"		"29"
+			}
+			"DispatchKeyValueVector"
+			{
+				"windows"	"27"
+				"linux"		"30"
+			}
+			"SetEntityModel"
+			{
+				"windows"	"23"
+				"linux"		"24"
+			}
+			"WeaponEquip"
+			{
+				"windows"	"235"
+				"linux"		"236"
+			}
+			"Activate"
+			{
+				"windows"	"31"
+				"linux"		"32"
+			}
+		}
+	}
+}
