@@ -1,7 +1,9 @@
 /**
  * vim: set ts=4 :
  * =============================================================================
- * SourceMod MySQL Extension
+ * SourceMod PgSQL Extension
+ * Copyright (C) 2009 Lyfe & Saganaki.
+ * Based on the SourceMod MySQL Extension -
  * Copyright (C) 2004-2008 AlliedModders LLC.  All rights reserved.
  * =============================================================================
  *
@@ -40,12 +42,12 @@
 #include "svn_version.h"
 
 /* Basic information exposed publicly */
-#define SMEXT_CONF_NAME			"MySQL-DBI"
-#define SMEXT_CONF_DESCRIPTION	"MySQL driver implementation for DBI"
+#define SMEXT_CONF_NAME			"PgSQL-DBI"
+#define SMEXT_CONF_DESCRIPTION	"PgSQL driver implementation for DBI"
 #define SMEXT_CONF_VERSION		SVN_FULL_VERSION
-#define SMEXT_CONF_AUTHOR		"AlliedModders LLC"
+#define SMEXT_CONF_AUTHOR		"Lyfe & Saganaki"
 #define SMEXT_CONF_URL			"http://www.sourcemod.net/"
-#define SMEXT_CONF_LOGTAG		"MYSQL"
+#define SMEXT_CONF_LOGTAG		"PGSQL"
 #define SMEXT_CONF_LICENSE		"GPL"
 #define SMEXT_CONF_DATESTRING	__DATE__ " " __TIME__
 
