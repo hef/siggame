@@ -1,7 +1,9 @@
 /**
  * vim: set ts=4 :
  * =============================================================================
- * SourceMod MySQL Extension
+ * SourceMod PgSQL Extension
+ * Copyright (C) 2009 Lyfe & Saganaki.
+ * Based on the SourceMod MySQL Extension -
  * Copyright (C) 2004-2008 AlliedModders LLC.  All rights reserved.
  * =============================================================================
  *
@@ -44,7 +46,7 @@
  * @brief Sample implementation of the SDK Extension.
  * Note: Uncomment one of the pre-defined virtual functions in order to use it.
  */
-class DBI_MySQL : public SDKExtension
+class DBI_PgSQL : public SDKExtension
 {
 public:
 	/**

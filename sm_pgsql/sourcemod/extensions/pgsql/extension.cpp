@@ -1,7 +1,9 @@
 /**
  * vim: set ts=4 :
  * =============================================================================
- * SourceMod MySQL Extension
+ * SourceMod PgSQL Extension
+ * Copyright (C) 2009 Lyfe & Saganaki.
+ * Based on the SourceMod MySQL Extension -
  * Copyright (C) 2004-2008 AlliedModders LLC.  All rights reserved.
  * =============================================================================
  *
@@ -30,7 +32,7 @@
  */
 
 #include "extension.h"
-#include "mysql/MyDriver.h"
+#include "pgsql/PgDriver.h"
 #include <assert.h>
 #include <stdlib.h>
 
@@ -39,23 +41,23 @@
  * @brief Implement extension code here.
  */
 
-DBI_MySQL g_MySqlDBI;		/**< Global singleton for extension's main interface */
+DBI_PgSQL g_PgSqlDBI;		/**< Global singleton for extension's main interface */
 
-SMEXT_LINK(&g_MySqlDBI);
+SMEXT_LINK(&g_PgSqlDBI);
 
-bool DBI_MySQL::SDK_OnLoad(char *error, size_t maxlength, bool late)
+bool DBI_PgSQL::SDK_OnLoad(char *error, size_t maxlength, bool late)
 {
-	dbi->AddDriver(&g_MyDriver);
+	dbi->AddDriver(&g_PgDriver);
 
-	// @TODO: A PQSQL Equivalent?
+	// @TODO: A PGSQL Equivalent?
 	//my_init();
 
 	return true;
 }
 
-void DBI_MySQL::SDK_OnUnload()
+void DBI_PgSQL::SDK_OnUnload()
 {
-	dbi->RemoveDriver(&g_MyDriver);
+	dbi->RemoveDriver(&g_PgDriver);
 	//:TODO: is this needed?
 	//mysql_library_end();
 }
