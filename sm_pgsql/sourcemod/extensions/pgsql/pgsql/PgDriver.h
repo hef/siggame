@@ -70,7 +70,7 @@ public:
 	void Shutdown();
 	void RemoveFromList(PgDatabase *pdb, bool persistent);
 private:
-	Handle_t m_MyHandle;
+	Handle_t m_PgHandle;
 	List<PgDatabase *> m_TempDbs;
 	List<PgDatabase *> m_PermDbs;
 };

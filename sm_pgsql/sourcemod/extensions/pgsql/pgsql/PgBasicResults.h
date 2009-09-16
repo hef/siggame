@@ -42,7 +42,7 @@ class PgBasicResults :
 	public IResultSet,
 	public IResultRow
 {
-	friend class MyQuery;
+	friend class PgQuery;
 public:
 	//@TODO: Fix Me
 	PgBasicResults(/*MYSQL_RES *res*/);

@@ -34,7 +34,7 @@
 #include "PgStatement.h"
 #include "PgBoundResults.h"
 
-PgStatement::PgStatement(MyDatabase *db /*, MYSQL_STMT *stmt*/)
+PgStatement::PgStatement(PgDatabase *db /*, MYSQL_STMT *stmt*/)
 : /*m_mysql(db->m_mysql),*/ m_pParent(db), /*m_stmt(stmt),*/ m_rs(NULL), m_Results(false)
 {
 	//@TODO: Fix Me

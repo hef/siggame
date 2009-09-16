@@ -80,7 +80,7 @@ Handle_t PgDriver::GetHandle()
 		m_PgHandle = dbi->CreateHandle(DBHandle_Driver, this, myself->GetIdentity());
 	}
 
-	return m_MyHandle;
+	return m_PgHandle;
 }
 
 IdentityToken_t *PgDriver::GetIdentity()
