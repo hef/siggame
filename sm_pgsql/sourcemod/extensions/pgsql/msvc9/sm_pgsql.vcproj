@@ -295,6 +295,14 @@
 				Name="Headers"
 				>
 				<File
+					RelativePath="..\pgsql\PgBasicResults.h"
+					>
+				</File>
+				<File
+					RelativePath="..\pgsql\PgBoundResults.h"
+					>
+				</File>
+				<File
 					RelativePath="..\pgsql\PgDatabase.h"
 					>
 				</File>
@@ -310,6 +318,14 @@
 			<Filter
 				Name="Sources"
 				>
+				<File
+					RelativePath="..\pgsql\PgBasicResults.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\pgsql\PgBoundResults.cpp"
+					>
+				</File>
 				<File
 					RelativePath="..\pgsql\PgDatabase.cpp"
 					>
