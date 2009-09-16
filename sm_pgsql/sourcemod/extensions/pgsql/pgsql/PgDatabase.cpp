@@ -104,8 +104,7 @@ PgDatabase::PgDatabase(PGconn *pgsql, const DatabaseInfo *info, bool persistent)
 
 PgDatabase::~PgDatabase()
 {
-	//@TODO: Fix me
-	//mysql_close(m_mysql);
+	PQfinish(m_pgsql);
 	m_pgsql = NULL;
 
 	m_pRefLock->DestroyThis();
@@ -152,6 +151,8 @@ const DatabaseInfo &PgDatabase::GetInfo()
 
 unsigned int PgDatabase::GetInsertID()
 {
+	//@TODO: Figure out how to make this work in postgres..
+	// postgress stores this information with the result set, not the DB.
 	//@TODO: Fix me
 	//return (unsigned int)mysql_insert_id(m_mysql);
 	return 0;
@@ -159,6 +160,8 @@ unsigned int PgDatabase::GetInsertID()
 
 unsigned int PgDatabase::GetAffectedRows()
 {
+	//@TODO: Figure out how to make this work in postgres..
+	// postgress stores this information with the result set, not the DB.
 	//@TODO: Fix me
 	//return (unsigned int)mysql_affected_rows(m_mysql);
 	return 0;
@@ -166,14 +169,12 @@ unsigned int PgDatabase::GetAffectedRows()
 
 const char *PgDatabase::GetError(int *errCode)
 {
+	// Pg doesn't actually store error codes, or reference by error code.
 	if (errCode)
 	{
-		//@TODO: Fix me
-		//*errCode = mysql_errno(m_mysql);
+		return PQerrorMessage(m_pgsql);
 	}
 
-	//@TODO: Fix me
-	//return mysql_error(m_mysql);
 	return "";
 }
 
@@ -191,8 +192,7 @@ bool PgDatabase::QuoteString(const char *str, char buffer[], size_t maxlength, s
 		return false;
 	}
 
-	//@TODO: Fix me
-	//needed = mysql_real_escape_string(m_mysql, buffer, str, size);
+	needed = PQescapeStringConn(m_pgsql, buffer, str, size);
 	if (newSize)
 	{
 		*newSize = (size_t)needed;
