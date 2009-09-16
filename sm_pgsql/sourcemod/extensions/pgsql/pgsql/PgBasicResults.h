@@ -45,7 +45,7 @@ class PgBasicResults :
 	friend class PgQuery;
 public:
 	//@TODO: Fix Me
-	PgBasicResults(/*MYSQL_RES *res*/);
+	PgBasicResults(PGresult *res);
 	~PgBasicResults();
 public: //IResultSet
 	unsigned int GetRowCount();
@@ -73,8 +73,7 @@ public: //IResultRow
 protected:
 	void Update();
 private:
-	//@TODO: Fix Me
-	//MYSQL_RES *m_pRes;
+	PGresult *m_pRes;
 	unsigned int m_CurRow;
 	//@TODO: Fix Me
 	//MYSQL_ROW m_Row;
@@ -88,7 +87,7 @@ class PgQuery : public IQuery
 	friend class PgBasicResults;
 public:
 	//@TODO: Fix Me
-	PgQuery(PgDatabase *db /*, MYSQL_RES *res*/);
+	PgQuery(PgDatabase *db, PGresult *result);
 public:
 	IResultSet *GetResultSet();
 	bool FetchMoreResults();

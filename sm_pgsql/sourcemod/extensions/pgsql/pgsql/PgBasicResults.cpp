@@ -34,8 +34,8 @@
 #include "PgBasicResults.h"
 
 //@TODO: Fix Me
-PgBasicResults::PgBasicResults(/*MYSQL_RES *res*/)
-//: m_pRes(res)
+PgBasicResults::PgBasicResults(PGresult *res)
+: m_pRes(res)
 {
 	Update();
 }
@@ -337,8 +337,8 @@ DBResult PgBasicResults::CopyBlob(unsigned int columnId, void *buffer, size_t ma
 }
 
 //@TODO: Fix Me
-PgQuery::PgQuery(PgDatabase *db /*, MYSQL_RES *res */)
-: m_pParent(db) //, m_rs(res)
+PgQuery::PgQuery(PgDatabase *db, PGresult *results)
+: m_pParent(db), m_rs(results)
 {
 	m_pParent->IncReferenceCount();
 }

@@ -191,8 +191,8 @@ bool PgDatabase::QuoteString(const char *str, char buffer[], size_t maxlength, s
 		}
 		return false;
 	}
-
-	needed = PQescapeStringConn(m_pgsql, buffer, str, size);
+	// 5th param is an error flag, but it's only used for multibyte encoding issues.
+	needed = PQescapeStringConn(m_pgsql, buffer, str, size, NULL);
 	if (newSize)
 	{
 		*newSize = (size_t)needed;
@@ -214,26 +214,12 @@ bool PgDatabase::DoSimpleQuery(const char *query)
 
 IQuery *PgDatabase::DoQuery(const char *query)
 {
-	//@TODO: Fix me
-	if (TRUE /*mysql_real_query(m_mysql, query, strlen(query)) != 0*/ )
+	PGresult *res = PQexec(m_pgsql, query);
+	if(!res)
 	{
 		return NULL;
 	}
-
-	//@TODO: Fix me
-	//MYSQL_RES *res = NULL;
-	//if (mysql_field_count(m_mysql))
-	//{
-	//	res = mysql_store_result(m_mysql);
-	//	if (!res)
-	//	{
-	//		return NULL;
-	//	}
-	//}
-
-	//@TODO: Fix me
-	//return new MyQuery(this, res);
-	return NULL;
+	return new PgQuery(this, res);
 }
 
 bool PgDatabase::DoSimpleQueryEx(const char *query, size_t len)
@@ -249,26 +235,12 @@ bool PgDatabase::DoSimpleQueryEx(const char *query, size_t len)
 
 IQuery *PgDatabase::DoQueryEx(const char *query, size_t len)
 {
-	//@TODO: Fix me
-	if ( TRUE /*mysql_real_query(m_mysql, query, len) != 0*/ )
+	PGresult *res = PQexec(m_pgsql, query);
+	if(!res)
 	{
 		return NULL;
 	}
-
-	//@TODO: Fix me
-	//MYSQL_RES *res = NULL;
-	//if (mysql_field_count(m_mysql))
-	//{
-	//	res = mysql_store_result(m_mysql);
-	//	if (!res)
-	//	{
-	//		return NULL;
-	//	}
-	//}
-
-	//@TODO: Fix me
-	//return new MyQuery(this, res);
-	return NULL;
+	return new PgQuery(this, res);
 }
 
 IPreparedQuery *PgDatabase::PrepareQuery(const char *query, char *error, size_t maxlength, int *errCode)
