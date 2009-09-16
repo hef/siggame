@@ -237,58 +237,6 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="MySQL Driver"
-			>
-			<Filter
-				Name="Headers"
-				>
-				<File
-					RelativePath="..\mysql\MyBasicResults.h"
-					>
-				</File>
-				<File
-					RelativePath="..\mysql\MyBoundResults.h"
-					>
-				</File>
-				<File
-					RelativePath="..\mysql\MyDatabase.h"
-					>
-				</File>
-				<File
-					RelativePath="..\mysql\MyDriver.h"
-					>
-				</File>
-				<File
-					RelativePath="..\mysql\MyStatement.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Source"
-				>
-				<File
-					RelativePath="..\mysql\MyBasicResults.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\mysql\MyBoundResults.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\mysql\MyDatabase.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\mysql\MyDriver.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\mysql\MyStatement.cpp"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
 			Name="PgSQL Driver"
 			>
 			<Filter
