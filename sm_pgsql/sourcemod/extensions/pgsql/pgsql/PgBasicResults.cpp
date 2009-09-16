@@ -155,7 +155,8 @@ DBType PgBasicResults::GetFieldType(unsigned int field)
 	}
 
 	//@TODO: Fix Me
-	return GetOurType(/*fld->type*/);
+	//return GetOurType(/*fld->type*/);
+	return DBType_Unknown;
 }
 
 DBType PgBasicResults::GetFieldDataType(unsigned int field)

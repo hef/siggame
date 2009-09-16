@@ -36,58 +36,50 @@
 #include "PgBasicResults.h"
 #include "PgStatement.h"
 
-//@TODO: Fix Me
-DBType GetOurType(/*enum_field_types type*/)
+DBType GetOurType(enum_field_types type)
 {
-	//@TODO: Fix Me
-	/*
 	switch (type)
 	{
-	case MYSQL_TYPE_DOUBLE:
-	case MYSQL_TYPE_FLOAT:
+	// DB Float types
+	case PG_TYPE_FLOAT:
+	case PG_TYPE_DOUBLE:
 		{
 			return DBType_Float;
 		}
-	case MYSQL_TYPE_TINY:
-	case MYSQL_TYPE_SHORT:
-	case MYSQL_TYPE_LONG:
-	case MYSQL_TYPE_INT24:
-	case MYSQL_TYPE_YEAR:
-	case MYSQL_TYPE_BIT:
+	// DB integer types
+	case PG_TYPE_INT8:
+	case PG_TYPE_SHORT:
+	case PG_TYPE_INT:
+	case PG_TYPE_BOOL:
 		{
 			return DBType_Integer;
 		}
-	case MYSQL_TYPE_LONGLONG:
-	case MYSQL_TYPE_DATE:
-	case MYSQL_TYPE_TIME:
-	case MYSQL_TYPE_DATETIME:
-	case MYSQL_TYPE_TIMESTAMP:
-	case MYSQL_TYPE_NEWDATE:
-	case MYSQL_TYPE_VAR_STRING:
-	case MYSQL_TYPE_VARCHAR:
-	case MYSQL_TYPE_STRING:
-	case MYSQL_TYPE_NEWDECIMAL:
-	case MYSQL_TYPE_DECIMAL:
-	case MYSQL_TYPE_ENUM:
-	case MYSQL_TYPE_SET:
-		{
-			return DBType_String;
-		}
-
-	case MYSQL_TYPE_TINY_BLOB:
-	case MYSQL_TYPE_MEDIUM_BLOB:
-	case MYSQL_TYPE_LONG_BLOB:
-	case MYSQL_TYPE_BLOB:
-	case MYSQL_TYPE_GEOMETRY:
+	// DB Blobs.
+	case PG_TYPE_BYTEAOID:
+	case PG_TYPE_TEXTOID:
 		{
 			return DBType_Blob;
 		}
+	// DB String types
+	case PG_TYPE_ABSTIMEOID:
+	case PG_TYPE_RELTIMEOID:
+	case PG_TYPE_TINTERVALOID:
+	case PG_TYPE_TIMEOID:
+	case PG_TYPE_TIMESTAMPOID:
+	case PG_TYPE_TIMESTAMPTZOID:
+	case PG_TYPE_TIMETZOID:
+	case PG_TYPE_DATEOID:
+	case PG_TYPE_NAMEOID:
+	case PG_TYPE_MACADDROID:
+	case PG_TYPE_INETOID:
+	case PG_TYPE_CIDROID:
+	case PG_TYPE_BPCHAROID:
+	case PG_TYPE_VARCHAROID:
 	default:
 		{
 			return DBType_String;
 		}
 	}
-	*/
 	return DBType_Unknown;
 }
 

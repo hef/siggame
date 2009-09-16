@@ -37,6 +37,36 @@
 #include "PgDriver.h"
 #include <IThreader.h>
 
+enum enum_field_types {
+	// DB Float types
+	PG_TYPE_FLOAT = 700, // FLOAT4OID 700
+	PG_TYPE_DOUBLE,      // FLOAT8OID 701
+	// DB integer types
+	PG_TYPE_INT8 = 20,   // INT8OID    20
+	PG_TYPE_SHORT = 21,  // INT2OID    21
+	PG_TYPE_INT = 23,    // INT4OID    23
+	PG_TYPE_BOOL = 16,   // BOOLOID    16
+	// DB String types
+	PG_TYPE_ABSTIMEOID = 702,
+	PG_TYPE_RELTIMEOID = 703,
+	PG_TYPE_TINTERVALOID	= 704,
+	PG_TYPE_TIMEOID			= 1083,
+	PG_TYPE_TIMESTAMPOID	= 1114,
+	PG_TYPE_TIMESTAMPTZOID	= 1184,
+	PG_TYPE_TIMETZOID		= 1266,
+	PG_TYPE_DATEOID			= 1082,
+	PG_TYPE_NAMEOID			= 19,
+	PG_TYPE_MACADDROID = 829,
+	PG_TYPE_INETOID = 869,
+	PG_TYPE_CIDROID = 650,
+	PG_TYPE_BPCHAROID		= 1042,
+	PG_TYPE_VARCHAROID		= 1043,
+	// DB Blobs.
+	PG_TYPE_BYTEAOID		= 17,
+	PG_TYPE_TEXTOID			= 25
+};
+
+
 class PgQuery;
 class PgStatement;
 
@@ -79,7 +109,6 @@ private:
 	bool m_bPersistent;
 };
 
-//@TODO: Fix Me
-DBType GetOurType(/*enum_field_types type*/);
+DBType GetOurType(enum_field_types type);
 
 #endif //_INCLUDE_SM_PGSQL_DATABASE_H_
