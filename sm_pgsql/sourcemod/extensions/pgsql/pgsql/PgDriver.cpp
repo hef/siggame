@@ -97,7 +97,10 @@ PGconn *Connect(const DatabaseInfo *info, char *error, size_t maxlength)
 {
 	//@TODO: Fix me
 	//MYSQL *mysql = mysql_init(NULL);
+	PGconn *psql;
+	// There is no pg init function.
 	const char *host = NULL, *socket = NULL;
+	char connect_string[1024];
 
 	if (info->maxTimeout > 0)
 	{
@@ -122,26 +125,18 @@ PGconn *Connect(const DatabaseInfo *info, char *error, size_t maxlength)
 		host = info->host;
 		socket = NULL;
 	}
-
-	//@TODO: Fix me
-	//if (!mysql_real_connect(mysql,
-	//	host,
-	//	info->user, 
-	//	info->pass,
-	//	info->database,
-	//	info->port,
-	//	socket,
-	//	M_CLIENT_MULTI_RESULTS))
-	//{
-	//	/* :TODO: expose UTIL_Format from smutil! */
-	//	snprintf(error, maxlength, "[%d]: %s", mysql_errno(mysql), mysql_error(mysql));
-	//	mysql_close(mysql);
-	//	return NULL;
-	//}
-
-	//@TODO: Fix me
-	//return mysql;
-	return NULL;
+	snprintf(connect_string, sizeof(connect_string),
+		"hostaddr = '%s' port = '%d' dbname = '%s' user = '%s' password = '%s'",
+		host, info->port, info->database, info->user, info->pass);
+	//@TODO: Add possibility to set connection options.
+	psql = PQconnectdb(connect_string);
+	if(!psql)
+	{
+		snprintf(error, maxlength, "Error connecting to database server: %s", PQerrorMessage(psql));
+		PQfinish(psql);
+		return NULL;
+	}
+	return psql;
 }
 
 bool CompareField(const char *str1, const char *str2)
