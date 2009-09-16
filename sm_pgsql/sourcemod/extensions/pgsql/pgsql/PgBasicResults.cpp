@@ -104,7 +104,14 @@ IResultRow *PgBasicResults::FetchRow()
 		m_CurRow = m_RowCount + 1;
 		return NULL;
 	}
-
+	
+	// solution for Pg:
+	// Pg's only value retrieval is in a single row/col.
+	// thers is no get-row functionality.
+	// However, we know what row we're currently looking at (m_CurRow)
+	// and the result to this function is 'this'.  so just implement the
+	// appropriate IResultRow implementations in this class to use m_CurRow &
+	// the supplied column parameter to find the row/col value we're looking for.
 	//@TODO: Fix me
 	//m_Row = mysql_fetch_row(m_pRes);
 	//m_Lengths = mysql_fetch_lengths(m_pRes);
@@ -115,8 +122,7 @@ IResultRow *PgBasicResults::FetchRow()
 
 IResultRow *PgBasicResults::CurrentRow()
 {
-	//@TODO: Fix Me
-	if (/*!m_pRes*/ TRUE
+	if (!m_pRes
 		|| !m_CurRow
 		|| m_CurRow > m_RowCount)
 	{
@@ -128,8 +134,6 @@ IResultRow *PgBasicResults::CurrentRow()
 
 bool PgBasicResults::Rewind()
 {
-	//@TODO: Fix me
-	//mysql_data_seek(m_pRes, 0);
 	m_CurRow = 0;
 	return true;
 }
@@ -195,6 +199,7 @@ DBResult PgBasicResults::GetString(unsigned int columnId, const char **pString, 
 	//@TODO: Fix Me
 	//*pString = m_Row[columnId];
 
+	//@TODO: see if this can actually work this way.. I don't think we populate m_Lengths
 	if (length)
 	{
 		*length = (size_t)m_Lengths[columnId];
@@ -226,6 +231,7 @@ DBResult PgBasicResults::CopyString(unsigned int columnId,
 
 size_t PgBasicResults::GetDataSize(unsigned int columnId)
 {
+	//@TODO: see if this can actually work this way.. I don't think we populate m_Lengths
 	if (columnId >= m_ColCount)
 	{
 		return 0;
