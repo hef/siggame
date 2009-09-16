@@ -179,14 +179,12 @@ IDatabase *PgDriver::Connect(const DatabaseInfo *info, bool persistent, char *er
 		}
 	}
 
-	//@TODO: Fix me
-	//MYSQL *mysql = ::Connect(info, error, maxlength);
-	//if (!mysql)
-	//{
-	//	return NULL;
-	//}
+	PGconn *psql = ::Connect(info, error, maxlength);
+	if (!psql)
+	{
+		return NULL;
+	}
 
-	//@TODO: Fix me
 	PgDatabase *db = new PgDatabase(NULL, info, persistent);
 
 	if (persistent)
@@ -207,22 +205,20 @@ void PgDriver::RemoveFromList(PgDatabase *pdb, bool persistent)
 
 bool PgDriver::IsThreadSafe()
 {
-	//@TODO: Fix me
-	//return (mysql_thread_safe() != 0);
-	return false;
+	return (PQisthreadsafe() != 0);
 }
 
 bool PgDriver::InitializeThreadSafety()
 {
-	//@TODO: Fix me
-	//return (mysql_thread_init() == 0);
-	return false;
+	// NOTE: PgSQL doesn't have this issue.
+	// If it's thread safe, it doesn't need to initialize anything.
+	return IsThreadSafe();
 }
 
 void PgDriver::ShutdownThreadSafety()
 {
-	//@TODO: Fix me
-	//mysql_thread_end();
+	// NOTE: PgSQL doesn't have this issue.
+	// If it's thread safe, it doesn't need to end anything.
 }
 
 unsigned int strncopy(char *dest, const char *src, size_t count)
