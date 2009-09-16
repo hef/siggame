@@ -115,6 +115,8 @@ IResultRow *PgBasicResults::FetchRow()
 	//@TODO: Fix me
 	//m_Row = mysql_fetch_row(m_pRes);
 	//m_Lengths = mysql_fetch_lengths(m_pRes);
+	// side note: Pg defines PQgetlength(res, row, col) which tells you how large a value is.
+	// so, with Pg, we don't actually need to copy the length data, m_Lengths is useless then.
 
 	m_CurRow++;
 	return this;
