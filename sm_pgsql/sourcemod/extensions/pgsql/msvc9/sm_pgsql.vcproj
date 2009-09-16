@@ -288,6 +288,42 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="PgSQL Driver"
+			>
+			<Filter
+				Name="Headers"
+				>
+				<File
+					RelativePath="..\pgsql\PgDatabase.h"
+					>
+				</File>
+				<File
+					RelativePath="..\pgsql\PgDriver.h"
+					>
+				</File>
+				<File
+					RelativePath="..\pgsql\PgStatement.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Sources"
+				>
+				<File
+					RelativePath="..\pgsql\PgDatabase.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\pgsql\PgDriver.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\pgsql\PgStatement.cpp"
+					>
+				</File>
+			</Filter>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>
