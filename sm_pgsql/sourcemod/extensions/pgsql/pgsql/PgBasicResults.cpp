@@ -46,12 +46,10 @@ PgBasicResults::~PgBasicResults()
 
 void PgBasicResults::Update()
 {
-	//@TODO: Fix Me
-	//if (m_pRes)
+	if (m_pRes)
 	{
-		//@TODO: Fix Me
-		//m_ColCount = (unsigned int)mysql_num_fields(m_pRes);
-		//m_RowCount = (unsigned int)mysql_num_rows(m_pRes);
+		m_ColCount = (unsigned int)PQnfields(m_pRes);
+		m_RowCount = (unsigned int)PQntuples(m_pRes);
 		m_CurRow = 0;
 		//@TODO: Fix Me
 		//m_Row = NULL;
@@ -90,11 +88,7 @@ const char *PgBasicResults::FieldNumToName(unsigned int colId)
 	{
 		return NULL;
 	}
-
-	//@TODO: Fix me
-	//MYSQL_FIELD *field = mysql_fetch_field_direct(m_pRes, colId);
-	//return field ? (field->name ? field->name : "") : "";
-	return "";
+	return PQfname(m_pRes, colId);;
 }
 
 bool PgBasicResults::MoreRows()
@@ -345,8 +339,7 @@ PgQuery::PgQuery(PgDatabase *db, PGresult *results)
 
 IResultSet *PgQuery::GetResultSet()
 {
-	//@TODO: Fix Me
-	if (TRUE /*m_rs.m_pRes == NULL*/)
+	if (m_rs.m_pRes == NULL)
 	{
 		return NULL;
 	}
@@ -356,57 +349,20 @@ IResultSet *PgQuery::GetResultSet()
 
 bool PgQuery::FetchMoreResults()
 {
-	//@TODO: Fix Me
-	if (TRUE /*m_rs.m_pRes == NULL*/)
-	{
-		return false;
-	}
-	//@TODO: Fix me
-	//else if (!mysql_more_results(m_pParent->m_mysql)) {
-	//	return false;
-	//}
-	else
-	{
-		return false;
-	}
-
-	//@TODO: Fix me
-	//mysql_free_result(m_rs.m_pRes);
-	//m_rs.m_pRes = NULL;
-
-	//@TODO: Fix me
-	//if (mysql_next_result(m_pParent->m_mysql) != 0)
-	//{
-	//	return false;
-	//}
-
-	//@TODO: Fix me
-	//m_rs.m_pRes = mysql_store_result(m_pParent->m_mysql);
-	m_rs.Update();
-
-	//@TODO: Fix Me
-	return FALSE; //(m_rs.m_pRes != NULL);
+	// Postgres never has partial result sets.
+	return false;
 }
 
 void PgQuery::Destroy()
 {
 	/* :TODO: All this rot should be moved into the destructor,
 	 * and the Update() function needs to not be so stupid.
+	 * ... there is no virtualized destructor.  -Lyfe
 	 */
-
-	while (FetchMoreResults())
-	{
-		/* Spin until all are gone */
-	}
-
-	/* Free the last, if any */
-	//@TODO: Fix Me
-	//if (m_rs.m_pRes != NULL)
-	//{
-	//	mysql_free_result(m_rs.m_pRes);
-	//}
+	PQclear(m_rs.m_pRes);
 
 	/* Tell our parent we're done */
+	// huh?  -Lyfe
 	m_pParent->Close();
 
 	/* Self destruct */
