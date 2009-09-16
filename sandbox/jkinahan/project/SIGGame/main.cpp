@@ -1,4 +1,5 @@
 #include "Utils.h"
+#include "Dog.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -7,7 +8,6 @@ using std::cin;
 int main()
 {
 	int inputNumber = 0;
-
 	Utils* utilHeap = new Utils; // heap implementation of Utilities
 	Utils utilStack; // stack implementation of Utilities
 
@@ -31,8 +31,27 @@ int main()
 	{
 		cout << "Please use an input greater than 0 \n";
 	}
-
+	
 	delete utilHeap;
+
+/*****
+*
+*	Testing Dog() create and delete
+*
+*****/
+
+	// Creating a dog and calling copy constructor
+	Dog d;
+	Dog d2 = d;
+
+	// Creating Dog mandy on the heap 
+	Dog* mandy = new Dog( 14.3f, 23.4f, "MANDY" );
+
+	// Mandy's stats Output
+	cout << mandy->getTagID() << "'s Height is: " << mandy->getHeight() << ".\n";
+	cout << mandy->getTagID() << "'s Weight is: " << mandy->getWeight() << ".\n\n";
+
+	delete mandy;
 
     system( "PAUSE" );
 
