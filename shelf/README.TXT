@@ -1,0 +1,1 @@
+This is the shelf depot.  You shouldn't, under *any* conditions check into this branch manually.
