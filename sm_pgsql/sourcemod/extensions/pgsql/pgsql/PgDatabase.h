@@ -109,6 +109,6 @@ private:
 	bool m_bPersistent;
 };
 
-DBType GetOurType(enum_field_types type);
+DBType GetOurType(Oid type);
 
 #endif //_INCLUDE_SM_PGSQL_DATABASE_H_

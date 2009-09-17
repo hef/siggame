@@ -36,7 +36,7 @@
 #include "PgBasicResults.h"
 #include "PgStatement.h"
 
-DBType GetOurType(enum_field_types type)
+DBType GetOurType(Oid type)
 {
 	switch (type)
 	{
