@@ -50,7 +50,10 @@ void PgBasicResults::Update()
 	{
 		m_ColCount = (unsigned int)PQnfields(m_pRes);
 		m_RowCount = (unsigned int)PQntuples(m_pRes);
-		m_CurRow = 0;
+		// current row is updated when 'fetchrow' is performed, which means
+		// the first called to fetchrow will increment this to 0, which is the
+		// first row number in Pg, when calling PQgetvalue(...)
+		m_CurRow = -1;
 		//@TODO: Fix Me
 		//m_Row = NULL;
 	}
@@ -88,7 +91,7 @@ const char *PgBasicResults::FieldNumToName(unsigned int colId)
 	{
 		return NULL;
 	}
-	return PQfname(m_pRes, colId);;
+	return PQfname(m_pRes, colId);
 }
 
 bool PgBasicResults::MoreRows()
@@ -98,6 +101,7 @@ bool PgBasicResults::MoreRows()
 
 IResultRow *PgBasicResults::FetchRow()
 {
+	m_CurRow++;
 	if (m_CurRow >= m_RowCount)
 	{
 		/* Put us one after so we know to block CurrentRow() */
@@ -118,7 +122,6 @@ IResultRow *PgBasicResults::FetchRow()
 	// side note: Pg defines PQgetlength(res, row, col) which tells you how large a value is.
 	// so, with Pg, we don't actually need to copy the length data, m_Lengths is useless then.
 
-	m_CurRow++;
 	return this;
 }
 
@@ -146,17 +149,18 @@ DBType PgBasicResults::GetFieldType(unsigned int field)
 	{
 		return DBType_Unknown;
 	}
-
+	
 	//@TODO: Fix me
+	Oid fieldtype = PQftype(m_pRes, field);
 	//MYSQL_FIELD *fld = mysql_fetch_field_direct(m_pRes, field);
-	if ( TRUE /*!fld*/ )
+	if ( !fieldtype )
 	{
 		return DBType_Unknown;
 	}
 
 	//@TODO: Fix Me
-	//return GetOurType(/*fld->type*/);
-	return DBType_Unknown;
+	return GetOurType(fieldtype);
+	//return DBType_Unknown;
 }
 
 DBType PgBasicResults::GetFieldDataType(unsigned int field)
@@ -176,9 +180,8 @@ bool PgBasicResults::IsNull(unsigned int columnId)
 	{
 		return true;
 	}
-
-	//@TODO: Fix Me
-	return FALSE; //(m_Row[columnId] == NULL);
+	// PQgetisnull returns 1 if the field is null.
+	return (1 == PQgetisnull(m_pRes, m_CurRow, columnId));
 }
 
 DBResult PgBasicResults::GetString(unsigned int columnId, const char **pString, size_t *length)
@@ -187,8 +190,7 @@ DBResult PgBasicResults::GetString(unsigned int columnId, const char **pString, 
 	{
 		return DBVal_Error;
 	} 
-	//@TODO: Fix Me
-	else if (FALSE /*m_Row[columnId] == NULL*/) 
+	else if (IsNull(columnId)) 
 	{
 		*pString = "";
 		if (length)
@@ -198,13 +200,11 @@ DBResult PgBasicResults::GetString(unsigned int columnId, const char **pString, 
 		return DBVal_Null;
 	}
 
-	//@TODO: Fix Me
-	//*pString = m_Row[columnId];
+	*pString = PQgetvalue(m_pRes, m_CurRow, columnId);
 
-	//@TODO: see if this can actually work this way.. I don't think we populate m_Lengths
 	if (length)
 	{
-		*length = (size_t)m_Lengths[columnId];
+		*length = (size_t)GetDataSize(columnId);
 	}
 
 	return DBVal_Data;
@@ -233,13 +233,11 @@ DBResult PgBasicResults::CopyString(unsigned int columnId,
 
 size_t PgBasicResults::GetDataSize(unsigned int columnId)
 {
-	//@TODO: see if this can actually work this way.. I don't think we populate m_Lengths
 	if (columnId >= m_ColCount)
 	{
 		return 0;
 	}
-
-	return (size_t)m_Lengths[columnId];
+	return (size_t)PQgetlength(m_pRes, m_CurRow, columnId);
 }
 
 DBResult PgBasicResults::GetFloat(unsigned int col, float *fval)
@@ -248,15 +246,13 @@ DBResult PgBasicResults::GetFloat(unsigned int col, float *fval)
 	{
 		return DBVal_Error;
 	} 
-	//@TODO: Fix Me
-	else if (FALSE /*m_Row[col] == NULL*/) 
+	else if (IsNull(col))
 	{
 		*fval = 0.0f;
 		return DBVal_Null;
 	}
 
-	//@TODO: Fix Me
-	//*fval = (float)atof(m_Row[col]);
+	*fval = (float)atof(PQgetvalue(m_pRes, m_CurRow, col));
 
 	return DBVal_Data;
 }
@@ -267,15 +263,13 @@ DBResult PgBasicResults::GetInt(unsigned int col, int *val)
 	{
 		return DBVal_Error;
 	}
-	//@TODO: Fix Me
-	else if (FALSE /*m_Row[col] == NULL*/) 
+	else if (IsNull(col))
 	{
 		*val = 0;
 		return DBVal_Null;
 	}
 
-	//@TODO: Fix Me
-	//*val = atoi(m_Row[col]);
+	*val = atoi(PQgetvalue(m_pRes, m_CurRow, col));
 
 	return DBVal_Data;
 }
@@ -286,8 +280,7 @@ DBResult PgBasicResults::GetBlob(unsigned int col, const void **pData, size_t *l
 	{
 		return DBVal_Error;
 	} 
-	//@TODO: Fix Me
-	else if (FALSE /*m_Row[col] == NULL*/) 
+	else if (IsNull(col))
 	{
 		*pData = NULL;
 		if (length)
@@ -296,13 +289,12 @@ DBResult PgBasicResults::GetBlob(unsigned int col, const void **pData, size_t *l
 		}
 		return DBVal_Null;
 	}
-
-	//@TODO: Fix Me
-	//*pData = m_Row[col];
+	
+	*pData = PQgetvalue(m_pRes, m_CurRow, col);
 
 	if (length)
 	{
-		*length = (size_t)m_Lengths[col];
+		*length = (size_t)GetDataSize(col);
 	}
 
 	return DBVal_Data;
@@ -338,7 +330,6 @@ DBResult PgBasicResults::CopyBlob(unsigned int columnId, void *buffer, size_t ma
 	return res;
 }
 
-//@TODO: Fix Me
 PgQuery::PgQuery(PgDatabase *db, PGresult *results)
 : m_pParent(db), m_rs(results)
 {
