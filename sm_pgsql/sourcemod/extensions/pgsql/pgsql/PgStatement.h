@@ -51,7 +51,7 @@ struct ParamBind
 class PgStatement : public IPreparedQuery
 {
 public:
-	PgStatement(PgDatabase *db /*, MYSQL_STMT *stmt*/);
+	PgStatement(PgDatabase *db, PGresult *stmt);
 	~PgStatement();
 public: //IQuery
 	IResultSet *GetResultSet();
@@ -71,10 +71,10 @@ private:
 	void *CopyBlob(unsigned int param, const void *blobptr, size_t length);
 private:
 	//@TODO: Fix Me
-	//MYSQL *m_mysql;
+	PGconn *m_pgsql;
 	PgDatabase *m_pParent;
 	//@TODO: Fix Me
-	//MYSQL_STMT *m_stmt;
+	PGresult *m_stmt;
 	//MYSQL_BIND *m_bind;
 	//MYSQL_RES *m_pRes;
 	ParamBind *m_pushinfo;

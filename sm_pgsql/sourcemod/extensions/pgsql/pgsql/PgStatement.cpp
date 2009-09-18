@@ -34,8 +34,8 @@
 #include "PgStatement.h"
 #include "PgBoundResults.h"
 
-PgStatement::PgStatement(PgDatabase *db /*, MYSQL_STMT *stmt*/)
-: /*m_mysql(db->m_mysql),*/ m_pParent(db), /*m_stmt(stmt),*/ m_rs(NULL), m_Results(false)
+PgStatement::PgStatement(PgDatabase *db, PGresult *stmt)
+: m_pgsql(db->m_pgsql), m_pParent(db), m_stmt(stmt), m_rs(NULL), m_Results(false)
 {
 	//@TODO: Fix Me
 	//m_Params = (unsigned int)mysql_stmt_param_count(m_stmt);

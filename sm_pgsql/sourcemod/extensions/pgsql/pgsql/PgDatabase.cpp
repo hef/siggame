@@ -245,37 +245,22 @@ IQuery *PgDatabase::DoQueryEx(const char *query, size_t len)
 
 IPreparedQuery *PgDatabase::PrepareQuery(const char *query, char *error, size_t maxlength, int *errCode)
 {
-	//@TODO: Fix me
-	//MYSQL_STMT *stmt = mysql_stmt_init(m_mysql);
-	//if (!stmt)
-	//{
-	//	if (error)
-	//	{
-	//		strncopy(error, GetError(errCode), maxlength);
-	//	} else if (errCode) {
-	//		*errCode = mysql_errno(m_mysql);
-	//	}
-	//	return NULL;
-	//}
-
-	//@TODO: Fix me
-	//if (mysql_stmt_prepare(stmt, query, strlen(query)) != 0)
-	//{
-	//	if (error)
-	//	{
-	//		strncopy(error, mysql_stmt_error(stmt), maxlength);
-	//	}
-	//	if (errCode)
-	//	{
-	//		*errCode = mysql_stmt_errno(stmt);
-	//	}
-	//	mysql_stmt_close(stmt);
-	//	return NULL;
-	//}
-
-	//@TODO: Fix me
+	// far as i can tell, PQprepare with params (4, 5) set to 0,NULL will give me
+	// a prepared statement without any execution, and let me execute
+	// that statement later with actual values.
+	PGresult *statement = PQprepare(m_pgsql, "", query, 0, NULL);
+	if (!statement)
+	{	
+		if(error)
+		{
+			strncopy(error, PQerrorMessage(m_pgsql), maxlength);
+		} else {
+			// PG doesn't support error codes!
+		}
+		return NULL;
+	}
 	//return new MyStatement(this, stmt);
-	return NULL;
+	return new PgStatement(this, statement);
 }
 
 bool PgDatabase::LockForFullAtomicOperation()
