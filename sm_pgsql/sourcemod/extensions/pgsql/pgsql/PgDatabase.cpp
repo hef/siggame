@@ -250,12 +250,12 @@ IPreparedQuery *PgDatabase::PrepareQuery(const char *query, char *error, size_t 
 	// that statement later with actual values.
 	PGresult *statement = PQprepare(m_pgsql, "", query, 0, NULL);
 	if (!statement)
-	{	
+	{
 		if(error)
 		{
 			strncopy(error, PQerrorMessage(m_pgsql), maxlength);
 		} else {
-			// PG doesn't support error codes!
+			// Need to look at PG docs to see if we can get an error code.
 		}
 		return NULL;
 	}
