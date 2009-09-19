@@ -126,11 +126,11 @@ PGconn *Connect(const DatabaseInfo *info, char *error, size_t maxlength)
 		socket = NULL;
 	}
 	snprintf(connect_string, sizeof(connect_string),
-		"hostaddr = '%s' port = '%d' dbname = '%s' user = '%s' password = '%s'",
+		"host = '%s' port = '%d' dbname = '%s' user = '%s' password = '%s'",
 		host, info->port, info->database, info->user, info->pass);
 	//@TODO: Add possibility to set connection options.
 	psql = PQconnectdb(connect_string);
-	if(!psql)
+	if(PQstatus(psql) != CONNECTION_OK)
 	{
 		snprintf(error, maxlength, "Error connecting to database server: %s", PQerrorMessage(psql));
 		PQfinish(psql);
