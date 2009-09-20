@@ -16,6 +16,8 @@ private:
 	ModelSceneNode* pShipModel;
 	ModelSceneNode* pCessnaModel;
 	vector< Actor* > actors;
+	/** Temporary vector used to add actors at the end of every tick */
+	vector< Actor* > actorsToAdd;
 public:
 	static World* getInstance();
 	/**
@@ -26,7 +28,9 @@ public:
 	void destroy();
 	const std::vector< Actor* >& getActors() const;
 	void addActor( Actor* actor );
-	void tick( double dt );
+	/** This is used to add actors to the vector at the end of every tick */
+	void addToActors( Actor* actor );
+	void tick( const double dt );
 private:
 	World();
 	World( const World& other );

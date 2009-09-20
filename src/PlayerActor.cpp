@@ -39,6 +39,25 @@ void PlayerActor::tick( const double dt )
 		dPosition[1] += 30.0f * cosf( rotation[2] * PI/180.0f ) * (float)dt;
 	}
 
+	if( input->altDown() )
+	{
+		World* w = World::getInstance();
+
+		// THIS PROBABLY NEEDS TO CHANGE
+		const float deltaPos = 5.0f;
+
+		Vector3f tempPos( this->position[0], this->position[1], 0.0f );
+		Vector3f tempDPos( this->dPosition[0] + deltaPos, this->dPosition[1] + deltaPos, 0.0f );
+		Vector3f tempRotation( this->getRotationVector3f() );
+		Vector3f tempDRotation( 0.0f, 0.0f, 0.0f );
+		// Create a new actor. May want to use a Laser or Bullet Actor instead later
+		AsteroidActor* laser = new AsteroidActor( "laser", new ModelSceneNode(OBJ2Model::file("spaceShip.obj")),
+												  tempPos, tempDPos, tempRotation , tempDRotation);
+		// Add to a temp vector in world to copy over at end of World::tick()
+		w->addToActors( laser );
+		
+	}
+
 	// TODO The numbers 7 and 14 need to be adjusted to fit veiwport size
 	for ( int i = 0; i < 3 ; ++i )
 	{
