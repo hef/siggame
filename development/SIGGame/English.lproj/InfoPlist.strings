@@ -1,0 +1,6 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleName = "SIGGAME";
+CFBundleShortVersionString = "«PROJECTNAME» version 0.1";
+CFBundleGetInfoString = "«PROJECTNAME» version 0.1, Copyright «YEAR» «ORGANIZATIONNAME».";
+NSHumanReadableCopyright = "Copyright «YEAR» «ORGANIZATIONNAME».";
