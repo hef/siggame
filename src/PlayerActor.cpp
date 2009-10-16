@@ -21,22 +21,23 @@ PlayerActor::~PlayerActor()
 void PlayerActor::tick( const double dt )
 {
 	Input* input = Input::Instance();
-
+	const float LRConst = 100.0f;
 	// TODO make 100.0f configureable
 	if( input->leftArrowDown() ){
-		rotation[2] += 100.0f * (float)dt;
+		rotation[2] += LRConst * (float)dt;
 	}
 	else if( input->rightArrowDown() ){
-		rotation[2] -= 100.0f * (float)dt;
+		rotation[2] -= LRConst * (float)dt;
 	}
 	if( input->upArrowDown() )
 	{	
 		const float PI = 3.14159265f;
+		const float speedConst = 30.0f;
 		// TODO 10.0f is a magnitude of speed change. make it configureable
 		// add the x vector componet of direction to x component of velocity
-		dPosition[0] += -30.0f * sinf( rotation[2] * PI/180.0f ) * (float)dt;
+		dPosition[0] += -speedConst * sinf( rotation[2] * PI/180.0f ) * (float)dt;
 		//add the y vector componet of rotation to y component of velocity
-		dPosition[1] += 30.0f * cosf( rotation[2] * PI/180.0f ) * (float)dt;
+		dPosition[1] += speedConst * cosf( rotation[2] * PI/180.0f ) * (float)dt;
 	}
 
 	if( input->altDown() )
