@@ -14,7 +14,7 @@ ModelSceneNode OBJ2Model::file( std::string const filename )
 
 	std::vector< std::vector<int> > faces;
 	std::string line;
-	std::ifstream myfile( filename.c_str());
+	std::ifstream myfile( ("data/models/" + filename).c_str());
 	assert( myfile.is_open());
 	std::vector<std::string> tokens;
 	float point0, point1, point2;
@@ -180,7 +180,7 @@ std::vector<std::string> OBJ2Model::tokenize( const std::string& string, const s
 /** This version will create empty nodes in the vector for repated delimiters
  *  this one was created to handle faces that sometimes don't have textures
  *
- *?
+ */
 std::vector<std::string> OBJ2Model::moreTokenize(const std::string& string, const std::string& delimiters, const std::string::size_type& startingPoint)
 {
 	std::vector<std::string> tokens;

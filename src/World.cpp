@@ -75,10 +75,9 @@ World::~World()
 		delete *i;
 	}
 }
-
+void World::destroy()
 {
 	delete pInstance;
->>>>>>> p4/master
 }
 
 const vector< Actor* >& World::getActors() const
