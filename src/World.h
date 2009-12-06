@@ -12,19 +12,29 @@ using std::vector;
 class World
 {
 private:
+	static World* pInstance;
 	ModelSceneNode* pShipModel;
 	ModelSceneNode* pCessnaModel;
 	vector< Actor* > actors;
+	/** Temporary vector used to add actors at the end of every tick */
+	vector< Actor* > actorsToAdd;
 public:
-	World();
+	static World* getInstance();
 	/**
 	   Responsible for deleting any created Model pointers and deletes all actors
 	   in actors vector.
 	 */
 	~World();
+	void destroy();
 	const std::vector< Actor* >& getActors() const;
 	void addActor( Actor* actor );
-	void tick( double dt );
+	/** This is used to add actors to the vector at the end of every tick */
+	void addToActors( Actor* actor );
+	void tick( const double dt );
+private:
+	World();
+	World( const World& other );
+	World& operator=( const World& other );
 };
 
 #endif

@@ -98,13 +98,22 @@ int Renderer::render( const World& gameWorld ) const
 
 void Renderer::establishProjectionMatrix( GLsizei width, GLsizei height )
 {
-	glViewport( 0, 0, width, height );
+	const GLint x = 0;
+	const GLint y = 0;
+	const GLdouble left = -100.0f;
+	const GLdouble right = 100.0f;
+	const GLdouble bottom = -100.0f;
+	const GLdouble top = 100.0f;
+	const GLdouble zNear = -100.0f;
+	const GLdouble zFar = 100.0f;
+
+	glViewport( x, y, width, height );
 
 	glMatrixMode( GL_PROJECTION );
 
 	glLoadIdentity();
 
-	glOrtho(-100.0f, 100.0f, -100.0f, 100.0f, -100.0f, 100.0f);
+	glOrtho( left, right, bottom, top, zNear, zFar);
 	
 
 
@@ -112,11 +121,16 @@ void Renderer::establishProjectionMatrix( GLsizei width, GLsizei height )
 
 void Renderer::initGL( GLsizei width, GLsizei height )
 {
+	const GLclampf red = 0.0f;
+	const GLclampf green = 0.0f;
+	const GLclampf blue = 0.0f;
+	const GLclampf alpha = 1.0f;
+
 	establishProjectionMatrix( width, height );
 
 	glShadeModel( GL_SMOOTH );
 
-	glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
+	glClearColor( red, green, blue, alpha );
 
 	glEnable( GL_DEPTH_TEST );
 	glDepthFunc( GL_LEQUAL );
@@ -126,6 +140,7 @@ void Renderer::initGL( GLsizei width, GLsizei height )
 	
 	glEnable(GL_LIGHTING);
 	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_LIGHT0);
 
 	// Create light components
 	float ambientLight[] = { 0.2f, 0.2f, 0.2f, 1.0f };
